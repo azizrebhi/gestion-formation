@@ -1,11 +1,10 @@
 package com.example.gestionFormation.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +17,8 @@ public class Renumeration {
     private Long fraisTotale ;
     private Boolean valideF;
     private Boolean valideEF;
+    @OneToMany
+    private List<Formation> formations ;
+
 
 }

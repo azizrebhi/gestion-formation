@@ -1,13 +1,11 @@
 package com.example.gestionFormation.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +14,19 @@ public class Formation {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id ;
+    private long id_formateur ;
     private String nomFormation ;
     private String categorie ;
     private Date dateDebut ;
     private Date datefin ;
     private Long nombreParticipant ;
+    @OneToOne
+    private Pausecafe pausecafe ;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Salle> salles ;
+
+
+
 
 
 
