@@ -1,47 +1,31 @@
 package com.example.gestionFormation.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
-
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity(name = "Formation")
+@Table(name = "formation")
 @Getter
 @Setter
-@Entity
-
-
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class Formation {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Getter@Setter
-    private long id ;
-    @Getter@Setter
-    private long id_formateur ;
-    @Getter@Setter
+    private Long id ;
+    private Long id_formateur ;
     private String nomFormation ;
-    @Getter@Setter
     private String categorie ;
-    @Getter@Setter
-    private LocalDate dateDebut ;
-    @Getter@Setter
-    private LocalDate datefin ;
-    @Getter@Setter
+    private Date dateDebut ;
+    private Date datefin ;
     private Long nombreParticipant ;
-
-
-
-
-
-
-
-
-
-
+    @OneToOne
+    private Pausecafe pausecafe ;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Salle> salles ;
 }
