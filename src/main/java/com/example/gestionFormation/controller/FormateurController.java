@@ -2,7 +2,6 @@ package com.example.gestionFormation.controller;
 
 import com.example.gestionFormation.Service.FormateurService;
 import com.example.gestionFormation.entity.Formateur;
-import com.example.gestionFormation.entity.Formation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +9,10 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.Format;
 import java.util.List;
 
 
-@CrossOrigin(origins ="*")
+
 @RestController
 @RequestMapping(path="api/v1/formateur")
 public class FormateurController {
@@ -35,5 +33,7 @@ public class FormateurController {
   public void deleteFormateur(@PathVariable("formateurId") Long formateurId){
   formateurService.deleteFormateur(formateurId);
   }
-@PutMapping("/update")
-public void updateformateur(@RequestBody Formateur formateur){  formateurService.updateformateur(formateur);}}
+@PutMapping(path="{formateurId}")
+public void updateformateur(@PathVariable("formateurId") Long formateurId,
+           @RequestParam(required=false) String name,
+                            @RequestParam(required=false) String email){  formateurService.updateformateur(formateurId, name,email);}}

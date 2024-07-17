@@ -38,17 +38,17 @@ boolean exists=formateurRepository.existsById(formateurId);
    }formateurRepository.deleteById(formateurId);
     }
 @Transactional
-    public void updateformateur(Formateur formateur) {
-  Formateur updatedFormateur=formateurRepository.findById(formateur.getId())
-                  .orElseThrow(()->new IllegalStateException("formateur with id "+formateur.getId()+" does not exist"));
-    if (formateur.getName() !=null && formateur.getName().length() >0 && !Objects.equals(updatedFormateur.getName(),formateur.getName())){
-        updatedFormateur.setName(formateur.getName());}
-    if (formateur.getEmail() !=null && formateur.getEmail().length() >0 && !Objects.equals(updatedFormateur.getEmail(),formateur.getEmail())){
-      Optional <Formateur> formateurOptional = formateurRepository.findFormateurByemail(formateur.getEmail());
+    public void updateformateur(Long formateurId, String name, String email) {
+  Formateur formateur=formateurRepository.findById(formateurId)
+                  .orElseThrow(()->new IllegalStateException("formateur with id "+formateurId+" does not exist"));
+    if (name !=null && name.length() >0 && !Objects.equals(formateur.getName(),name)){
+    formateur.setName(name);}
+    if (email !=null && email.length() >0 && !Objects.equals(formateur.getEmail(),email)){
+      Optional <Formateur> formateurOptional = formateurRepository.findFormateurByemail(email);
         if(formateurOptional.isPresent()){
             throw new IllegalStateException("email taken");}
-        updatedFormateur.setEmail(formateur.getEmail());
-        updatedFormateur.setTel(formateur.getTel());
+        formateur.setEmail(email);
+
     }
 
 }
