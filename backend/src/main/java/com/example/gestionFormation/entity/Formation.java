@@ -2,7 +2,9 @@ package com.example.gestionFormation.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -10,6 +12,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Entity
 
 
@@ -30,10 +34,9 @@ public class Formation {
     private LocalDate datefin ;
     @Getter@Setter
     private Long nombreParticipant ;
-    @OneToOne
-    private Pausecafe pausecafe ;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Salle> salles ;
+
+
+
 
 
 
