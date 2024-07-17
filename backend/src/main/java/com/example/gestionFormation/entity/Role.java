@@ -1,39 +1,18 @@
 package com.example.gestionFormation.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
-public class Role implements Serializable {
-
+public class Role {
     @Id
-    @GeneratedValue(strategy =
-            GenerationType.AUTO)
-    private int id;
-    @Enumerated(EnumType.STRING)
-    private RoleName name;
-
-    public Role() {
-
-    }
-
-    public Role(RoleName name) {
-        this.name = name;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public RoleName getName() {
-        return name;
-    }
-
-    public void setName(RoleName name) {
-        this.name = name;
-    }
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id ;
+    private String name;
 }
