@@ -1,15 +1,17 @@
 package com.example.gestionFormation.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-@AllArgsConstructor
+@Entity(name = "Role")
+@Table(name = "role")
+@Getter
+@Setter
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class Role {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

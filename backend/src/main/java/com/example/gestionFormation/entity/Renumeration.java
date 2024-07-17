@@ -1,14 +1,19 @@
 package com.example.gestionFormation.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 
-@AllArgsConstructor
+@Entity(name = "Renumeration")
+@Table(name = "renumeration")
+@Getter
+@Setter
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class Renumeration {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -19,6 +24,5 @@ public class Renumeration {
     private Boolean valideEF;
     @OneToMany
     private List<Formation> formations ;
-
 
 }
