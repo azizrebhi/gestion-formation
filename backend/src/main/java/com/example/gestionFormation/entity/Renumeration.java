@@ -12,7 +12,7 @@ import java.util.List;
 public class Renumeration {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id ;
+    private Long id ;
     private Long  idFormateur;
     private Long fraisTotale ;
     private Boolean valideF;
