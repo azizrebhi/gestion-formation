@@ -1,14 +1,11 @@
 package com.example.gestionFormation.controllers;
 
-
 import com.example.gestionFormation.entity.Formation;
 import com.example.gestionFormation.repository.FormationRepository;
 import com.example.gestionFormation.service.FormationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.Format;
 import java.util.List;
 
 @RestController
@@ -16,45 +13,34 @@ public class FormationController {
 
     @Autowired
     private FormationService formationService;
-    private FormationRepository formationRepository ;
 
     @PostMapping("/addFormation")
-    public Formation addFormation(@RequestBody Formation formation){
+    public Formation addFormation(@RequestBody Formation formation) {
         return formationService.saveFormation(formation);
     }
 
     @PostMapping("/addFormations")
-    public List<Formation> addFormations(@RequestBody List<Formation> formations){
-         return formationService.saveFormations(formations) ;
-
+    public List<Formation> addFormations(@RequestBody List<Formation> formations) {
+        return formationService.saveFormations(formations);
     }
 
     @GetMapping("/getFormations")
-    public List<Formation> getFormations(){
+    public List<Formation> getFormations() {
         return formationService.getFormation();
     }
 
-    @GetMapping("/getById")
-    public Formation getFormationById(@PathVariable Long Id){
-        return formationService.getFormationById(Id);
+    @GetMapping("/getById/{id}")
+    public Formation getFormationById(@PathVariable Long id) {
+        return formationService.getFormationById(id);
     }
 
-    @DeleteMapping("/deletById")
-    public String deleteFormation(@PathVariable Long Id){
-        return formationService.deleteFormationById(Id);
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteFormation(@PathVariable long id) {
+        return formationService.deleteFormationById(id);
     }
 
     @PutMapping("/update")
-    public Formation updateFormationById(@RequestBody Formation formation){
-        return formationService.updateFormationById(formation) ;
+    public Formation updateFormationById(@RequestBody Formation formation) {
+        return formationService.updateFormationById(formation);
     }
-
-
-
-
-
-
-
-
-
 }
