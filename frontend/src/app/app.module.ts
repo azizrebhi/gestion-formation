@@ -10,6 +10,8 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { ExpertsComponent } from './components/experts/experts.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+import { FormateurComponent } from './components/formateur/formateur.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { IntroductionComponent } from './components/introduction/introduction.co
     CoursesComponent,
     SubjectsComponent,
     ExpertsComponent,
-    IntroductionComponent
+    IntroductionComponent,
+    FormComponent,
+    FormateurComponent
   ],
   imports: [
     BrowserModule,
