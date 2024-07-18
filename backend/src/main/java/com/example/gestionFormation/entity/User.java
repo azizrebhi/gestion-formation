@@ -2,28 +2,34 @@ package com.example.gestionFormation.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.List;
 import java.util.Set;
 
-@Entity
-@AllArgsConstructor
+@Entity(name = "User")
+@Table(name = "user")
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level= AccessLevel.PRIVATE)
 
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id ;
+    private Long id ;
     private String name ;
     private String email;
     private String password ;
     @OneToMany
     @JoinColumn(name = "role_id")
     private List<Role> role;
+
     @OneToMany(cascade = CascadeType.ALL ,mappedBy = "user")
-    private Set<Reservation> reservations;
+    private List<Reservation> reservations;
     @ManyToMany (cascade=CascadeType.ALL)
     private List<Formation> formations;
     @ManyToMany(cascade=CascadeType.ALL)

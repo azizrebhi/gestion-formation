@@ -1,20 +1,25 @@
 package com.example.gestionFormation.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
 import java.util.List;
 
-@AllArgsConstructor
+@Entity(name = "Formation")
+@Table(name = "formation")
+@Getter
+@Setter
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class Formation {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id ;
-    private long id_formateur ;
+    private Long id ;
+    private Long id_formateur ;
     private String nomFormation ;
     private String categorie ;
     private Date dateDebut ;
@@ -24,11 +29,12 @@ public class Formation {
     private Pausecafe pausecafe ;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Salle> salles ;
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+

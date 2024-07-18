@@ -1,17 +1,22 @@
 package com.example.gestionFormation.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
-@AllArgsConstructor
+@Entity(name = "Reservation")
+@Table(name = "reservation")
+@Getter
+@Setter
 @NoArgsConstructor
-@Entity
+@AllArgsConstructor
+@ToString
+@FieldDefaults(level= AccessLevel.PRIVATE)
 public class Reservation {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id ;
+    private Long id ;
     private String reservationname ;
     private String salleName ;
     private String userName;
@@ -21,5 +26,7 @@ public class Reservation {
 
     @ManyToOne
     private User user;
+
+
 
 }
