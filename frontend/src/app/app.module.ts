@@ -10,6 +10,13 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { SubjectsComponent } from './components/subjects/subjects.component';
 import { ExpertsComponent } from './components/experts/experts.component';
 import { IntroductionComponent } from './components/introduction/introduction.component';
+import { FormationComponent } from './components/formation/formation.component';
+import { NotFoundComponentComponent } from './components/not-found-component/not-found-component.component';
+//import { AddFormationComponent } from './components/formation/CrudFormation/add-formateur/add-formation.component';
+import { DeleteFormationComponent } from './components/formation/CrudFormation/delete-formation/delete-formation.component';
+import { UpdateFormationComponent } from './components/formation/CrudFormation/update-formation/update-formation.component';
+import { ListFormationComponent } from './components/formation/CrudFormation/list-formation/list-formation.component';
+import { DashboardFormationComponent } from './components/dashboard-formation/dashboard-formation.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,14 @@ import { IntroductionComponent } from './components/introduction/introduction.co
     CoursesComponent,
     SubjectsComponent,
     ExpertsComponent,
-    IntroductionComponent
+    IntroductionComponent,
+    FormationComponent,
+    NotFoundComponentComponent,
+
+    DeleteFormationComponent,
+    UpdateFormationComponent,
+    ListFormationComponent,
+    DashboardFormationComponent
   ],
   imports: [
     BrowserModule,
