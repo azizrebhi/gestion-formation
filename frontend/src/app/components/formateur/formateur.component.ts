@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { Formateur } from "../../formateur";
 import { FormateurService } from "../../formateur.service";
 
@@ -13,7 +13,9 @@ export class FormateurComponent implements OnInit {
   isAdding = false;
   editingIndex: number | null = null;
 
-  constructor(private formateurService: FormateurService) {}
+  constructor(private formateurService: FormateurService,private cdr: ChangeDetectorRef) {
+
+  }
 
   ngOnInit() {
     this.getFormateurs();
@@ -36,6 +38,7 @@ export class FormateurComponent implements OnInit {
         this.formateurs.push({ ...this.newFormateur });
         this.newFormateur = { id: 0, name: '', email: '', tel: 0 }; // Reset the form
         this.isAdding = false;
+        this.cdr.detectChanges();
       });
     }
   }
@@ -47,6 +50,7 @@ export class FormateurComponent implements OnInit {
 
   startEditing(index: number) {
     this.editingIndex = index;
+    this.cdr.detectChanges();
   }
 
   saveFormateur() {
@@ -66,6 +70,7 @@ export class FormateurComponent implements OnInit {
       if (this.editingIndex === index) {
         this.editingIndex = null;
       }
+      this.cdr.detectChanges();
     });
   }
 }

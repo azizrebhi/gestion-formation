@@ -3,6 +3,4 @@ export interface Formateur {
     name:String ;
     email:String  ;
     tel : number ;
-
-
 }

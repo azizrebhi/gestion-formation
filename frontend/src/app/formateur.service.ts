@@ -24,5 +24,4 @@ export class FormateurService{
   }
   public deleteFormateur(formateurId:number):Observable<void>{  return this.http.delete<void>(`${this.apiServerUrl}/api/v1/formateur/${formateurId}`);
   }
-
 }
