@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Formateur } from '../../formateur';
-import { FormateurService } from '../../formateur.service';
-import { Observable } from 'rxjs';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { Formateur } from "../../formateur";
+import { FormateurService } from "../../formateur.service";
 
 @Component({
   selector: 'app-formateur',
@@ -9,15 +8,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./formateur.component.css']
 })
 export class FormateurComponent implements OnInit {
-  public formateurs$: Observable<Formateur[]>; // Observable to hold formateurs
-  public newFormateur: Formateur = { id: 0, name: '', email: '', tel: 0 };
+  public formateurs: Formateur[] = [];
+  public newFormateur: Formateur = { id: 1, name: '', email: '', tel: 0 };
   isAdding = false;
   editingIndex: number | null = null;
 
-  constructor(private formateurService: FormateurService) {}
+  constructor(private formateurService: FormateurService,private cdr: ChangeDetectorRef) {
+
+  }
 
   ngOnInit() {
-    this.formateurs$ = this.formateurService.getFormateur(); // Initialize formateurs$ as an Observable
+    this.getFormateurs();
+  }
+
+  getFormateurs(): void {
+    this.formateurService.getFormateur().subscribe((data: Formateur[]) => {
+      this.formateurs = data;
+    });
   }
 
   showAddForm() {
@@ -25,18 +32,14 @@ export class FormateurComponent implements OnInit {
   }
 
   addFormateur() {
-    if (this.newFormateur.name && this.newFormateur.email && this.newFormateur.tel) {
-      this.formateurService.addFormateur(this.newFormateur).subscribe(
-        (createdFormateur) => {
-          console.log('Formateur added:', createdFormateur);
-          this.newFormateur = { id: 0, name: '', email: '', tel: 0 }; // Reset the form
-          this.isAdding = false;
-          this.refreshFormateurs(); // Refresh the list after adding
-        },
-        (error) => {
-          console.error('Error adding formateur:', error);
-        }
-      );
+    if (this.newFormateur.name && this.newFormateur.email) {
+      this.formateurService.addFormateur(this.newFormateur).subscribe(() => {
+        alert('Formateur added successfully');
+        this.formateurs.push({ ...this.newFormateur });
+        this.newFormateur = { id: 0, name: '', email: '', tel: 0 }; // Reset the form
+        this.isAdding = false;
+        this.cdr.detectChanges();
+      });
     }
   }
 
@@ -47,29 +50,27 @@ export class FormateurComponent implements OnInit {
 
   startEditing(index: number) {
     this.editingIndex = index;
+    this.cdr.detectChanges();
   }
 
-  saveFormateur(formateur: Formateur) {
-    this.formateurService.updateFormateur(formateur).subscribe(
-      (updatedFormateur) => {
-        console.log('Formateur updated:', updatedFormateur);
+  saveFormateur() {
+    if (this.editingIndex !== null) {
+      const formateurToUpdate = this.formateurs[this.editingIndex];
+      this.formateurService.updateFormateur(formateurToUpdate).subscribe(() => {
+        alert('Formateur updated successfully');
         this.editingIndex = null;
-        this.refreshFormateurs(); // Refresh the list after updating
-      },
-      (error) => {
-        console.error('Error updating formateur:', error);
-      }
-    );
+      });
+    }
   }
 
-  deleteFormateur(id: number) {
+  deleteFormateur(id:number,index: number) {
     this.formateurService.deleteFormateur(id).subscribe(() => {
-      console.log('Formateur deleted');
-      this.refreshFormateurs(); // Refresh the list after deletion
+      alert('Formateur deleted successfully');
+      this.formateurs.splice(index, 1);
+      if (this.editingIndex === index) {
+        this.editingIndex = null;
+      }
+      this.cdr.detectChanges();
     });
-  }
-
-  private refreshFormateurs() {
-    this.formateurs$ = this.formateurService.getFormateur(); // Re-fetch the formateurs
   }
 }

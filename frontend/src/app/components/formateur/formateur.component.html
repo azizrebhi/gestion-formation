@@ -10,44 +10,41 @@
     </tr>
     </thead>
     <tbody>
-    <ng-container *ngIf="formateurs$ | async as formateurs">
-      <tr *ngFor="let formateur of formateurs; let i = index">
-        <td *ngIf="editingIndex !== i">{{ formateur.name }}</td>
-        <td *ngIf="editingIndex !== i">{{ formateur.email }}</td>
-        <td *ngIf="editingIndex !== i">{{ formateur.tel }}</td>
-        <td *ngIf="editingIndex === i">
-          <input type="text" [(ngModel)]="formateur.name" placeholder="Name" list="formateurNames" />
-          <datalist id="formateurNames">
-            <option *ngFor="let f of formateurs" [value]="f.name"></option>
-          </datalist>
-        </td>
-        <td *ngIf="editingIndex === i">
-          <input type="email" [(ngModel)]="formateur.email" placeholder="Email" />
-        </td>
-        <td *ngIf="editingIndex === i">
-          <input type="tel" [(ngModel)]="formateur.tel" placeholder="Tel" />
-        </td>
-        <td>
-          <button *ngIf="editingIndex === i" (click)="saveFormateur(formateur)" class="btn btn-success">Save</button>
-          <button *ngIf="editingIndex !== i" (click)="startEditing(i)" class="btn btn-primary">Edit</button>
-          <button (click)="deleteFormateur(formateur.id)" class="btn btn-danger">Delete</button>
-        </td>
-      </tr>
-      <tr *ngIf="isAdding">
-        <td>
-          <input type="text" [(ngModel)]="newFormateur.name" placeholder="Name" list="newFormateurNames" />
-          <datalist id="newFormateurNames">
-            <option *ngFor="let formateur of formateurs" [value]="formateur.name"></option>
-          </datalist>
-        </td>
-        <td><input type="email" [(ngModel)]="newFormateur.email" placeholder="Email" /></td>
-        <td><input type="tel" [(ngModel)]="newFormateur.tel" placeholder="Tel" /></td>
-        <td>
-          <button (click)="addFormateur()" class="btn btn-success">Save</button>
-          <button (click)="cancelAdd()" class="btn btn-secondary">Cancel</button>
-        </td>
-      </tr>
-    </ng-container>
+    <tr *ngFor="let formateur of formateurs; let i = index">
+      <td *ngIf="editingIndex !== i">{{ formateur.name }}</td>
+      <td *ngIf="editingIndex !== i">{{ formateur.email }}</td>
+      <td *ngIf="editingIndex !== i">{{ formateur.tel }}</td>
+      <td *ngIf="editingIndex === i">
+        <input type="text" [(ngModel)]="formateurs[i].name" placeholder="Name" list="formateurNames" />
+        <datalist id="formateurNames">
+          <option *ngFor="let f of formateurs" [value]="f.name"></option>
+        </datalist>
+      </td>
+      <td *ngIf="editingIndex === i">
+        <input type="email" [(ngModel)]="formateurs[i].email" placeholder="Email" />
+      </td>
+      <td *ngIf="editingIndex === i">
+        <input type="tel" [(ngModel)]="formateurs[i].tel" placeholder="Tel" />
+      </td>
+      <td>
+        <button *ngIf="editingIndex === i" (click)="saveFormateur()" class="btn btn-success">Save</button>
+        <button *ngIf="editingIndex !== i" (click)="startEditing(i)" class="btn btn-primary">Edit</button>
+        <button (click)="deleteFormateur(formateur.id, i)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+    <tr *ngIf="isAdding">
+      <td><input type="text" [(ngModel)]="newFormateur.name" placeholder="Name" list="newFormateurNames" />
+        <datalist id="newFormateurNames">
+          <option *ngFor="let formateur of formateurs" [value]="formateur.name"></option>
+        </datalist>
+      </td>
+      <td><input type="email" [(ngModel)]="newFormateur.email" placeholder="Email" /></td>
+      <td><input type="tel" [(ngModel)]="newFormateur.tel" placeholder="Tel" /></td>
+      <td>
+        <button (click)="addFormateur()" class="btn btn-success">Save</button>
+        <button (click)="cancelAdd()" class="btn btn-secondary">Cancel</button>
+      </td>
+    </tr>
     </tbody>
   </table>
   <button (click)="showAddForm()" class="btn btn-primary">
