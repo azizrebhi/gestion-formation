@@ -1,0 +1,54 @@
+.navbar-custom {
+  background-color: #004d40; /* Dark green background color */
+}
+
+.navbar-custom .nav-link {
+  color: white; /* White text color for nav items */
+  transition: color 0.3s ease-in-out; /* Smooth transition for hover effect */
+  text-decoration: none; /* Remove underline */
+  border-bottom: none; /* Remove border bottom */
+}
+
+.navbar-custom .nav-link:hover {
+  color: #66bb6a; /* Green text color on hover */
+  text-decoration: none; /* Ensure no underline on hover */
+  border-bottom: none; /* Ensure no border bottom on hover */
+}
+
+.navbar-custom .title {
+  color: white;
+  font-size: 24px; /* Adjust font size */
+  font-weight: bold; /* Bold text */
+}
+
+/* Ensure the navbar is properly aligned */
+.navbar-custom .navbar-nav {
+  flex-direction: row;
+}
+
+.navbar-custom .navbar-nav .nav-item {
+  margin-left: 10px;
+}
+
+.navbar-custom .navbar-nav .ml-auto {
+  margin-left: auto;
+}
+
+/* Custom styles for the dropdown */
+.navbar-custom .dropdown-menu {
+  background-color: #004d40; /* Match the background color of the navbar */
+  border: none; /* Remove border */
+}
+
+.navbar-custom .dropdown-item {
+  color: white; /* White text color for dropdown items */
+}
+
+.navbar-custom .dropdown-item:hover {
+  color: #66bb6a; /* Green text color on hover */
+  background-color: transparent; /* Transparent background on hover */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Formateur} from "./formateur";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,14 @@ import {Formateur} from "./formateur";
 })
 export class AppComponent {
 
-  title = 'platformLMS';
+
+  constructor() { }
+
+  ngOnInit(): void {
+
+  }
+
+  logout(): void {
+
+  }
 }
