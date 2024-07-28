@@ -1,0 +1,53 @@
+###
+POST http://localhost:8080/api/v1/formateur
+Content-Type: application/json
+
+{
+  "id": 40 ,
+"name":"bilel",
+"email":"bilel@shsf.tn",
+"tel":923193
+}
+
+
+<> 2024-07-16T111715.400.html
+<> 2024-07-16T111650.400.html
+<> 2024-07-16T103536.400.html
+<> 2024-07-16T103417.400.html
+<> 2024-07-16T103314.400.html
+
+<> 2024-07-16T111815.400.html
+<> 2024-07-16T111013.400.html
+<> 2024-07-16T110637.400.html
+<> 2024-07-16T103958.400.html
+<> 2024-07-16T103654.400.html
+
+###
+DELETE http://localhost:8080/api/v1/formateur/1
+###
+PUT http://localhost:8080/api/v1/formateur/2?name=rayen
+###
+DELETE http://localhost:8080/api/v1/formateur/7
+###
+DELETE http://localhost:8080/api/v1/formateur/2
+###
+DELETE http://localhost:8080/api/v1/formateur/3
+###
+DELETE http://localhost:8080/api/v1/formateur/4
+###
+DELETE http://localhost:8080/api/v1/formateur/6
+###
+POST http://localhost:8080/addFormations
+Content-Type: application/json
+
+{
+  "id": 3 ,
+  "id_formateur":2,
+  "nomFormation":"aziz",
+  "categorie": "php",
+  "dateDebut": "07/02/2024",
+  "datefin": "10/02/2024",
+  "nombreParticipant": 5
+}
+###
+DELETE http://localhost:8080/api/v1/formateur/15
