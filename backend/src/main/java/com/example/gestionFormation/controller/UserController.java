@@ -35,7 +35,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        user.setId(id); // Assure que l'id est défini pour la mise à jour
+        user.setIdUser(id); // Assure que l'id est défini pour la mise à jour
         return userService.saveUser(user);
     }
 
