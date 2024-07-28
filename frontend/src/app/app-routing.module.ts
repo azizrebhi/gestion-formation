@@ -7,9 +7,13 @@ import { NotFoundComponentComponent } from './components/not-found-component/not
 //import { AddFormationComponent } from './components/formation/CrudFormation/add-formateur/add-formation.component';
 import { ListFormationComponent } from './components/formation/CrudFormation/list-formation/list-formation.component';
 import { DashboardFormationComponent } from './components/dashboard-formation/dashboard-formation.component';
+import { LoginComponent } from './components/Users/login/login.component';
+import { RegisterComponent } from './components/Users/register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {path:'login', component:LoginComponent},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'registre', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'courses', component: CoursesComponent},
   //{ path: 'addFormateur', component: AddFormationComponent },
@@ -18,6 +22,7 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponentComponent },
   { path: '**', component: NotFoundComponentComponent },
   { path: 'Dashboard', component: DashboardFormationComponent },
+ 
 
   
 ];

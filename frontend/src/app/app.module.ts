@@ -17,6 +17,9 @@ import { DeleteFormationComponent } from './components/formation/CrudFormation/d
 import { UpdateFormationComponent } from './components/formation/CrudFormation/update-formation/update-formation.component';
 import { ListFormationComponent } from './components/formation/CrudFormation/list-formation/list-formation.component';
 import { DashboardFormationComponent } from './components/dashboard-formation/dashboard-formation.component';
+import { UserComponent } from './components/Users/user/user.component';
+import { LoginComponent } from './components/Users/login/login.component';
+import { RegisterComponent } from './components/Users/register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { DashboardFormationComponent } from './components/dashboard-formation/da
     DeleteFormationComponent,
     UpdateFormationComponent,
     ListFormationComponent,
-    DashboardFormationComponent
+    DashboardFormationComponent,
+    UserComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
