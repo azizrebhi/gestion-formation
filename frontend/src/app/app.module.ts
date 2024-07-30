@@ -14,6 +14,8 @@ import { FormateurComponent } from './components/formateur/formateur.component';
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import { FormationComponent } from './components/formation/formation.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -29,6 +31,8 @@ import {RouterModule} from "@angular/router";
     ExpertsComponent,
     IntroductionComponent,
     FormateurComponent,
+    FormationComponent,
+    LoginComponent,
 
 
   ],
