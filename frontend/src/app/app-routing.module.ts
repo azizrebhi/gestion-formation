@@ -9,12 +9,15 @@ import { ListFormationComponent } from './components/formation/CrudFormation/lis
 import { DashboardFormationComponent } from './components/dashboard-formation/dashboard-formation.component';
 import { LoginComponent } from './components/Users/login/login.component';
 import { RegisterComponent } from './components/Users/register/register.component';
+import { HomeFormateurComponent } from './components/Formateur/home-formateur/home-formateur.component';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'registre', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'homeFormateur', component: HomeFormateurComponent },
+
   { path: 'courses', component: CoursesComponent},
   //{ path: 'addFormateur', component: AddFormationComponent },
   { path: 'listFormation', component: ListFormationComponent},

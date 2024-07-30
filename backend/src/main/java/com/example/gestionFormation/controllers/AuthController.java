@@ -74,10 +74,11 @@ public class AuthController {
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
 
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(EnumRole.ROLE_USER)
+        if (strRoles == null || strRoles.isEmpty()) {
+            // Set default role as ROLE_FORMATEUR if no role is provided
+            Role formateurRole = roleRepository.findByName(EnumRole.ROLE_FORMATEUR)
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
+            roles.add(formateurRole);
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
