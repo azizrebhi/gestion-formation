@@ -1,9 +1,8 @@
 package com.example.gestionFormation.controllers;
 
-import ch.qos.logback.core.model.Model;
 import com.example.gestionFormation.dto.UpdateUserDTO;
 import com.example.gestionFormation.dto.UserDTO;
-import com.example.gestionFormation.entity.User;
+import com.example.gestionFormation.entities.User;
 import com.example.gestionFormation.payload.response.MessageResponse;
 import com.example.gestionFormation.repositries.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.example.gestionFormation.repositries;
 
-import com.example.gestionFormation.entity.User;
+import com.example.gestionFormation.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

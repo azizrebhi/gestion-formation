@@ -8,7 +8,7 @@ interface AuthResponse {
   // Ajoutez d'autres champs si nécessaire
 }
 
-const AUTH_API = 'http://localhost:8086/api/auth/';
+const AUTH_API = 'http://localhost:8086/academie/api/auth/';
 
 const httpOptions = {
 headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -24,7 +24,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<any> {
     return this.http.post<AuthResponse>(
-      AUTH_API + 'signin',
+      AUTH_API + 'login',
       { username, password },
       httpOptions
     )
@@ -50,7 +50,7 @@ export class AuthService {
     
 
     // Effectuez la requête POST
-    return this.http.post(AUTH_API + 'signup', formData);
+    return this.http.post(AUTH_API + 'register', formData);
   }
   getToken(): string | null {
     // Obtenez le token depuis le sessionStorage
@@ -61,6 +61,11 @@ export class AuthService {
   isLoggedIn(): boolean {
     // Vérifiez si l'utilisateur est connecté en fonction du token
     return !!this.getToken();
+  }
+  logout(): Observable<any> {
+    // Supprimez les informations de l'utilisateur du sessionStorage lors de la déconnexion
+    this.storageService.clean();
+    return this.http.post(AUTH_API + 'logout', {}, httpOptions);
   }
 
 }

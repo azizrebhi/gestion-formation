@@ -2,7 +2,7 @@ package com.example.gestionFormation.secServices;
 
 import com.example.gestionFormation.dto.UpdateUserDTO;
 import com.example.gestionFormation.dto.UserDTO;
-import com.example.gestionFormation.entity.User;
+import com.example.gestionFormation.entities.User;
 import com.example.gestionFormation.repositries.UserRepository;
 import com.example.gestionFormation.security.services.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;

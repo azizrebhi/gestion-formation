@@ -1,7 +1,7 @@
 package com.example.gestionFormation.controllers;
 
-import com.example.gestionFormation.entity.Role;
-import com.example.gestionFormation.entity.User;
+import com.example.gestionFormation.entities.Role;
+import com.example.gestionFormation.entities.User;
 
 import com.example.gestionFormation.enumeration.EnumRole;
 import com.example.gestionFormation.payload.request.LoginRequest;
@@ -13,7 +13,6 @@ import com.example.gestionFormation.repositries.UserRepository;
 import com.example.gestionFormation.security.jwt.JwtUtils;
 import com.example.gestionFormation.security.services.UserDetailsImpl;
 import jakarta.validation.Valid;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +26,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
@@ -128,7 +126,7 @@ public class AuthController {
                 roles));
     }
 
-    @PostMapping("/signout")
+    @PostMapping("/logout")
     public ResponseEntity<?> signoutUser() {
         try {
             // Invalidate the current authentication context

@@ -1,6 +1,6 @@
 package com.example.gestionFormation.repositries;
 
-import com.example.gestionFormation.entity.Role;
+import com.example.gestionFormation.entities.Role;
 import com.example.gestionFormation.enumeration.EnumRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

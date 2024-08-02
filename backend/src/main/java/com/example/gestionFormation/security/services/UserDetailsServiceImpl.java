@@ -1,6 +1,6 @@
 package com.example.gestionFormation.security.services;
 
-import com.example.gestionFormation.entity.User;
+import com.example.gestionFormation.entities.User;
 import com.example.gestionFormation.repositries.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
