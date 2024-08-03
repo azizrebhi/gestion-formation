@@ -27,7 +27,6 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
 
-
     @GetMapping("/{username}")
     public ResponseEntity<?> getUserDetails(@PathVariable String username) {
         Optional<User> userOpt = userRepository.findByName(username);
@@ -37,7 +36,7 @@ public class UserController {
         }
 
         User user = userOpt.get();
-        UserDTO userDTO = new UserDTO(user.getName(), user.getEmail());
+        UserDTO userDTO = new UserDTO(user.getName(),user.getEmail());
 
         return ResponseEntity.ok(userDTO);
     }

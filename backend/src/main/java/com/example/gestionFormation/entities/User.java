@@ -40,15 +40,20 @@ public class User {
     @Size(max = 50)
     private String email;
 
-    private boolean active;
-
-    private String otp;
-
-    private LocalDateTime otpGeneratedTime;
-
     @NotBlank
     @Size(max = 120)
     private String password;
+   // private boolean enabled;
+    private String resetToken;
+    private LocalDateTime resetTokenExpirationTime;
+
+    //private boolean active;
+
+ /*   private String otp;
+
+    private LocalDateTime otpGeneratedTime;*/
+
+
 
     @ManyToMany(fetch = EAGER)
     @JoinTable(
@@ -70,12 +75,11 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Pausecafe> Pausecafes;
 
-    private String resetToken;
-    private LocalDateTime resetTokenExpirationTime;
 
-    public User(String username, String email, String password) {
-        this.name = username;
+    public User(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
+
     }
 }

@@ -1,13 +1,15 @@
 <div class="login-container">
-	<h1>SUCCESS</h1>
-	<p>Vivez votre meilleure expérience collaborateur</p>
-	<form (ngSubmit)="onSubmit()">
-	  <input type="text" name="username" placeholder="username" [(ngModel)]="username" required>
-	  <input type="password" name="password" placeholder="Mot de passe" [(ngModel)]="password" required>
-	  <input type="submit" value="Log In">
-	</form>
-	<a href="#">username Oublié ?</a>
-	<a href="#">Mot de passe Oublié ?</a>
-	<a href="#">Besoin d'aide pour vous connecter ?</a>
-  </div>
-  
+    <h1>SUCCESS</h1>
+    <p>Vivez votre meilleure expérience collaborateur</p>
+    <form (ngSubmit)="onSubmit()">
+        <input type="text" name="username" placeholder="Username" [(ngModel)]="form.username" required>
+        <input type="password" name="password" placeholder="Mot de passe" [(ngModel)]="form.password" required>
+        <input type="submit" value="Log In">
+    </form>
+    <div *ngIf="isLoginFailed">
+        <p class="error">{{ errorMessage }}</p>
+    </div>
+    <a href="#">Username Oublié ?</a>
+    <a href="#">Mot de passe Oublié ?</a>
+    <a href="#">Besoin d'aide pour vous connecter ?</a>
+</div>

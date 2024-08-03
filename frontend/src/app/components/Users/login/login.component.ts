@@ -1,46 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form: any = {
-    username: null,
-    password: null
+    username: '',
+    password: ''
   };
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
-  roles: string[] = [];
 
-  constructor(private authService: AuthService, 
-    private router: Router,
-    private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
-    // Vérifiez si l'utilisateur est déjà connecté
-    if (sessionStorage.getItem('user')) {
-      this.isLoggedIn = true;
-    }
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
     const { username, password } = this.form;
 
     this.authService.login(username, password).subscribe({
-      next: data => {
+      next: (data) => {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        // Vous pouvez aussi stocker les rôles et d'autres informations de l'utilisateur si nécessaire
-        this.roles = data.roles;
-        this.router.navigate(['homeFormateur']); // Redirigez l'utilisateur vers la page d'accueil ou une autre page après connexion
+        this.router.navigate(['/homeFormateur']); // Redirect to a different page after login
       },
-      error: err => {
-        this.errorMessage = err.error.message;
+      error: (err) => {
+        this.errorMessage = err.error.message || 'Login failed';
         this.isLoginFailed = true;
+        if (err.status === 401) {
+          // Specific handling for unauthorized error
+          alert('Username or password is incorrect. Please try again.');
+        } else {
+          // Handle other types of errors
+          alert(this.errorMessage);
+        }
       }
     });
   }

@@ -1,4 +1,4 @@
-package com.example.gestionFormation.secServices;
+package com.example.gestionFormation.secServices.service;
 
 import com.example.gestionFormation.dto.UpdateUserDTO;
 import com.example.gestionFormation.dto.UserDTO;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService implements IUserService {
     @Autowired
     private UserRepository userRepository;
 
@@ -55,6 +55,9 @@ public class UserService {
         return Optional.empty();
     }
 
-        }
-
+    @Override
+    public User save(UserDTO userDTO) {
+        return null;
+    }
+}
 
