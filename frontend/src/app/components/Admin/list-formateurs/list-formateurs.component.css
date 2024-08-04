@@ -1,0 +1,75 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e2d3b; /* Changed to match the inline style */
+  color: #fff;
+  padding: 10px;
+}
+
+.header h3 {
+  margin: 0;
+  color: white; /* Ensures the header text is white */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto; /* Ensures the table adjusts width according to the page */
+}
+
+.table th, .table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left; /* Aligns text to the left for readability */
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.delete-btn, .add-btn {
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px; /* Rounded corners for buttons */
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+.add-btn {
+  background-color: #27ae60;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .table th, .table td {
+    font-size: 12px; /* Adjust font size for smaller screens */
+    padding: 8px; /* Reduce padding for smaller screens */
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 5px;
+  }
+}

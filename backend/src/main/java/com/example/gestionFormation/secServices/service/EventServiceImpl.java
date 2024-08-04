@@ -6,16 +6,21 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class EventServiceImpl implements IEventService{
-    @Autowired
+   @Autowired
     private EventRepository eventRepository;
     @Override
     public Event addEvent(Event event) {
+        event.setStatus("Pending");
         return eventRepository.save(event);
     }
+  /*  public Event addEvent(Event event) {
+        return eventRepository.save(event);
+    }*/
 
     @Override
     public List<Event> getAllEvents() {
@@ -33,18 +38,19 @@ public class EventServiceImpl implements IEventService{
     }
 
     @Override
-    public Event updateEvent(Long id, Event event) {
-        Event existingEvent = eventRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Event not found"));
-        existingEvent.setTitle(event.getTitle());
-        existingEvent.setStartDate(event.getStartDate());
-        existingEvent.setEndDate(event.getEndDate());
-        existingEvent.setAllDay(event.getAllDay());
-        existingEvent.setUrl(event.getUrl());
-        existingEvent.setLocation(event.getLocation());
-        existingEvent.setDescription(event.getDescription());
-        existingEvent.setFormateur(event.getFormateur());
-        return eventRepository.save(existingEvent);
-
+    public Event updateEvent(Long id, Event updatedEvent) {
+        Event event = eventRepository.findById(id).orElseThrow(() -> new RuntimeException("Event not found"));
+        event.setTitle(updatedEvent.getTitle());
+        event.setStartDate(updatedEvent.getStartDate());
+        event.setEndDate(updatedEvent.getEndDate());
+        event.setAllDay(updatedEvent.getAllDay());
+        event.setUrl(updatedEvent.getUrl());
+        event.setLocation(updatedEvent.getLocation());
+        event.setDescription(updatedEvent.getDescription());
+        event.setStatus(updatedEvent.getStatus());
+        event.setAvailableStart(updatedEvent.getAvailableStart());
+        event.setAvailableEnd(updatedEvent.getAvailableEnd());
+        return eventRepository.save(event);
     }
 
     @Override
@@ -52,5 +58,17 @@ public class EventServiceImpl implements IEventService{
         return eventRepository.findById(id).orElse(null);
     }
 
+    @Override
+    public Event respondToInvitation(Long id, String response, LocalDateTime availableStart, LocalDateTime availableEnd) {
+        Event event = eventRepository.findById(id).orElseThrow(() -> new RuntimeException("Event not found"));
+        event.setStatus(response);
+        if ("Rejected".equals(response)) {
+            event.setAvailableStart(availableStart);
+            event.setAvailableEnd(availableEnd);
+        }
+        return eventRepository.save(event);
+    }
+    }
 
-}
+
+

@@ -6,12 +6,13 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
 public class EventController {
-    @Autowired
+   @Autowired
     EventServiceImpl eventService;
     @PostMapping("/addEvent")
     public Event createEvent(@RequestBody Event event) {
@@ -38,5 +39,9 @@ public class EventController {
     @GetMapping("/{id}")
     public Event getEventById(@PathVariable Long id) {
         return eventService.getEventById(id);
+    }
+    @PostMapping("/{id}/respond")
+    public Event respondToInvitation(@PathVariable Long id, @RequestParam String response, @RequestParam(required = false) LocalDateTime availableStart, @RequestParam(required = false) LocalDateTime availableEnd) {
+        return eventService.respondToInvitation(id, response, availableStart, availableEnd);
     }
 }

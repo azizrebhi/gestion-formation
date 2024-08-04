@@ -49,4 +49,8 @@ getFormateurBoard(): Observable<string> {
 getAdminBoard(): Observable<string> {
   return this.http.get(TEST_URL + 'admin', { headers: this.getHeaders(), responseType: 'text' });
 }
+// Method to retrieve the current user
+currentUser(): any {
+  return this.storageService.getUser();
+}
 }

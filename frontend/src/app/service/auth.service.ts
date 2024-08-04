@@ -1,10 +1,10 @@
+// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { JwtResponse } from '../Model/JwtResponse';
 import { StorageService } from './storage.service';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 const AUTH_API = 'http://localhost:8086/academie/api/auth/';
 const httpOptions = {
@@ -17,24 +17,23 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+  private userSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public user$: Observable<any> = this.userSubject.asObservable();
 
-  constructor(private http: HttpClient, private storageService: StorageService) {}
- 
+  constructor(private http: HttpClient, private storageService: StorageService) {
+    const storedUser = this.storageService.getUser();
+    this.userSubject.next(storedUser);
+  }
+
   login(username: string, password: string): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(
       AUTH_API + 'login',
       { username, password },
       httpOptions
-    )
-    .pipe(
+    ).pipe(
       tap(response => {
-        this.storageService.saveUser({
-          token: response.token,
-          id: response.id,
-          username: response.username,
-          email: response.email,
-          roles: response.roles
-        });
+        this.storageService.saveUser(response);
+        this.userSubject.next(response);
       }),
       catchError(error => {
         console.error('Login error:', error);
@@ -61,11 +60,21 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    this.storageService.clean();
-    return this.http.post(AUTH_API + 'logout', {}, httpOptions);
+    this.storageService.clean(); 
+    return this.http.post(`${AUTH_API}logout`, {});
   }
+
   getUserRole(): string | null {
     const user = this.storageService.getUser();
     return user?.roles ? user.roles[0] : null;
+  }
+
+  setUser(user: any): void {
+    this.userSubject.next(user);
+    this.storageService.saveUser(user);
+  }
+
+  getUser(): Observable<any> {
+    return this.user$;
   }
 }

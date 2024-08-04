@@ -19,7 +19,10 @@ public class Formateur {
 
     private String name;
     private String email;
-
+    private  Integer Telephone;
+    private String Adresse ;
+    private String password;
+    private String token;
     @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Event> events;
 }

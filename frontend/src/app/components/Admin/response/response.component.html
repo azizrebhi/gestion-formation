@@ -1,0 +1,11 @@
+<!-- response.component.html -->
+<div>
+    <select [(ngModel)]="response">
+      <option value="accept">Accept</option>
+      <option value="reject">Reject</option>
+    </select>
+    <input [(ngModel)]="availableStart" placeholder="Available Start Date" type="datetime-local" *ngIf="response === 'reject'">
+    <input [(ngModel)]="availableEnd" placeholder="Available End Date" type="datetime-local" *ngIf="response === 'reject'">
+    <button (click)="respondToInvitation()">Respond</button>
+  </div>
+  

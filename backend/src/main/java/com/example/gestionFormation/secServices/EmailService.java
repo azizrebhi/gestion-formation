@@ -1,27 +1,22 @@
 package com.example.gestionFormation.secServices;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
+
+@Service
 public class EmailService {
-  /*  @Autowired
-    private JavaMailSender javaMailSender;
+    @Autowired
+    private JavaMailSender mailSender;
 
-    public void sendResetPasswordEmail(String to, String resetUrl) {
-        MimeMessage message = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper;
-        try {
-            helper = new MimeMessageHelper(message, true);
-            helper.setFrom(new InternetAddress("wiem.khedri50@gmail.com"));
-            helper.setTo(to);
-            helper.setSubject("Réinitialisation de mot de passe");
-
-            String htmlContent = "<p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant :</p>"
-                    + "<a href='" + resetUrl + "'>" + resetUrl + "</a>";
-            helper.setText(htmlContent, true);
-            javaMailSender.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-            // Gérer l'erreur d'envoi d'e-mail ici
-        }
-
-    }*/
+    public void sendPasswordSetupEmail(String to, String token) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("Setup Your Password");
+        message.setText("Click the following link to set your password: "
+                + "http://localhost:4200/setup-password?token=" + token);
+        mailSender.send(message);
+    }
 }

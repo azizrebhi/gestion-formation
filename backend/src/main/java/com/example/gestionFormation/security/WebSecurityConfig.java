@@ -61,10 +61,16 @@ public class WebSecurityConfig {
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**").permitAll()  // Permettre l'accès aux points de terminaison d'authentification
+                        auth.requestMatchers("/api/**").permitAll()  // Permettre l'accès aux points de terminaison d'authentification
                                 .requestMatchers("/admin/**").hasRole("ADMIN")  // Restreindre l'accès aux administrateurs
                                 .requestMatchers("/formateur/**").hasRole("FORMATEUR")  // Restreindre l'accès aux formateurs
-                               // .requestMatchers("/user/**").hasRole("USER")  // Restreindre l'accès aux utilisateurs
+                                .requestMatchers(
+                                        "/swagger-ui/**",
+                                        "/v3/api-docs/**",
+                                        "/swagger-resources/**",
+                                        "/swagger-ui.html",
+                                        "/webjars/**"
+                                ).permitAll()  // Permettre l'accès aux ressources Swagger
                                 .anyRequest().authenticated()
                 );
 
@@ -73,5 +79,8 @@ public class WebSecurityConfig {
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
+
     }
+
+
 }

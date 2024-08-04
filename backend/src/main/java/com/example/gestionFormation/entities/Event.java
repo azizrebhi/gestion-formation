@@ -24,8 +24,10 @@ public class Event {
     private String url;
     private String location;
     private String description;
-
-    @ManyToOne
+    private String status;
+    private LocalDateTime availableStart; // New fields for availability
+    private LocalDateTime availableEnd;
+   @ManyToOne
     @JoinColumn(name = "formateur_id")
     private Formateur formateur;
 }
