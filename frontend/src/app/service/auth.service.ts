@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { JwtResponse } from '../Model/JwtResponse';
 import { StorageService } from './storage.service';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 const AUTH_API = 'http://localhost:8086/academie/api/auth/';
 const httpOptions = {
@@ -18,7 +19,7 @@ const httpOptions = {
 export class AuthService {
 
   constructor(private http: HttpClient, private storageService: StorageService) {}
-
+ 
   login(username: string, password: string): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(
       AUTH_API + 'login',
@@ -62,5 +63,9 @@ export class AuthService {
   logout(): Observable<any> {
     this.storageService.clean();
     return this.http.post(AUTH_API + 'logout', {}, httpOptions);
+  }
+  getUserRole(): string | null {
+    const user = this.storageService.getUser();
+    return user?.roles ? user.roles[0] : null;
   }
 }

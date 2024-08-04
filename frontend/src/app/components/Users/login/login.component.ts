@@ -18,26 +18,30 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onSubmit(): void {
+  onSubmit() {
     const { username, password } = this.form;
-
-    this.authService.login(username, password).subscribe({
-      next: (data) => {
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.router.navigate(['/homeFormateur']); // Redirect to a different page after login
-      },
-      error: (err) => {
-        this.errorMessage = err.error.message || 'Login failed';
-        this.isLoginFailed = true;
-        if (err.status === 401) {
-          // Specific handling for unauthorized error
-          alert('Username or password is incorrect. Please try again.');
-        } else {
-          // Handle other types of errors
-          alert(this.errorMessage);
+    this.authService.login(username, password).subscribe(
+      user => {
+        const role = this.authService.getUserRole();
+        switch (role) {
+          case 'ROLE_ADMIN':
+            this.router.navigate(['/homeAdmin']);
+            break;
+          case 'ROLE_FORMATEUR':
+            this.router.navigate(['/homeFormateur']);
+            break;
+         
+          default:
+            console.error('Unknown role', role);
+            break;
         }
+      },
+      error => {
+        console.error('Login failed', error);
+        this.errorMessage = error.error.message || 'Login failed';
+        this.isLoginFailed = true;
+        alert(this.errorMessage);
       }
-    });
+    );
   }
 }
