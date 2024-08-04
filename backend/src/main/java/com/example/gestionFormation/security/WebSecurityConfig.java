@@ -57,15 +57,14 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // Log statement for debugging
-        System.out.println("Security Filter Chain Configured!");
-
         http.csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("**").permitAll()
-                                .requestMatchers("**").permitAll()
+                        auth.requestMatchers("/api/auth/**").permitAll()  // Permettre l'accès aux points de terminaison d'authentification
+                                .requestMatchers("/admin/**").hasRole("ADMIN")  // Restreindre l'accès aux administrateurs
+                                .requestMatchers("/formateur/**").hasRole("FORMATEUR")  // Restreindre l'accès aux formateurs
+                               // .requestMatchers("/user/**").hasRole("USER")  // Restreindre l'accès aux utilisateurs
                                 .anyRequest().authenticated()
                 );
 
