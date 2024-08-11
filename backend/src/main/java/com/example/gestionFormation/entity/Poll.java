@@ -6,8 +6,8 @@
 package com.example.gestionFormation.entity;
 
 import com.fasterxml.jackson.annotation.*;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Poll implements Serializable {
 
     private String title;
 
-    @Temporal(javax.persistence.TemporalType.DATE)
+
     private Date endDate;
 
     @ElementCollection

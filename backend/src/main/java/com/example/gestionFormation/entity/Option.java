@@ -6,8 +6,9 @@
 package com.example.gestionFormation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
+
 import java.io.Serializable;
 
 /**

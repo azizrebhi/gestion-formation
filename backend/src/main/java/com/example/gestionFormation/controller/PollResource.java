@@ -7,14 +7,15 @@ package com.example.gestionFormation.controller;
 
 import com.example.gestionFormation.Service.PollService;
 import com.example.gestionFormation.entity.Poll;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
+
 /**
  *
  * @author klemen
@@ -33,7 +34,7 @@ public class PollResource {
     }
 
     @GetMapping("/user/{username}")
-    @Secured("ROLE_USER")
+
     public List<Poll> getUserPolls(@PathVariable String username, Principal p) {
         
         if (username.equals(p.getName())) {
@@ -49,28 +50,25 @@ public class PollResource {
     }
 
     @PutMapping("/{id}")
-    @Secured("ROLE_USER")
+
     public ResponseEntity<?> put(@PathVariable Long id, @RequestBody Poll poll) {
         poll.setId(id);
         Poll updatePoll = pollService.updatePoll(poll);
         return ResponseEntity.ok(updatePoll);
 
     }
-    @PostMapping
-    @Secured("ROLE_USER")
-    public ResponseEntity<?> post(@RequestBody Poll poll, Principal p) {
-        Poll savedPoll = pollService.savePoll(poll, p.getName());
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+
+    public ResponseEntity<?> post(@RequestBody Poll poll) {
+        Poll savedPoll = pollService.savePoll(poll);
         return ResponseEntity.status(201).body(savedPoll);
     }
-
-    @Secured("ROLE_USER")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id, Principal p) {
         pollService.deletePollById(id);
         return ResponseEntity.status(204).build();
 
     }
-
     @PostMapping("{id}/vote/{optionId}")
     public ResponseEntity<?> post(@PathVariable Long id, @PathVariable Long optionId, HttpServletRequest request) throws Exception {
         pollService.vote(id, optionId, request.getRemoteAddr());

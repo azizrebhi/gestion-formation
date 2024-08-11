@@ -41,11 +41,10 @@ public class PollService {
     }
 
     @Transactional
-    public Poll savePoll(Poll poll, String username) {
+    public Poll savePoll(Poll poll) {
 
-        User user = userRepository.findOneByUsername(username);
 
-        poll.setUser(user);
+        poll.setUser(null);
         Poll savedPoll = pollRepository.save(poll);
         poll.getOptions().stream().forEach(option -> {
             option.setPoll(savedPoll);
