@@ -1,6 +1,5 @@
 
 import { Router } from '@angular/router';
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 import { Component, OnInit } from '@angular/core';
 import {PollService} from "../../poll.service";
@@ -15,7 +14,7 @@ import {Poll} from "../../poll.model";
 export class MyPollsComponent implements OnInit {
 
   constructor(private pollService: PollService,
-    private flashMessagesService: FlashMessagesService,
+
     private router: Router,
    ) { }
   polls: Poll[] = [];

@@ -14,7 +14,7 @@ export class PollSmallComponent implements OnInit {
   selected: number;
   votingEnded = false;
 
-  constructor(private pollService: PollService, private flashMessagesService: FlashMessagesService) { }
+  constructor(private pollService: PollService) { }
 
   ngOnInit() {
     const now = new Date();
@@ -27,10 +27,10 @@ export class PollSmallComponent implements OnInit {
   vote() {
     this.pollService.vote(this.poll.id, this.selected).subscribe(success => {
       this.poll.voted = true;
-      this.flashMessagesService.show('Vote submitted!', { cssClass: 'card-panel green lighten-4', timeout: 3000 });
+
     }, error => {
       console.log(error);
-      this.flashMessagesService.show('You can\'t vote twice', { cssClass: 'card-panel red lighten-3', timeout: 3000 });
+
     });
   }
 

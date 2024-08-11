@@ -26,7 +26,10 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {AddPollComponent} from "./components/add-poll/add-poll.component";
 import {MyPollsComponent} from "./components/my-polls/my-polls.component";
 import {PollSmallComponent} from "./components/poll-small/poll-small.component";
-import {FlashMessagesModule} from "angular2-flash-messages";
+import {PollService} from "./poll.service";
+import {PollComponent} from "./components/poll/poll.component";
+import {NgxChartsModule} from "@swimlane/ngx-charts";
+
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import {FlashMessagesModule} from "angular2-flash-messages";
     WelcomeComponent,
     AddPollComponent,
     MyPollsComponent,
-    PollSmallComponent
+    PollSmallComponent,
+    PollComponent
   ],
   imports: [
     FormsModule,
@@ -58,11 +62,10 @@ import {FlashMessagesModule} from "angular2-flash-messages";
     CommonModule,
     RouterModule.forRoot([]),
     HttpClientModule,
+    NgxChartsModule,
     NgApexchartsModule,
-    FlashMessagesModule.forRoot(),
-
   ],
-  providers: [],
+  providers: [PollService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

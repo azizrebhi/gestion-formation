@@ -13,7 +13,7 @@ export class PollService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('jwt') !== null ? 'Bearer ' + localStorage.getItem('jwt') : ''
+
       })
     };
     return this.http.get('http://localhost:8080/api/polls', httpOptions);
@@ -23,7 +23,7 @@ export class PollService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('jwt') !== null ? 'Bearer ' + localStorage.getItem('jwt') : ''
+
       })
     };
     return this.http.get('http://localhost:8080/api/polls/user/' + username, httpOptions);
@@ -37,17 +37,16 @@ export class PollService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('jwt') !== null ? 'Bearer ' + localStorage.getItem('jwt') : ''
+
       })
     };
     return this.http.post('http://localhost:8080/api/polls', poll, httpOptions);
   }
-
   deletePoll(pollId: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': localStorage.getItem('jwt') !== null ? 'Bearer ' + localStorage.getItem('jwt') : ''
+
       })
     };
     return this.http.delete('http://localhost:8080/api/polls/' + pollId, httpOptions);

@@ -3,7 +3,7 @@ export class Poll {
   id: string;
   title: string;
   options: [{
-    idd:number,
+    id:number,
     option: String,
     score: Number,
   }];

@@ -5,6 +5,8 @@ import {FormationComponent} from "./components/formation/formation.component";
 import {FeedbackComponent} from "./components/feedback/feedback.component";
 
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {AddPollComponent} from "./components/add-poll/add-poll.component";
+import {PollComponent} from "./components/poll/poll.component";
 
 
 
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'formation', component: FormationComponent },
   {path:'feedback' ,component:FeedbackComponent},
   { path: 'welcome' , component: WelcomeComponent },
+  { path: 'poll/:id', component: PollComponent },
+  {path:'add-poll',component:AddPollComponent}
 ];
 
 @NgModule({

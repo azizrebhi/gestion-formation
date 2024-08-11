@@ -23,7 +23,7 @@ export class AddPollComponent implements OnInit {
     user: null
   };
 
-  constructor(private pollService: PollService, private router: Router, private flashMessagesService: FlashMessagesService) { }
+  constructor(private pollService: PollService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -44,14 +44,13 @@ export class AddPollComponent implements OnInit {
     this.options.forEach(option => {
       if (this.poll.options == null) {
         this.poll.options = [{
-          idd:0,
+          id:0,
           option: option,
           score: 0
         }];
       } else {
-
         this.poll.options.push({
-          idd:1,
+          id:0,
           option: option,
           score: 0
         });
@@ -62,10 +61,10 @@ export class AddPollComponent implements OnInit {
     this.poll.endDate = new Date(f.value.endDate);
     this.pollService.savePoll(this.poll).subscribe(success => {
       this.router.navigate(['']);
-      this.flashMessagesService.show('Successfully added!', { cssClass: 'card-panel green lighten-4', timeout: 3000 });
+
     }, error => {
       console.log(error);
-      this.flashMessagesService.show(JSON.stringify(error), { cssClass: 'card-panel red lighten-3', timeout: 3000 });
+
     });
   }
 
