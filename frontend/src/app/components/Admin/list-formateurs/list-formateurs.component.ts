@@ -4,6 +4,7 @@ import { Formateur } from 'src/app/Model/formateur.model';
 import { FormateurService } from 'src/app/service/formateur.service';
 import { InvitationComponent } from '../invitation/invitation.component';
 import * as bootstrap from 'bootstrap';
+import { AddFormateurComponent } from '../add-formateur/add-formateur.component';
 
 @Component({
   selector: 'app-list-formateurs',
@@ -72,6 +73,18 @@ export class ListFormateursComponent implements OnInit {
   onInvitationSent(): void {
     this.selectedFormateurId = null;
   }
+  openAddFormateurDialog(): void {
+    const dialogRef = this.dialog.open(AddFormateurComponent, {
+      width: '600px',
+      data: {} // You can pass any data to the dialog if needed
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Handle the result if needed (e.g., refresh the list of formateurs)
+        console.log('Formateur ajouté');
+      }
+    });
+  }
 }
 

@@ -1,6 +1,7 @@
 package com.example.gestionFormation.controllers;
 
 import com.example.gestionFormation.entities.Formateur;
+import com.example.gestionFormation.secServices.EmailService;
 import com.example.gestionFormation.secServices.service.FormateurServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/formateurs")
@@ -17,9 +19,19 @@ import java.util.List;
 public class FormateurController {
     @Autowired
     FormateurServiceImpl formateurService;
+    @Autowired
+    EmailService emailService;
     @PostMapping("/addFormateur")
-    public Formateur createFormateur(@RequestBody Formateur formateur) {
-        return formateurService.createFormateur(formateur);
+    public ResponseEntity<Formateur> createFormateur(@RequestBody @Valid Formateur formateur) {
+        // Set the default password
+        formateur.setPassword("test33");
+
+        Formateur createdFormateur = formateurService.createFormateur(formateur);
+
+        // Send the activation email with the default password
+        emailService.sendPasswordSetupEmail(formateur.getEmail(), formateur.getToken());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdFormateur);
     }
     @PutMapping("/updateFormateur/{id}")
     public Formateur updateEvent(@PathVariable Long id, @RequestBody @Valid Formateur formateur) {

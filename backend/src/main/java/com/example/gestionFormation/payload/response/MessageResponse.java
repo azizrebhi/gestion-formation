@@ -1,5 +1,9 @@
 package com.example.gestionFormation.payload.response;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class MessageResponse {
     private String message;
 

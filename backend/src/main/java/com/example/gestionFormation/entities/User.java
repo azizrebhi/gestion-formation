@@ -44,6 +44,8 @@ public class User {
     @Size(max = 120)
     private String password;
    // private boolean enabled;
+   @ManyToMany
+   private List<Notification> seenNotifications;
     private String resetToken;
     private LocalDateTime resetTokenExpirationTime;
 

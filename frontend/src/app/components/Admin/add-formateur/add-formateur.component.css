@@ -1,0 +1,21 @@
+/* add-formateur.component.css */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #343a40;
+  }
+  
+  .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+  }
+  
+  .modal-footer button {
+    margin-left: 10px;
+  }
+  

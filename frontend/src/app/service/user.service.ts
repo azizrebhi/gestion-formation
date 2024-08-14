@@ -35,12 +35,12 @@ export class UserService {
     const user = this.storageService.getUser();
     return user?.token || null;
   }
- // Requête pour obtenir le contenu de l'utilisateur
- getUserBoard(): Observable<string> {
-  return this.http.get(TEST_URL + 'user', { headers: this.getHeaders(), responseType: 'text' });
+ // Requête pour obtenir le contenu du manager 
+ getManagerBoard(): Observable<string> {
+  return this.http.get(TEST_URL + 'manager', { headers: this.getHeaders(), responseType: 'text' });
 }
 
-// Requête pour obtenir le tableau du développeur
+// Requête pour obtenir le tableau du formateur 
 getFormateurBoard(): Observable<string> {
   return this.http.get(TEST_URL + 'formateur', { headers: this.getHeaders(), responseType: 'text' });
 }
@@ -49,8 +49,10 @@ getFormateurBoard(): Observable<string> {
 getAdminBoard(): Observable<string> {
   return this.http.get(TEST_URL + 'admin', { headers: this.getHeaders(), responseType: 'text' });
 }
+
 // Method to retrieve the current user
 currentUser(): any {
   return this.storageService.getUser();
 }
+
 }

@@ -42,22 +42,21 @@ public class FormateurServiceImpl implements IFormateurService{
         return formateurRepository.save(existingFormateur);
     }
 
-    @Override
     public Formateur createFormateur(Formateur formateur) {
-        // Generate a unique token for password setup
-        String token = UUID.randomUUID().toString();
-        // Save the token in your database or a secure storage
-        formateur.setToken(token);
-        formateurRepository.save(formateur);
-
-        // Send email with the setup link
-        emailService.sendPasswordSetupEmail(formateur.getEmail(), token);
-
-        return formateur;
-
+        // Set default password and generate a token
+        formateur.setPassword("test33");
+        formateur.setToken(UUID.randomUUID().toString());
+        return formateurRepository.save(formateur);
     }
+   /* public void saveTokenForFormateur(Long formateurId, String token) {
+        Formateur formateur = formateurRepository.findById(formateurId).orElse(null);
+        if (formateur != null) {
+            formateur.setToken(token); // Assuming Formateur entity has a token field
+            formateurRepository.save(formateur);
+        }
+    }*/
     public Formateur getFormateurByToken(String token) {
-        return formateurRepository.findByToken(token).orElse(null);
+        return formateurRepository.findByToken(token); // Assuming FormateurRepository has findByToken method
     }
     @Override
     public void deleteFormateur(Long id) {

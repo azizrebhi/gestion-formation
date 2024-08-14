@@ -14,9 +14,13 @@ public class EmailService {
     public void sendPasswordSetupEmail(String to, String token) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
-        message.setSubject("Setup Your Password");
-        message.setText("Click the following link to set your password: "
-                + "http://localhost:4200/setup-password?token=" + token);
+        message.setSubject("Activate Your Account");
+        message.setText("Bonjour,\n\nVotre compte formateur a été créé avec succès. "
+                + "Veuillez cliquer sur le lien suivant pour activer votre compte et configurer votre mot de passe : "
+                + "http://localhost:4200/setup-password?token=" + token
+                + "\n\nMot de passe par défaut : test33"
+                + "\n\nVeuillez changer votre mot de passe après la première connexion.\n\nMerci.");
+
         mailSender.send(message);
     }
 }

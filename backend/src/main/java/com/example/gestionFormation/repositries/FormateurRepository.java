@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface FormateurRepository extends JpaRepository<Formateur,Long> {
-    Optional<Formateur> findByToken(String token);
+    Formateur findByToken(String token);
 }

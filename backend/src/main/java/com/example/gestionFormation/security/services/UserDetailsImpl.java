@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
     private Long id;
@@ -32,6 +33,8 @@ public class UserDetailsImpl implements UserDetails {
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
 
+        System.out.println("Roles in UserDetailsImpl: " + authorities); // Ensure roles are being mapped
+
         return new UserDetailsImpl(
                 user.getId(),
                 user.getName(),
@@ -39,6 +42,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getPassword(),
                 authorities);
     }
+
 
     public Long getId() {
         return id;

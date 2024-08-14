@@ -29,7 +29,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { AddFormateurComponent } from './components/Admin/add-formateur/add-formateur.component'; // Import MatIconModule
+import { AddFormateurComponent } from './components/Admin/add-formateur/add-formateur.component';
+import { HomeManagerComponent } from './components/Manager/home-manager/home-manager.component';
+import { CoursesComponent } from './components/Manager/courses/courses.component';
+import { NavManagerComponent } from './components/Manager/nav-manager/nav-manager.component';
+
 
 
 /*FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -57,6 +61,10 @@ import { AddFormateurComponent } from './components/Admin/add-formateur/add-form
       InvitationComponent,
       ResponseComponent,
       AddFormateurComponent,
+      HomeManagerComponent,
+      CoursesComponent,
+      NavManagerComponent,
+      
     
   ],
   imports: [

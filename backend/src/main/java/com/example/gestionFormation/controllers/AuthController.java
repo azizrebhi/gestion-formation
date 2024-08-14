@@ -2,12 +2,10 @@ package com.example.gestionFormation.controllers;
 
 import com.example.gestionFormation.entities.Role;
 import com.example.gestionFormation.entities.User;
-import org.springframework.security.core.GrantedAuthority;
 import com.example.gestionFormation.enumeration.EnumRole;
 import com.example.gestionFormation.payload.request.LoginRequest;
 import com.example.gestionFormation.payload.request.SignupRequest;
 import com.example.gestionFormation.payload.response.JwtResponse;
-import com.example.gestionFormation.payload.response.LoginResponse;
 import com.example.gestionFormation.payload.response.MessageResponse;
 import com.example.gestionFormation.repositries.RoleRepository;
 import com.example.gestionFormation.repositries.UserRepository;
@@ -18,17 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -54,47 +49,47 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        // Check for existing username and email
         if (userRepository.existsByName(signUpRequest.getName())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        // Check if roles are provided
+        Set<String> strRoles = signUpRequest.getRole();
+        if (strRoles == null || strRoles.isEmpty()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Role is required!"));
         }
 
         // Create new user's account
-        User user = new User(signUpRequest.getName(),
-                signUpRequest.getEmail(),
-                passwordEncoder.encode(signUpRequest.getPassword()));
+        User user = new User(signUpRequest.getName(), signUpRequest.getEmail(), passwordEncoder.encode(signUpRequest.getPassword()));
 
-        // Assign the role based on the input
-        Set<String> strRoles = signUpRequest.getRole();
+        // Assign roles
         Set<Role> roles = new HashSet<>();
-
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(EnumRole.ROLE_FORMATEUR)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName(EnumRole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-                        break;
-                    case "formateur":
-                        Role modRole = roleRepository.findByName(EnumRole.ROLE_FORMATEUR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-                        break;
-                }
-            });
-        }
+        strRoles.forEach(role -> {
+            switch (role.toUpperCase()) { // Ensure case insensitivity
+                case "ROLE_ADMIN":
+                    Role adminRole = roleRepository.findByName(EnumRole.ROLE_ADMIN)
+                            .orElseThrow(() -> new RuntimeException("Error: Role ADMIN is not found."));
+                    roles.add(adminRole);
+                    break;
+                case "ROLE_FORMATEUR":
+                    Role formateurRole = roleRepository.findByName(EnumRole.ROLE_FORMATEUR)
+                            .orElseThrow(() -> new RuntimeException("Error: Role FORMATEUR is not found."));
+                    roles.add(formateurRole);
+                    break;
+                case "ROLE_MANAGER":
+                    Role managerRole = roleRepository.findByName(EnumRole.ROLE_MANAGER)
+                            .orElseThrow(() -> new RuntimeException("Error: Role MANAGER is not found."));
+                    roles.add(managerRole);
+                    break;
+                default:
+                    throw new RuntimeException("Error: Role " + role + " is not valid.");
+            }
+        });
 
         user.setRoles(roles);
         userRepository.save(user);

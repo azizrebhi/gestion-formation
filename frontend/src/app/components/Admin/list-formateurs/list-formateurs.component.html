@@ -2,99 +2,102 @@
 <app-nav></app-nav>
 
 <div class="container">
-    <div class="header" style="  background-color: #1e2d3b;">
-      <h3>Manage Formateurs</h3>
-      <div class="actions">
-        <button class="delete-btn" (click)="deleteSelected()">supprimer </button>
-        <button class="add-btn" (click)="addNewFormateur()">Ajouter un Formateur</button>
-        
-      </div>
+  <div class="header" style="  background-color: #1e2d3b;">
+    <h3>Manage Formateurs</h3>
+    <div class="actions">
+      <button class="delete-btn" (click)="deleteSelected()">supprimer </button>
+     
+      
+      <button class="add-btn" (click)="openAddFormateurDialog()">Ajouter un Formateur</button>
+      
+
     </div>
- 
-  
-    
-    <table class="table">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Identifiant</th>
-          <th>Email</th>
-          <th>Addresse</th>
-          <th>Telephone</th>
-          <th>Actions</th>
-          <th>status de demande</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let formateur of formateurs">
-          <td><input type="checkbox"></td>
-          <td>{{ formateur.name }}</td>
-          <td>{{ formateur.email }}</td>
-          <td>{{ formateur.adresse }}</td>
-          <td>{{ formateur.telephone }}</td>
-          <td class="actions">
-            <button class="delete-btn" (click)="deleteFormateur(formateur)">Delete</button>
-            <button class="add-btn" (click)="editFormateur(formateur)">Edit</button>
-            <button class="add-btn" (click)="onDemandeClick(formateur.id)">Demande</button>
-            <div class="modal fade" id="staticBackdrop4" tabindex="-1" aria-labelledby="sendInvitationModalLabel" aria-hidden="true">
-                <div class="modal-dialog d-flex justify-content-center">
-                  <div class="modal-content w-75">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="sendInvitationModalLabel">Send Invitation</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Identifiant</th>
+        <th>Email</th>
+        <th>Addresse</th>
+        <th>Telephone</th>
+        <th>Actions</th>
+        <th>status de demande</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let formateur of formateurs">
+        <td><input type="checkbox"></td>
+        <td>{{ formateur.name }}</td>
+        <td>{{ formateur.email }}</td>
+        <td>{{ formateur.adresse }}</td>
+        <td>{{ formateur.telephone }}</td>
+        <td class="actions">
+          <button class="delete-btn" (click)="deleteFormateur(formateur)">Delete</button>
+          <button class="add-btn" (click)="editFormateur(formateur)">Edit</button>
+          <button class="add-btn" (click)="onDemandeClick(formateur.id)">Demande</button>
+          <div class="modal fade" id="staticBackdrop4" tabindex="-1" aria-labelledby="sendInvitationModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog d-flex justify-content-center">
+              <div class="modal-content w-75">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="sendInvitationModalLabel">Send Invitation</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Title</label>
+                      <input type="text" class="form-control" id="title">
                     </div>
-                    <div class="modal-body">
-                      <form>
-                        <div class="mb-3">
-                          <label for="title" class="form-label">Title</label>
-                          <input type="text" class="form-control" id="title">
-                        </div>
-              
-                        <div class="mb-3">
-                          <label for="startDate" class="form-label">Start Date</label>
-                          <input type="datetime-local" class="form-control" id="startDate">
-                        </div>
-              
-                        <div class="mb-3">
-                          <label for="endDate" class="form-label">End Date</label>
-                          <input type="datetime-local" class="form-control" id="endDate">
-                        </div>
-              
-                        <div class="mb-3">
-                          <label for="url" class="form-label">URL</label>
-                          <input type="text" class="form-control" id="url">
-                        </div>
-              
-                        <div class="mb-3">
-                          <label for="location" class="form-label">Location</label>
-                          <input type="text" class="form-control" id="location">
-                        </div>
-              
-                        <div class="mb-3">
-                          <label for="description" class="form-label">Description</label>
-                          <textarea class="form-control" id="description"></textarea>
-                        </div>
-              
-                        <div class="form-check mb-3">
-                          <input class="form-check-input" type="checkbox" id="allDay">
-                          <label class="form-check-label" for="allDay">
-                            All Day
-                          </label>
-                        </div>
-              
-                        <button type="submit" class="btn btn-primary">Send Invitation</button>
-                      </form>
+
+                    <div class="mb-3">
+                      <label for="startDate" class="form-label">Start Date</label>
+                      <input type="datetime-local" class="form-control" id="startDate">
                     </div>
-                  </div>
+
+                    <div class="mb-3">
+                      <label for="endDate" class="form-label">End Date</label>
+                      <input type="datetime-local" class="form-control" id="endDate">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="url" class="form-label">URL</label>
+                      <input type="text" class="form-control" id="url">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="location" class="form-label">Location</label>
+                      <input type="text" class="form-control" id="location">
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="description" class="form-label">Description</label>
+                      <textarea class="form-control" id="description"></textarea>
+                    </div>
+
+                    <div class="form-check mb-3">
+                      <input class="form-check-input" type="checkbox" id="allDay">
+                      <label class="form-check-label" for="allDay">
+                        All Day
+                      </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send Invitation</button>
+                  </form>
                 </div>
               </div>
-              
-          </td>
-        </tr>
-        <!-- Add more rows dynamically based on data -->
-      </tbody>
-    </table>
-   
-   
-  </div>
-  
+            </div>
+          </div>
+
+        </td>
+      </tr>
+      <!-- Add more rows dynamically based on data -->
+    </tbody>
+  </table>
+
+
+</div>

@@ -30,7 +30,9 @@ export class LoginComponent {
           case 'ROLE_FORMATEUR':
             this.router.navigate(['/homeFormateur']);
             break;
-         
+            case 'ROLE_MANAGER':
+              this.router.navigate(['/homeManager']);
+              break;
           default:
             console.error('Unknown role', role);
             break;
