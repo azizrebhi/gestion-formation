@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
 
-
   constructor() { }
 
   ngOnInit(): void {

@@ -1,7 +1,21 @@
 <div class="section">
-  <div class="row center-align">
-    <div *ngFor="let poll of polls" class="col s12 m4 poll-coloumn">
-      <app-poll-small [poll]="poll"></app-poll-small>
+  <div class="row">
+    <div *ngFor="let poll of polls; let i = index" class="col s12 poll-container">
+      <h5 class="poll-title">{{ poll.title }}</h5>
+      <apx-chart
+        #chart
+        [series]="chartOptions[i].series"
+        [chart]="chartOptions[i].chart"
+        [plotOptions]="chartOptions[i].plotOptions"
+        [xaxis]="chartOptions[i].xaxis"
+        [stroke]="chartOptions[i].stroke"
+        [dataLabels]="chartOptions[i].dataLabels"
+        [yaxis]="chartOptions[i].yaxis"
+        [tooltip]="chartOptions[i].tooltip"
+        [colors]="chartOptions[i].colors"
+
+       >
+      </apx-chart>
     </div>
   </div>
 </div>

@@ -1,0 +1,104 @@
+/* add-poll.component.css */
+
+/* General Styles */
+body {
+  background-color: #f0f2f5; /* Light grey background for the page */
+  font-family: 'Roboto', sans-serif; /* Modern, clean font */
+  color: #333; /* Dark text for readability */
+}
+
+/* Container and Form */
+.form-container {
+  background: #ffffff; /* White background for the form */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  max-width: 600px; /* Max width for better readability */
+  margin: 2rem auto; /* Center the form horizontally */
+}
+
+/* Row Spacing */
+.row {
+  margin-bottom: 1.5rem;
+}
+
+/* Input Fields */
+.input-field {
+  margin-bottom: 1.5rem;
+}
+
+.input-field label {
+  font-weight: 600;
+  color: #555; /* Slightly lighter color for labels */
+}
+
+input.validate, .datepicker {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input.validate:focus, .datepicker:focus {
+  border-color: #007bff; /* Blue border on focus */
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: none; /* Remove transitions */
+}
+
+/* Add Button */
+.btn-floating {
+  background-color: #28a745; /* Fresh green for add button */
+  color: #ffffff;
+}
+
+.btn-floating:hover {
+  background-color: #28a745; /* No hover effect */
+}
+
+.btn-floating .material-icons {
+  font-size: 24px;
+}
+
+/* Remove Button */
+.btn-floating.red.darken-3 {
+  background-color: #dc3545; /* Bold red for remove button */
+  color: #ffffff;
+}
+
+.btn-floating.red.darken-3:hover {
+  background-color: #dc3545; /* No hover effect */
+}
+
+/* Submit Button */
+.btn-submit {
+  background-color: #28a745; /* Solid green color */
+  color: #ffffff; /* White text color */
+  border-radius: 5px; /* Slightly rounded corners */
+  padding: 0.75rem 1.5rem; /* Padding inside the button */
+  font-size: 1rem; /* Font size */
+  font-weight: 500; /* Font weight */
+  text-transform: uppercase; /* Uppercase text */
+  cursor: pointer; /* Pointer cursor */
+  border: none; /* Remove default border */
+  transition: none; /* No transition effects */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .input-field {
+    margin-bottom: 1rem;
+  }
+}

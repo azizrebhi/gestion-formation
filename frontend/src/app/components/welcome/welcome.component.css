@@ -1,12 +1,31 @@
-.icon-block {
-  padding: 0 15px;
-}
-.icon-block .material-icons {
-	font-size: inherit;
+.section {
+  padding: 20px;
 }
 
-.poll-coloumn {
-  min-height: 330px;
-  max-height:330px;
-  overflow:auto
+.row {
+  margin: 0;
+}
+
+.poll-container {
+  margin-bottom: 100px;
+  padding: 10px;
+  display: flex;          /* Enables flexbox */
+  justify-content: center; /* Centers the chart horizontally */
+  flex-direction: column; /* Keeps the title and chart in a column layout */
+  align-items: center;    /* Centers the title and chart vertically within the container */
+}
+
+.poll-title {
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+}
+
+apx-chart {
+
+  width: 700px;
+  max-width: 100%;
+  display: block;
+  height: auto;
 }

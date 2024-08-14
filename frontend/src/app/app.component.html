@@ -1,42 +1,37 @@
-<div style="position: fixed; left: 45%; top:5%;">
-
-</div>
 <div id="app">
-  <nav class="navbar navbar-expand-lg navbar-custom" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg navbar-custom bg-grey">
     <div class="container-fluid">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <h1 class="title">FormiActia</h1>
+          <img src="assets/download.png" class="navbar-logo"> <!-- Added a class for styling -->
         </li>
 
         <!-- Menu à gauche -->
-
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li ><a  class="dropdown-item" routerLink="formateur">Formateur  </a></li>
-            <li ><a  class="dropdown-item" routerLink="formation">Formation  </a></li>
-            <li ><a  class="dropdown-item" routerLink="feedback">feedback  </a></li>
-            <li ><a  class="dropdown-item" routerLink="welcome">Welcome  </a></li>
+            <li><a class="dropdown-item" routerLink="formateur">Formateur</a></li>
+            <li><a class="dropdown-item" routerLink="formation">Formation</a></li>
+            <li><a class="dropdown-item" routerLink="feedback">Feedback</a></li>
+            <li><a class="dropdown-item" routerLink="welcome">Welcome</a></li>
           </ul>
         </li>
-
       </ul>
 
       <!-- Menu à droite -->
       <ul class="navbar-nav ml-auto">
         <!-- Si non connecté -->
-        <li class="nav-item" >
+        <li class="nav-item">
           <a href="/login" class="nav-link active" aria-current="page" routerLink="login">Login</a>
         </li>
         <!-- Si connecté -->
-        <li class="nav-item" >
+        <li class="nav-item">
           <a href="/profile" class="nav-link" routerLink="profile"></a>
         </li>
-        <li>
-          <a  routerLink="/add-poll">Create poll</a>
+        <li class="nav-item">
+          <a routerLink="/add-poll">Create Poll</a>
         </li>
         <li class="nav-item">
           <a href class="nav-link" (click)="logout()">LogOut</a>
