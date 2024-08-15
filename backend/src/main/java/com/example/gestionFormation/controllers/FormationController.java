@@ -1,7 +1,6 @@
 package com.example.gestionFormation.controllers;
 
 import com.example.gestionFormation.entity.Formation;
-import com.example.gestionFormation.repository.FormationRepository;
 import com.example.gestionFormation.service.FormationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,14 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/formations")
 public class FormationController {
 
     @Autowired
     private FormationService formationService;
 
-    @PostMapping("/addFormation")
-    public Formation addFormation(@RequestBody Formation formation) {
-        return formationService.saveFormation(formation);
+    @PostMapping("/addFormation/{sujetId}")
+    public Formation addFormation(@RequestBody Formation formation, @PathVariable Long sujetId) {
+        return formationService.saveFormation(formation, sujetId);
     }
 
     @PostMapping("/addFormations")
@@ -25,9 +25,15 @@ public class FormationController {
     }
 
     @GetMapping("/getFormations")
-    public List<Formation> getFormations() {
-        return formationService.getFormation();
+    public List<Object[]> getFormations() {
+        return formationService.getFormations();
     }
+
+    @GetMapping("/getFormationsById/{sujet_id}")
+    public List<Formation> getFormationsById(@PathVariable Long sujet_id) {
+        return formationService.getFormationsBySujetId(sujet_id);
+    }
+
 
     @GetMapping("/getById/{id}")
     public Formation getFormationById(@PathVariable Long id) {

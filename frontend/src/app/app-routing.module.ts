@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
+import { FormationComponent } from './formation/formation.component';
+import { SujetComponent } from './sujet/sujet.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-
+  {path:'',component:SujetComponent , pathMatch : 'full'},
+  {path:'formation' , component:FormationComponent}
 ];
 
 @NgModule({
@@ -13,8 +13,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
-
-
-
-

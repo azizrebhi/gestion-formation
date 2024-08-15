@@ -1,0 +1,111 @@
+/* sujet.component.css */
+@import 'swiper/swiper-bundle.css';
+
+
+  body{
+    background-color: #f4f4f4;
+  }
+  .sujet-title {
+    font-size: 3em; /* Large font size for the title */
+    font-weight: bold; /* Make the title bold */
+    background: linear-gradient(to right, #2ecc71, #27ae60); /* Green gradient background */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Make the text color transparent to show the gradient */
+    text-align: center; /* Center the text */
+    margin: 20px 0; /* Add margin above and below the title */
+    text-transform: uppercase; /* Transform the text to uppercase */
+    letter-spacing: 2px; /* Add spacing between letters */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to the text */
+    font-family: 'Roboto', sans-serif; /* Use a clean, modern font */
+  }
+  
+  .sujet-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: #2ecc71; /* Solid green line under the title */
+    margin: 10px auto 0; /* Center the line and add space above */
+    border-radius: 2px; /* Round the edges of the line */
+  }
+  
+  .swiper-container {
+    width: 100%;
+    padding: 40px 0;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sujet-card {
+    width: 500px; /* Set the card width */
+    height: 300px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+
+.sujet-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+  z-index: 1; /* Place the overlay behind the content */
+}
+  
+  .mat-card-title a {
+    color: green; /* Change the color of the title */
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #000;
+    margin-top: -80px;
+  }
+  
+
+  .nom-sujet {
+    position: relative; /* Ensure the link is above the overlay */
+    z-index: 2; /* Place the text above the overlay */
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nom-sujet:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #2ecc71;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    text-decoration: underline;
+  }
+  
+  .nom-sujet:active {
+    transform: translateY(0); /* Reset position when active */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Reset shadow */
+  }
+  
+  .nom-sujet:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 10px rgba(46, 204, 113, 0.5); /* Green glow on focus */
+  }
+  

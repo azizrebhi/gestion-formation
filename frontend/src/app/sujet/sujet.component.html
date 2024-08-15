@@ -1,0 +1,24 @@
+
+<h1  class="sujet-title">Sujet List </h1>
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+   <div class="swiper-slide" *ngFor="let Sujet of SujetArray">
+    <mat-card class="sujet-card" [ngStyle]="{
+      'background-image': 'url(' + Sujet.imageSujet + ')',
+      'background-size': 'cover',
+      'background-repeat': 'no-repeat',
+      'background-position': 'center'
+      
+    }">
+      <a href="" class="nom-sujet">{{Sujet.nomSujet}}</a>
+    </mat-card>
+
+   </div>
+  </div>
+
+  <!-- Add Navigation -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+
