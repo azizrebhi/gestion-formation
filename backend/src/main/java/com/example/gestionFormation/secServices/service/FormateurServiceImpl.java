@@ -1,16 +1,19 @@
 package com.example.gestionFormation.secServices.service;
 
+import com.example.gestionFormation.entities.Cours;
 import com.example.gestionFormation.entities.Formateur;
+import com.example.gestionFormation.entities.Language;
+import com.example.gestionFormation.repositries.CoursRepository;
 import com.example.gestionFormation.repositries.FormateurRepository;
+import com.example.gestionFormation.repositries.LanguageRepository;
 import com.example.gestionFormation.secServices.EmailService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class FormateurServiceImpl implements IFormateurService{
@@ -18,6 +21,10 @@ public class FormateurServiceImpl implements IFormateurService{
     FormateurRepository formateurRepository;
     @Autowired
     private EmailService emailService;
+    @Autowired
+    CoursRepository coursRepository;
+    @Autowired
+    LanguageRepository languageRepository;
 
     @Override
     public List<Formateur> getAllFormateurs() {
@@ -45,7 +52,7 @@ public class FormateurServiceImpl implements IFormateurService{
     public Formateur createFormateur(Formateur formateur) {
         // Set default password and generate a token
         formateur.setPassword("test33");
-        formateur.setToken(UUID.randomUUID().toString());
+
         return formateurRepository.save(formateur);
     }
    /* public void saveTokenForFormateur(Long formateurId, String token) {
@@ -55,11 +62,47 @@ public class FormateurServiceImpl implements IFormateurService{
             formateurRepository.save(formateur);
         }
     }*/
-    public Formateur getFormateurByToken(String token) {
-        return formateurRepository.findByToken(token); // Assuming FormateurRepository has findByToken method
-    }
+
     @Override
     public void deleteFormateur(Long id) {
         formateurRepository.deleteById(id);
     }
-}
+
+    @Override
+    public Formateur assignFormateurToLanguage(Long formateurId, Long languageId) {
+        // Fetch the Formateur
+        Formateur formateur = formateurRepository.findById(formateurId)
+                .orElseThrow(() -> new RuntimeException("Formateur not found with id: " + formateurId));
+
+        // Fetch the Language
+        Language language = languageRepository.findById(languageId)
+                .orElseThrow(() -> new RuntimeException("Language not found with id: " + languageId));
+
+        // Get the associated Cours from the Language
+        Cours cours = language.getCours();
+        if (cours == null) {
+            throw new RuntimeException("Language is not associated with any course");
+        }
+
+        // Assign the language to the formateur
+        formateur.getLanguages().add(language);
+
+        // Assign the formateur to the language
+        language.getFormateurs().add(formateur);
+
+        // Assign the cours to the formateur
+        formateur.setCours(cours);
+
+        // Save the updated entities
+        formateurRepository.save(formateur);
+        languageRepository.save(language);  // Ensure language is updated
+
+        return formateur;
+    }
+    }
+
+
+
+
+
+

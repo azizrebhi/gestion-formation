@@ -1,0 +1,13 @@
+.btn {
+    padding: 3px 6px; /* Reduced padding for a smaller button */
+    font-size: 12px; /* Smaller text size */
+    background-color: #4CAF50; /* Green color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 3px; /* Slightly smaller border radius */
+    margin-top: 15px; /* Adjust margin if needed */
+}
+
+.btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}

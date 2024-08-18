@@ -42,11 +42,12 @@ export class AuthService {
     );
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
+  register(formValues: { username: string; email: string; role: string[]; password: string }): Observable<any> {
     return this.http.post(AUTH_API + 'register', {
-      username,
-      email,
-      password
+      name: formValues.username,  // Change this to "name" as per backend expectation
+      email: formValues.email,
+      role: [formValues.role], // Ensure that role is sent as an array
+      password: formValues.password
     }, httpOptions);
   }
 

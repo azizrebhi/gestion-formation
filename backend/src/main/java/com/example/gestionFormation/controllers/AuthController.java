@@ -70,7 +70,7 @@ public class AuthController {
         // Assign roles
         Set<Role> roles = new HashSet<>();
         strRoles.forEach(role -> {
-            switch (role.toUpperCase()) { // Ensure case insensitivity
+            switch (role.toUpperCase()) {  // Convert the role to upper case
                 case "ROLE_ADMIN":
                     Role adminRole = roleRepository.findByName(EnumRole.ROLE_ADMIN)
                             .orElseThrow(() -> new RuntimeException("Error: Role ADMIN is not found."));
@@ -90,6 +90,7 @@ public class AuthController {
                     throw new RuntimeException("Error: Role " + role + " is not valid.");
             }
         });
+
 
         user.setRoles(roles);
         userRepository.save(user);

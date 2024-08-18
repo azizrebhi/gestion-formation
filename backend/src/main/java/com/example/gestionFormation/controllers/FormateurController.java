@@ -1,8 +1,10 @@
 package com.example.gestionFormation.controllers;
 
 import com.example.gestionFormation.entities.Formateur;
+import com.example.gestionFormation.entities.Language;
 import com.example.gestionFormation.secServices.EmailService;
 import com.example.gestionFormation.secServices.service.FormateurServiceImpl;
+import com.example.gestionFormation.secServices.service.LanguageServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @RestController
@@ -20,6 +23,8 @@ public class FormateurController {
     @Autowired
     FormateurServiceImpl formateurService;
     @Autowired
+    LanguageServiceImpl languageService;
+    @Autowired
     EmailService emailService;
     @PostMapping("/addFormateur")
     public ResponseEntity<Formateur> createFormateur(@RequestBody @Valid Formateur formateur) {
@@ -28,8 +33,6 @@ public class FormateurController {
 
         Formateur createdFormateur = formateurService.createFormateur(formateur);
 
-        // Send the activation email with the default password
-        emailService.sendPasswordSetupEmail(formateur.getEmail(), formateur.getToken());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(createdFormateur);
     }
@@ -46,11 +49,22 @@ public class FormateurController {
     public Formateur getFormateurById(@PathVariable Long id) {
         return formateurService.getFormateurById(id);
     }
+
+
+    @PostMapping("/{formateurId}/assign-language/{languageId}")
+    public ResponseEntity<Formateur> assignFormateurToLanguage(@PathVariable Long formateurId,
+                                                               @PathVariable Long languageId) {
+        Formateur updatedFormateur = formateurService.assignFormateurToLanguage(formateurId, languageId);
+        return ResponseEntity.ok(updatedFormateur);
+    }
+
+
+
     @DeleteMapping("/{id}")
     public void deleteFormateur(@PathVariable Long id) {
         formateurService.deleteFormateur(id);
     }
-    @PostMapping("/setup-password")
+  /*  @PostMapping("/setup-password")
     public ResponseEntity<?> setupPassword(@RequestParam String token, @RequestParam String newPassword) {
         Formateur formateur = formateurService.getFormateurByToken(token);
         if (formateur == null) {
@@ -61,4 +75,8 @@ public class FormateurController {
 
         return ResponseEntity.ok("Password updated successfully");
     }
+
+*/
+
+
 }

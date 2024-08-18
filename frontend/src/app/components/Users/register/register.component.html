@@ -1,43 +1,41 @@
-<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
-    <div class="wrapper wrapper--w680">
-      <div class="card card-4">
-        <div class="card-body">
-          <h2 class="title">Registration Form</h2>
-          <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
-            <div class="row row-space">
-              <div class="col-2">
-                <div class="input-group">
-                  <label class="label">Username</label>
-                  <input class="input--style-4" type="text" name="username" [(ngModel)]="user.username" required>
-                </div>
-              </div>
-              <div class="col-2">
-                <div class="input-group">
-                  <label class="label">Email</label>
-                  <input class="input--style-4" type="email" name="email" [(ngModel)]="user.email" required>
-                </div>
-              </div>
-            </div>
-            <div class="row row-space">
-              <div class="col-2">
-                <div class="input-group">
-                  <label class="label">Password</label>
-                  <input class="input--style-4" type="password" name="password" [(ngModel)]="user.password" required>
-                </div>
-              </div>
-            </div>
-            <div class="p-t-15">
-              <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
-            </div>
-          </form>
-          <div *ngIf="isSuccessful" class="alert alert-success">
-            Registration successful!
-          </div>
-          <div *ngIf="isSignUpFailed" class="alert alert-danger">
-            Registration failed! {{ errorMessage }}
-          </div>
-        </div>
+<div class="register-container">
+  <h1>Register</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username" class="form-control" />
+      <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="error-message">
+        Username is required.
       </div>
     </div>
-  </div>
-  
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" />
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+        Please enter a valid email.
+      </div>
+    </div>
+
+   
+
+    <div class="form-group">
+      <label for="role">Role</label>
+      <select id="role" formControlName="role" class="form-control">
+        <option value="" disabled selected>Select a role</option>
+        <option value="ROLE_ADMIN">Admin</option>
+        <option value="ROLE_FORMATEUR">Formateur</option>
+        <option value="ROLE_MANAGER">Manager</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" class="form-control" />
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+        Password is required.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
+  </form>
+</div>

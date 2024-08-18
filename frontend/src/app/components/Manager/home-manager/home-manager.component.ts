@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-manager.component.css']
 })
 export class HomeManagerComponent {
+  onButtonClick() {
+   // alert('Button clicked!');
+   
+  }
 
 }

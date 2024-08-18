@@ -43,6 +43,8 @@ public class User {
     @NotBlank
     @Size(max = 120)
     private String password;
+    private  Integer Telephone;
+    private String Adresse ;
    // private boolean enabled;
    @ManyToMany
    private List<Notification> seenNotifications;
