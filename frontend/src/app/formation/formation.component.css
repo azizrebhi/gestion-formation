@@ -1,0 +1,163 @@
+/* General Body Styles */
+.body {
+  padding: 30px;
+  background-color: #f7f9fc;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container for the Formations List */
+.formation-list {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Add Button Style */
+.add-button {
+  background-color: #00ae4e;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #007c3a;
+}
+
+/* Card Styles */
+.formation-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.formation-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Section of Each Card */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #546472;
+  margin: 0;
+}
+
+.badge {
+  padding: 8px 15px;
+  background-color: #546472;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Delete Button Styles */
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+/* Content Section of Each Card */
+.content {
+  font-size: 16px;
+  color: #555;
+}
+
+.category {
+  font-weight: bold;
+  color: #00ae4e;
+}
+
+.description {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.details {
+  margin-top: 15px;
+}
+
+.details span {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.video-link {
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.video-link:hover {
+  text-decoration: underline;
+}
+
+/* Footer Section of Each Card */
+.footer {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #777;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .header h2 {
+      font-size: 18px;
+  }
+
+  .badge, .delete-button {
+      padding: 6px 12px;
+      font-size: 12px;
+  }
+
+  .add-button {
+      padding: 10px 20px;
+      font-size: 14px;
+  }
+}
+
+
+/* Title Styles */
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #546472;
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 3px solid #00ae4e;
+  padding-bottom: 10px;
+  margin-bottom: 100px;
+}

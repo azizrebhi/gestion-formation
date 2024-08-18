@@ -7,12 +7,20 @@ import {SujetComponent} from './sujet/sujet.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormationComponent } from './formation/formation.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddformComponent } from './addform/addform.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     SujetComponent,
-    FormationComponent
+    FormationComponent,
+    AddformComponent,
     
 
     
@@ -23,6 +31,10 @@ import { FormationComponent } from './formation/formation.component';
     MatCardModule, // Add MatCardModule to the imports array
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     
     
     
