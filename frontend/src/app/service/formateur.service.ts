@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Formateur } from '../Model/formateur.model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,10 @@ export class FormateurService {
 
   deleteFormateur(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+  getFormateursByLanguage(languageId: number): Observable<Formateur[]> {
+    const params = new HttpParams().set('languageId', languageId.toString());
+    return this.http.get<Formateur[]>(`${this.apiUrl}/by-language`, { params });
   }
 }
 

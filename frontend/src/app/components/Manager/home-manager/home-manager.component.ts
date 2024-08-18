@@ -6,9 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-manager.component.css']
 })
 export class HomeManagerComponent {
-  onButtonClick() {
-   // alert('Button clicked!');
-   
+  openModal() {
+    const modal = document.getElementById('myModal');
+    if (modal) {
+      modal.style.display = 'block'; // Show the modal
+    }
   }
 
+  closeModal() {
+    const modal = document.getElementById('myModal');
+    if (modal) {
+      modal.style.display = 'none'; // Hide the modal
+    }
+  }
 }

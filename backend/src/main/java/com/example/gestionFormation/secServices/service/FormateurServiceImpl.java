@@ -69,6 +69,11 @@ public class FormateurServiceImpl implements IFormateurService{
     }
 
     @Override
+    public List<Formateur> getFormateursByLanguage(Long languageId) {
+        return formateurRepository.findByLanguageId(languageId);
+    }
+
+    @Override
     public Formateur assignFormateurToLanguage(Long formateurId, Long languageId) {
         // Fetch the Formateur
         Formateur formateur = formateurRepository.findById(formateurId)

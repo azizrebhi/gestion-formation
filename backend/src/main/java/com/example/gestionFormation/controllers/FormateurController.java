@@ -58,8 +58,11 @@ public class FormateurController {
         return ResponseEntity.ok(updatedFormateur);
     }
 
-
-
+    @GetMapping("/by-language")
+    public ResponseEntity<List<Formateur>> getFormateursByLanguage(@RequestParam Long languageId) {
+        List<Formateur> formateurs = formateurService.getFormateursByLanguage(languageId);
+        return ResponseEntity.ok(formateurs);
+    }
     @DeleteMapping("/{id}")
     public void deleteFormateur(@PathVariable Long id) {
         formateurService.deleteFormateur(id);

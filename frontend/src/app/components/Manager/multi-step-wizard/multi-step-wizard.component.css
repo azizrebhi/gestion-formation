@@ -1,0 +1,72 @@
+/* Styling for the wizard */
+.wizard {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header styling for steps */
+  .steps-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .steps-header div {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .steps-header div.active {
+    background-color: #45a049;
+    color: white;
+  }
+  
+  .step-content {
+    margin-bottom: 20px;
+  }
+  
+  /* Button styling */
+  .wizard-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .wizard-buttons .btn-secondary {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .wizard-buttons .btn-primary {
+    background-color: #45a049;
+    color: white;
+  }
+  
+  .wizard-buttons .btn-success {
+    background-color: #45a049;
+    color: white;
+  }
+  
+  /* Smaller button styling */
+  .wizard-buttons button {
+    padding: 5px 10px;
+  }
+  
+  /* Hover effects for buttons */
+  .wizard-buttons button:hover {
+    opacity: 0.9;
+  }
+  

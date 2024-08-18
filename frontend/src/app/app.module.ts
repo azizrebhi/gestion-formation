@@ -33,6 +33,8 @@ import { AddFormateurComponent } from './components/Admin/add-formateur/add-form
 import { HomeManagerComponent } from './components/Manager/home-manager/home-manager.component';
 import { CoursesComponent } from './components/Manager/courses/courses.component';
 import { NavManagerComponent } from './components/Manager/nav-manager/nav-manager.component';
+import { MultiStepWizardComponent } from './components/Manager/multi-step-wizard/multi-step-wizard.component';
+import { DemandeFormationComponent } from './components/Manager/demande-formation/demande-formation.component';
 
 
 
@@ -64,6 +66,8 @@ import { NavManagerComponent } from './components/Manager/nav-manager/nav-manage
       HomeManagerComponent,
       CoursesComponent,
       NavManagerComponent,
+      MultiStepWizardComponent,
+      DemandeFormationComponent,
       
     
   ],

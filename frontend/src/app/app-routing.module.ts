@@ -10,6 +10,7 @@ import { AuthGuard } from './service/AuthGuard';
 import { ListFormateursComponent } from './components/Admin/list-formateurs/list-formateurs.component';
 import { HomeManagerComponent } from './components/Manager/home-manager/home-manager.component';
 import { CoursesComponent } from './components/Manager/courses/courses.component';
+import { MultiStepWizardComponent } from './components/Manager/multi-step-wizard/multi-step-wizard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' } },
   { path: 'homeManager', component: HomeManagerComponent, canActivate: [AuthGuard], data: { role: 'ROLE_MANAGER' },children:[
     { path: 'courses', component: CoursesComponent }, 
+    { path: 'wizard', component: MultiStepWizardComponent }
   ]
 
 },
