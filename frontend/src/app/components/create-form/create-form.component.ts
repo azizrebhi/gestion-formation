@@ -13,7 +13,9 @@ export class FormCreateComponent {
   form: Form = new Form();
   polls: Poll[] = [];
   selectedPoll: Poll;
+
   constructor(private formService: FormService, private pollService: PollService, private router: Router) {}
+
   ngOnInit(): void {
     // Load available polls to be added to the form
     this.pollService.getPolls().subscribe((data: Poll[]) => {
@@ -31,12 +33,23 @@ export class FormCreateComponent {
     this.form.polls = this.form.polls.filter(p => p !== poll);
   }
 
-  onSubmitForm(): void {
-    this.formService.createForm(this.form).subscribe(response => {
+  onSubmitForm() {
+    // Extract the IDs of the selected polls
+    const pollIds = this.form.polls.map(poll => Number(poll.id));
+
+    // Create a new form object to send to the backend
+    const newForm = {
+      title: this.form.title,
+      pollIds: pollIds
+    };
+
+    // Send the form data to the backend
+    this.formService.createForm(newForm).subscribe(response => {
       console.log('Form created successfully:', response);
-      this.router.navigate(['/forms']); // Redirect to forms list
+      this.router.navigate(['/forms']); // Navigate to the list of forms after successful creation
     }, error => {
       console.error('Error creating form:', error);
     });
   }
+
 }

@@ -13,19 +13,16 @@ export class FormService {
 
   constructor(private http: HttpClient) { }
 
-  getForms(formId: string): Observable<any> {
+  getForms(): Observable<any> {
+
     return this.http.get(this.baseUrl);
   }
   getFormById(id: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/${id}`);
   }
 
-  createForm(form: Form): Observable<any> {
-    return this.http.post(this.baseUrl, form, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });
+  createForm(form: { title: string, pollIds: number[] }): Observable<Form> {
+    return this.http.post<Form>(`${this.baseUrl}`, form);
   }
 
   deleteForm(id: string): Observable<any> {

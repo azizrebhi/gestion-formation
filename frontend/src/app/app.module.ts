@@ -27,7 +27,9 @@ import {PollSmallComponent} from "./components/poll-small/poll-small.component";
 import {PollService} from "./poll.service";
 import {PollComponent} from "./components/poll/poll.component";
 import {NgxChartsModule} from "@swimlane/ngx-charts";
-import { DisplayFormComponent } from './display-form/display-form.component';
+import {DisplayFormComponent} from "./display-form/display-form.component";
+import { FormDetailsComponent } from './form-details/form-details.component';
+
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { DisplayFormComponent } from './display-form/display-form.component';
     MyPollsComponent,
     PollSmallComponent,
     PollComponent,
-    DisplayFormComponent
+    DisplayFormComponent,
+    FormDetailsComponent
   ],
   imports: [
     FormsModule,
