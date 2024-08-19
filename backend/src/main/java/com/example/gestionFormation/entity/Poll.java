@@ -33,11 +33,21 @@ public class Poll implements Serializable {
 
     private Date endDate;
 
-    @ElementCollection
-    @JsonIgnore
+
     private List<String> ipAdresses;
 
     private Boolean visible;
+    @ManyToOne
+    @JoinColumn(name = "form_id")
+    private Form form;
+
+    public Form getForm() {
+        return form;
+    }
+
+    public void setForm(Form form) {
+        this.form = form;
+    }
 
     public Long getId() {
         return id;

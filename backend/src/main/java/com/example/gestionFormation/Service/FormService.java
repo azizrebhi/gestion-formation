@@ -7,14 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 public class FormService {
 
-    public final FormRepository formRepository;
     @Autowired
-    public FormService(FormRepository formRepository ){
-        this.formRepository=formRepository;
+    private FormRepository formRepository;
+
+    public List<Form> getAllForms() {
+        return formRepository.findAll();
     }
+
     public Form saveForm(Form form) {
         return formRepository.save(form);
     }
@@ -23,6 +27,8 @@ public class FormService {
         return formRepository.findById(id).orElse(null);
     }
 
-
+    public void deleteForm(Long id) {
+        formRepository.deleteById(id);
+    }
 
 }
