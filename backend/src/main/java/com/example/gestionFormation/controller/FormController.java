@@ -1,8 +1,8 @@
 package com.example.gestionFormation.controller;
 
 import com.example.gestionFormation.Service.FormService;
-import com.example.gestionFormation.Service.FormateurService;
 import com.example.gestionFormation.entity.Form;
+import com.example.gestionFormation.playloads.CreateFormRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,9 @@ public class FormController {
         return formService.getAllForms();
     }
     @PostMapping
-    public Form createForm(@RequestBody Form form) {
-        return formService.saveForm(form);
+    public ResponseEntity<Form> createForm(@RequestBody CreateFormRequest request) {
+        Form form = formService.createForm(request.getTitle(), request.getPollIds());
+        return ResponseEntity.ok(form);
     }
 
     @GetMapping("/{id}")

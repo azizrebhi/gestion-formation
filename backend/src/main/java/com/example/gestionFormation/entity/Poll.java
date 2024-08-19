@@ -37,16 +37,17 @@ public class Poll implements Serializable {
     private List<String> ipAdresses;
 
     private Boolean visible;
-    @ManyToOne
-    @JoinColumn(name = "form_id")
-    private Form form;
 
-    public Form getForm() {
-        return form;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "polls")
+    private List<Form> forms;
+
+    public List<Form> getForms() {
+        return forms;
     }
 
-    public void setForm(Form form) {
-        this.form = form;
+    public void setForms(List<Form> forms) {
+        this.forms = forms;
     }
 
     public Long getId() {

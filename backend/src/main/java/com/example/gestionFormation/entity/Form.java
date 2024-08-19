@@ -15,9 +15,16 @@ import java.util.List;
 @Entity
 public class Form {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String title;
-    @OneToMany(mappedBy = "form", cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @ManyToMany
+    @JoinTable(
+            name = "form_poll",
+            joinColumns = @JoinColumn(name = "form_id"),
+            inverseJoinColumns = @JoinColumn(name = "poll_id")
+    )
     private List<Poll> polls;
 }
