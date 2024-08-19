@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WebSocketService } from './service/web-socket.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +9,7 @@ import { WebSocketService } from './service/web-socket.service';
 })
 export class AppComponent {
   public notifications = 0;
-  title = 'platformLMS';
+  title = 'Actia-Academy';
   constructor(private webSocketService: WebSocketService) {
 /*
  //open connection with server socket 

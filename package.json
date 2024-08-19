@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/cdk": "^18.2.0",
+    "Router": "^2.1.0"
+  }
+}

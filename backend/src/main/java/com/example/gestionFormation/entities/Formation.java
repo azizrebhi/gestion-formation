@@ -1,40 +1,31 @@
 package com.example.gestionFormation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Date;
-import java.util.List;
-
-@Entity(name = "Formation")
-@Table(name = "formation")
-@Getter
-@Setter
-@NoArgsConstructor
+@Entity
 @AllArgsConstructor
-@ToString
-@FieldDefaults(level= AccessLevel.PRIVATE)
+@NoArgsConstructor
+@Setter
+@Getter
 public class Formation {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id ;
-    private Long id_formateur ;
-    private String nomFormation ;
-    private String categorie ;
-    private Date dateDebut ;
-    private Date datefin ;
-    private Long nombreParticipant ;
-    @OneToOne
-    private Pausecafe pausecafe ;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Salle> salles ;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long idFormation;
+
+    private String nomFormation;
+    private String categorie;
+    private Long duree;
+    private String video;
+    private String description;
+    private int level;
+
+    @ManyToOne
+    @JoinColumn(name = "sujet_id", nullable = false)
+    @JsonBackReference
+    private Sujet sujet;
 }
-
-
-
-
-
-
-
-

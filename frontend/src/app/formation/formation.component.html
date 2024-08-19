@@ -1,0 +1,27 @@
+<div class="body">
+  <div class="formation-list">
+      <h1 style="margin-bottom: 100px;">Available Courses</h1>
+      <button class="add-button" mat-button (click)="openDialog()">Add Course +</button>
+      <div *ngFor="let formation of FormationArray" class="formation-card">
+          <div class="header">
+              <h2>{{ formation.nomFormation }}</h2>
+              <span class="badge level-{{ formation.level }}">Level {{ formation.level }}</span>
+          </div>
+
+          <div class="content">
+              <p class="category">{{ formation.categorie }}</p>
+              <p class="description">{{ formation.description }}</p>
+
+              <div class="details">
+                  <span><strong>Duration:</strong> {{ formation.duree }} hours</span>
+                  <a [href]="formation.video" class="video-link" target="_blank">Watch Video</a>
+              </div>
+          </div>
+
+          <div class="footer">
+              <p>Subject ID: {{ formation.sujetId }}</p>
+              <button class="delete-button" (click)="deleteFormation(formation.idFormation)">Delete</button>
+          </div>
+      </div>
+  </div>
+</div>

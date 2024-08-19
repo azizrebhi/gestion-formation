@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormationComponent } from './formation/formation.component';
+import { SujetComponent } from './sujet/sujet.component';
 
 import { LoginComponent } from './components/Users/login/login.component';
 import { RegisterComponent } from './components/Users/register/register.component';
@@ -13,6 +15,8 @@ import { CoursesComponent } from './components/Manager/courses/courses.component
 import { MultiStepWizardComponent } from './components/Manager/multi-step-wizard/multi-step-wizard.component';
 
 const routes: Routes = [
+ /* {path:'',component:SujetComponent ,},
+  {path:'formation' , component:FormationComponent},*/
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registre', component: RegisterComponent },
@@ -23,7 +27,9 @@ const routes: Routes = [
   { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' } },
   { path: 'homeManager', component: HomeManagerComponent, canActivate: [AuthGuard], data: { role: 'ROLE_MANAGER' },children:[
     { path: 'courses', component: CoursesComponent }, 
-    { path: 'wizard', component: MultiStepWizardComponent }
+    { path: 'wizard', component: MultiStepWizardComponent },
+    {path:'sujet',component:SujetComponent ,},
+    {path:'formation' , component:FormationComponent},
   ]
 
 },
@@ -36,4 +42,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
