@@ -20,5 +20,4 @@ public class Form {
     private String title;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Questions> questions;
-
 }

@@ -1,71 +1,37 @@
-
-
-import { Component, OnInit } from '@angular/core';
-
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import {Poll} from "../../poll.model";
 import {PollService} from "../../poll.service";
-import {FlashMessagesService} from "angular2-flash-messages";
+
 
 @Component({
   selector: 'app-add-poll',
   templateUrl: './add-poll.component.html',
   styleUrls: ['./add-poll.component.css']
 })
+export class AddPollComponent {
+  poll: Poll = new Poll(); // Poll object to bind to the form
+  options: { id: number, option: string, score: number }[] = []; // Ensure types are lowercase
 
-export class AddPollComponent implements OnInit {
-  options: string[] = [];
-  poll: Poll = {
-    id: null,
-    title: null,
-    endDate: new Date(),
-    options: null,
-    user: null
-  };
+  constructor(private pollService: PollService) {}
 
-  constructor(private pollService: PollService, private router: Router) { }
-
-  ngOnInit() {
-  }
-
-  addOption(option: string) {
-    if (option !== undefined && option != null && option !== '') {
-      this.options.push(option);
+  addOption(optionText: string) {
+    if (optionText) {
+      this.options.push({ id: this.options.length + 1, option: optionText, score: 0 });
+      this.poll.options = this.options;
     }
   }
 
-  removeOption(optionDel: string) {
-    this.options = this.options.filter(option => option !== optionDel);
+  removeOption(option: { id: number, option: string, score: number }) {
+    this.options = this.options.filter(o => o !== option);
+    this.poll.options = this.options;
   }
 
-
-  onSubmitPollForm(f) {
-
-    this.options.forEach(option => {
-      if (this.poll.options == null) {
-        this.poll.options = [{
-          id:0,
-          option: option,
-          score: 0
-        }];
-      } else {
-        this.poll.options.push({
-          id:0,
-          option: option,
-          score: 0
-        });
-
-      }
-
-    });
-    this.poll.endDate = new Date(f.value.endDate);
-    this.pollService.savePoll(this.poll).subscribe(success => {
-      this.router.navigate(['']);
-
-    }, error => {
-      console.log(error);
-
-    });
+  onSubmitPollForm() {
+    if (this.poll.title && this.options.length > 0) {
+      this.pollService.savePoll(this.poll).subscribe(response => {
+        console.log('Poll saved:', response);
+        // Reset form or navigate to another page after saving the poll
+      });
+    }
   }
-
 }

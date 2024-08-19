@@ -1,7 +1,5 @@
-// form.service.ts
-
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {Form} from "./form";
 
@@ -10,14 +8,27 @@ import {Form} from "./form";
   providedIn: 'root'
 })
 export class FormService {
-  private apiUrl = 'http://localhost:8080/api/v1/form'; // Adjust the URL as necessary
 
-  constructor(private http: HttpClient) {}
+  private baseUrl = 'http://localhost:8080/api/v1/form';
 
-  createForm(form: Form): Observable<Form> {
-    return this.http.post<Form>(this.apiUrl, form);
+  constructor(private http: HttpClient) { }
+
+  getForms(formId: string): Observable<any> {
+    return this.http.get(this.baseUrl);
   }
-  getFormById(id: number): Observable<Form> {
-    return this.http.get<Form>(`${this.apiUrl}/${id}`);
+  getFormById(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}`);
+  }
+
+  createForm(form: Form): Observable<any> {
+    return this.http.post(this.baseUrl, form, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
+
+  deleteForm(id: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
   }
 }

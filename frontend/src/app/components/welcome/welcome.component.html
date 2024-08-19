@@ -2,6 +2,8 @@
   <div class="row">
     <div *ngFor="let poll of polls; let i = index" class="col s12 poll-container">
       <h5 class="poll-title">{{ poll.title }}</h5>
+
+      <!-- Chart -->
       <apx-chart
         #chart
         [series]="chartOptions[i].series"
@@ -12,10 +14,26 @@
         [dataLabels]="chartOptions[i].dataLabels"
         [yaxis]="chartOptions[i].yaxis"
         [tooltip]="chartOptions[i].tooltip"
-        [colors]="chartOptions[i].colors"
-
-       >
+        [colors]="chartOptions[i].colors">
       </apx-chart>
+
+      <!-- Table -->
+      <table class="striped centered">
+        <thead>
+        <tr>
+          <th>Option</th>
+          <th>Votes (%)</th>
+          <th>Number of Votes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let option of poll.options; let j = index">
+          <td>{{ option.option }}</td>
+          <td>{{ percentages[i][j].toFixed(2) }}%</td>
+          <td>{{ option.score }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

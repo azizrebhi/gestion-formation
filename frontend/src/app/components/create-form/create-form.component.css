@@ -1,0 +1,158 @@
+/* Container Styling */
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f7fa;
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-container {
+  background: #ffffff;
+  padding: 3rem 4rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  width: 100%;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333333;
+  font-weight: 600;
+}
+
+.input-field {
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  color: #333333;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+select:focus {
+  border-color: #00bfa5;
+  outline: none;
+}
+
+/* Customizing the Dropdown */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #ffffff;
+  color: #333333;
+  padding: 1.2rem;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  border: 1px solid #cccccc;
+  margin-top: 1rem;
+  position: relative;
+}
+
+select option {
+  padding: 1rem;
+  font-size: 2rem;
+  color: #555555;
+  background-color: #f0f4f8;
+  margin: 0.5rem 0;
+  border-bottom: 1px solid #e0e0e0; /* Separator line between options */
+}
+
+/* Option hover effects */
+select option:hover {
+  background-color: #e8eef5;
+  color: #333333;
+}
+
+/* Making the dropdown and options more interactive */
+select:hover {
+  border-color: #00bfa5;
+}
+
+/* Styling the options list for the selected polls */
+.options-list {
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.options-list .row {
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #e0e0e0;
+}
+
+.options-list .row:hover {
+  background-color: #e8eef5;
+  border-color: #cfd8e3;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  background-color: #00bfa5;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #008f7a;
+}
+
+.btn.red {
+  background-color: #e53935;
+}
+
+.btn.red:hover {
+  background-color: #c62828;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  color: #555555;
+  background-color: #f8f8f8;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="date"]:focus {
+  border-color: #00bfa5;
+  outline: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

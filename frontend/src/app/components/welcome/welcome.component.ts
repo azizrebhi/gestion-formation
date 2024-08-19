@@ -37,6 +37,7 @@ export class WelcomeComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>[] = [];
   polls: Poll[] = [];
+  public percentages: number[][] = [];
 
   constructor(private pollService: PollService) { }
 
@@ -44,12 +45,16 @@ export class WelcomeComponent implements OnInit {
     this.pollService.getPolls().subscribe(polls => {
       this.polls = polls;
       this.polls.forEach((poll, index) => {
-        const chartData: number[] = poll.options.map(option => +option.score);
+        const totalVotes = poll.options.reduce((sum, option) => sum + +option.score, 0);
+        const chartData: number[] = poll.options.map(option => (totalVotes === 0 ? 0 : (+option.score / totalVotes) * 100));
         const categories: string[] = poll.options.map(option => String(option.option));
         const colors = [
           "#00bf6f", "#507cb6", "#d4526e", "#13d8aa", "#A5978B",
           "#2b908f", "#f9a3a4", "#90ee7e", "#f48024", "#69d2e7"
         ];
+
+        // Save the percentages for use in the table
+        this.percentages[index] = chartData;
 
         this.chartOptions.push({
           series: [
@@ -78,8 +83,8 @@ export class WelcomeComponent implements OnInit {
             style: {
               colors: ["#fff"]
             },
-            formatter: function(val, opt) {
-              return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
+            formatter: function(val: number, opt) {
+              return opt.w.globals.labels[opt.dataPointIndex] + ":  " + Number(val).toFixed(2) + "%";
             },
             offsetX: 0,
             dropShadow: {
@@ -99,12 +104,12 @@ export class WelcomeComponent implements OnInit {
             }
           },
           title: {
-            text: "Custom DataLabels",
+            text: "Poll Results",
             align: "center",
             floating: true
           },
           subtitle: {
-            text: "Category Names as DataLabels inside bars",
+            text: "Percentage of Votes",
             align: "center"
           },
           tooltip: {
@@ -117,6 +122,9 @@ export class WelcomeComponent implements OnInit {
                 formatter: function() {
                   return "";
                 }
+              },
+              formatter: function(val: number) {
+                return Number(val).toFixed(2) + "%";
               }
             }
           }
@@ -126,4 +134,5 @@ export class WelcomeComponent implements OnInit {
       console.log(error);
     });
   }
+
 }

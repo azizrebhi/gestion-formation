@@ -55,4 +55,12 @@ export class PollService {
   vote(pollId: string, selectedOption: number): Observable<any> {
     return this.http.post('http://localhost:8080/api/polls/' + pollId + '/vote/' + selectedOption, {});
   }
+  updatePoll(poll: Poll): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+    return this.http.put('http://localhost:8080/api/polls/' + poll.id, poll, httpOptions);
+  }
 }
