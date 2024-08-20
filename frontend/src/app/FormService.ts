@@ -28,4 +28,7 @@ export class FormService {
   deleteForm(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+  voteOnForm(id: string, votes: { pollId: number, selectedOptionId: number }[]): Observable<any> {
+    return this.http.post(`${this.baseUrl}/${id}/vote`, votes);
+  }
 }

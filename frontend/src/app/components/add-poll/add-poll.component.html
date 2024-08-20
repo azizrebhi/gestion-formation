@@ -24,12 +24,8 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field col s4">
-          <input [(ngModel)]="poll.endDate" name="endDate" type="date" class="datepicker" required>
-          <label for="endDate">Ending date</label>
-        </div>
-      </div>
+
+
       <div class="row">
         <div class="input-field col s4">
           <button [disabled]="f.invalid || options.length == 0" class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">Submit</button>

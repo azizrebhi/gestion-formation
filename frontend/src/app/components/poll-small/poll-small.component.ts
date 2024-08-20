@@ -19,9 +19,7 @@ export class PollSmallComponent implements OnInit {
   ngOnInit() {
     const now = new Date();
 
-    if (new Date(this.poll.endDate).getTime() < now.getTime()) {
-      this.votingEnded = true;
-    }
+
   }
 
   vote() {

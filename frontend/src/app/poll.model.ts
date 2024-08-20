@@ -3,7 +3,6 @@ export class Poll {
   title: string;
   options: { id: number, option: string, score: number }[]; // Update here
   user: string;
-  endDate: Date;
   voted?: boolean; // Use lowercase boolean
 
   constructor() {

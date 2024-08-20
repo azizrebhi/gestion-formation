@@ -27,11 +27,19 @@ export class AddPollComponent {
   }
 
   onSubmitPollForm() {
+    console.log('Submit button clicked');
     if (this.poll.title && this.options.length > 0) {
       this.pollService.savePoll(this.poll).subscribe(response => {
         console.log('Poll saved:', response);
+        alert('Poll saved successfully!');
         // Reset form or navigate to another page after saving the poll
+      }, error => {
+        console.error('Error saving poll:', error);
+        alert('An error occurred while saving the poll. Please try again.');
       });
+    } else {
+      alert('Please provide a title and at least one option for the poll.');
     }
   }
+
 }

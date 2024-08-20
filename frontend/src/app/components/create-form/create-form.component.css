@@ -123,11 +123,11 @@ select:hover {
 }
 
 .btn.red {
-  background-color: #e53935;
+  background-color: #00ae4e;
 }
 
 .btn.red:hover {
-  background-color: #c62828;
+  background-color: #00ae4e;
 }
 
 input[type="date"] {
