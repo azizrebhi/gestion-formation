@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class Poll implements Serializable {
     private Date endDate;
 
 
-    private List<String> ipAdresses;
+    private List<String> ipAdresses = new ArrayList<>();
 
     private Boolean visible;
 
@@ -104,17 +105,19 @@ public class Poll implements Serializable {
     }
 
     public List<String> getIpAdresses() {
+        if (ipAdresses == null) {
+            ipAdresses = new ArrayList<>();
+        }
         return ipAdresses;
     }
+
 
     public void setIpAdresses(List<String> ipAdresses) {
         this.ipAdresses = ipAdresses;
     }
-
     public Boolean getVisible() {
         return visible;
     }
-
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
