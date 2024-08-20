@@ -30,14 +30,14 @@ h2 {
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 200px;
-  height:300px;
+  width: 260px;
   margin: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -73,24 +73,29 @@ h2 {
   border-top: 1px solid #e0e0e0;
   border-radius: 0 0 10px 10px;
 }
-.delete-icon-container {
-  position: relative;
-}
 
-.delete-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  cursor: pointer;
-  font-size: 20px;
-  color: black;
-  background-color: white;
-  border-radius: 50%;
-  padding: 2px 5px;
-}
-.delete-icon:hover {
-  transform: scale(1.2); /* Slightly enlarge the X mark */
-  background-color: #009f3d;
+/* Button styles */
+.btn {
+  background-color: #6200ea;
   color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
 }
 
+.btn:hover {
+  background-color: #3700b3;
+}
+
+.btn.red.darken-3 {
+  background-color: #d32f2f;
+}
+
+.btn.red.darken-3:hover {
+  background-color: #b71c1c;
+}
