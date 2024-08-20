@@ -5,6 +5,7 @@ import com.example.gestionFormation.entities.Language;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface ICoursService {
@@ -17,4 +18,7 @@ public interface ICoursService {
      Cours updateCourse(Long id, Cours coursDetails);
      Cours updateCours(Cours cours) ;
      List<Language> getLanguagesByCoursId(Long coursId);
+
+     Optional<Cours> getCoursByIdWithLanguagesAndFormateurs(Long id);
+     Optional<Cours> getCoursByNameWithLanguagesAndFormateurs(String name);
 }

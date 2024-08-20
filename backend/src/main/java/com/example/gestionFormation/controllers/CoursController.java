@@ -57,5 +57,19 @@ public class CoursController {
     public List<Language> getLanguagesByCoursId(@PathVariable Long id) {
         return coursService.getLanguagesByCoursId(id);
     }
+    // Endpoint to retrieve course by ID with related languages and formateurs
 
+    @GetMapping("/{id}/languages-and-formateurs")
+    public ResponseEntity<Cours> getCoursWithLanguagesAndFormateursById(@PathVariable Long id) {
+        return coursService.getCoursByIdWithLanguagesAndFormateurs(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+    // Endpoint to retrieve course by name with related languages and formateurs
+    @GetMapping("/by-name/{name}/languages-and-formateurs")
+    public ResponseEntity<Cours> getCoursWithLanguagesAndFormateursByName(@PathVariable String name) {
+        return coursService.getCoursByNameWithLanguagesAndFormateurs(name)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

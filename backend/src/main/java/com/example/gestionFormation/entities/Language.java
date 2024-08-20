@@ -1,5 +1,6 @@
 package com.example.gestionFormation.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,5 +31,6 @@ public class Language {
 
     @ManyToOne
     @JoinColumn(name = "cours_id")
+    @JsonBackReference
     private Cours cours;
 }

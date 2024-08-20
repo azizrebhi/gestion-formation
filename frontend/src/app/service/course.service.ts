@@ -14,4 +14,11 @@ export class CourseService {
   getAllCourses(): Observable<any> {
     return this.http.get(`${this.baseUrl}/all_courses`);
   }
+  getCourseWithLanguagesAndFormateursById(courseId: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${courseId}/languages-and-formateurs`);
+  }
+
+  getCourseWithLanguagesAndFormateursByName(courseName: string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/by-name/${courseName}/languages-and-formateurs`);
+  }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -54,6 +55,16 @@ public class CoursServiceImpl implements ICoursService {
     @Override
     public List<Language> getLanguagesByCoursId(Long coursId) {
         return coursRepository.findLanguagesByCoursId(coursId);
+    }
+
+    @Override
+    public Optional<Cours> getCoursByIdWithLanguagesAndFormateurs(Long id) {
+        return coursRepository.findByIdWithLanguagesAndFormateurs(id);
+    }
+
+    @Override
+    public Optional<Cours> getCoursByNameWithLanguagesAndFormateurs(String name) {
+        return coursRepository.findByNameWithLanguagesAndFormateurs(name);
     }
 
 

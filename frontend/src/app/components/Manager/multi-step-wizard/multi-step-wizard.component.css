@@ -69,4 +69,7 @@
   .wizard-buttons button:hover {
     opacity: 0.9;
   }
-  
+  .scrollable-list {
+    max-height: 200px; /* Adjust as needed */
+    overflow-y: auto;  /* Enables scrolling if the content exceeds the container */
+}

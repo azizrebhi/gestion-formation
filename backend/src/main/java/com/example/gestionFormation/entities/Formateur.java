@@ -29,10 +29,6 @@ public class Formateur {
 
     @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Event> events;
-
-    @ManyToOne
-    @JoinColumn(name = "cours_id")
-    private Cours cours;  // Assuming one course per formateur for simplification.
     @ManyToMany
     @JoinTable(
             name = "formateur_language",
@@ -40,6 +36,12 @@ public class Formateur {
             inverseJoinColumns = @JoinColumn(name = "language_id")
     )
     @JsonIgnore
-    private Set<Language> languages = new HashSet<>(); // A Set of Languages
+    private Set<Language> languages = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "cours_id")
+
+    @JsonIgnore
+    private Cours cours;
 
 }
