@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package com.example.gestionFormation.Service;
+import com.example.gestionFormation.Repository.FormRepository;
 import com.example.gestionFormation.Repository.OptionRepository;
 import com.example.gestionFormation.Repository.PollRepository;
 import com.example.gestionFormation.Repository.UserRepository;
+import com.example.gestionFormation.entity.Form;
 import com.example.gestionFormation.entity.Option;
 import com.example.gestionFormation.entity.Poll;
 import com.example.gestionFormation.entity.User;
@@ -25,11 +27,14 @@ import java.util.stream.Collectors;
 public class PollService {
     private final PollRepository pollRepository;
     private final OptionRepository optionRepository;
+
+    private final FormRepository formRepository;
     private final UserRepository userRepository;
     @Autowired
-    public PollService(PollRepository pollRepository, OptionRepository optionRepository, UserRepository userRepository) {
+    public PollService(PollRepository pollRepository, OptionRepository optionRepository, FormRepository formRepository, UserRepository userRepository) {
         this.pollRepository = pollRepository;
         this.optionRepository = optionRepository;
+        this.formRepository = formRepository;
         this.userRepository = userRepository;
     }
     @Transactional
@@ -63,28 +68,35 @@ public class PollService {
         pollRepository.deleteById(id);
     }
     @Transactional
-    public void vote(Long id, Long optionId, String ip) throws Exception {
-        Poll poll = pollRepository.getOne(id);
-        //TO-DO: check end-date
-        if (poll.getEndDate().before(new Date())) {
-            throw new Exception("Voting has already ended!");
+    public void vote(Long formId, Long pollId, Long optionId, String ip) throws Exception {
+        Form form = formRepository.findById(formId)
+                .orElseThrow(() -> new Exception("Form not found"));
+        Poll poll = pollRepository.findById(pollId)
+                .orElseThrow(() -> new Exception("Poll not found"));
+
+
+        // Check if the IP has already voted in this form
+        if (form.getIpAddresses().contains(ip)) {
+            throw new Exception("You can only vote once in this form!");
         }
-        //TO-DO: add IP
-        List<String> ipAdresses = poll.getIpAdresses();
-        if (ipAdresses.contains(ip)) {
-            throw new Exception("You can only vote once!");
-        }
-        List<Option> options = poll.getOptions().stream().filter(option -> Objects.equals(option.getId(), optionId)).collect(Collectors.toList());
+
+        List<Option> options = poll.getOptions().stream()
+                .filter(option -> Objects.equals(option.getId(), optionId))
+                .collect(Collectors.toList());
+
         if (options.size() == 1) {
             Option option = options.get(0);
             option.setScore(option.getScore() + 1);
             optionRepository.save(option);
-            poll.getIpAdresses().add(ip);
-            pollRepository.save(poll);
+
+            // Save the IP address for this form
+            form.getIpAddresses().add(ip);
+            formRepository.save(form);
         } else {
             throw new Exception("Option id for poll not unique!");
         }
     }
+
     public List<Poll> getAllForUser(String username) {
         User user = userRepository.findOneByUsername(username);
         return pollRepository.findAllByUser(user);

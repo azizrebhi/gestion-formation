@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,6 +20,9 @@ public class Form {
     private Long id;
 
     private String title;
+
+    @ElementCollection
+    private List<String> ipAddresses = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(

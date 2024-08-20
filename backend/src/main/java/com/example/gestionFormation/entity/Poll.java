@@ -32,10 +32,6 @@ public class Poll implements Serializable {
     private String title;
 
 
-    private Date endDate;
-
-
-    private List<String> ipAdresses = new ArrayList<>();
 
     private Boolean visible;
 
@@ -96,30 +92,12 @@ public class Poll implements Serializable {
         this.options = options;
     }
 
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public List<String> getIpAdresses() {
-        if (ipAdresses == null) {
-            ipAdresses = new ArrayList<>();
-        }
-        return ipAdresses;
-    }
 
 
-    public void setIpAdresses(List<String> ipAdresses) {
-        this.ipAdresses = ipAdresses;
-    }
     public Boolean getVisible() {
         return visible;
     }
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
-
 }

@@ -57,7 +57,7 @@ public class FormController {
             Long optionId = vote.get("selectedOptionId");
 
             try {
-                pollService.vote(pollId, optionId, ipAddress);
+                pollService.vote(id,pollId, optionId, ipAddress);
             } catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
             }

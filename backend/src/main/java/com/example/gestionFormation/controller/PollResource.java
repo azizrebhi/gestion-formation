@@ -64,14 +64,10 @@ public class PollResource {
         return ResponseEntity.status(201).body(savedPoll);
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id, Principal p) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         pollService.deletePollById(id);
         return ResponseEntity.status(204).build();
 
     }
-    @PostMapping("{id}/vote/{optionId}")
-    public ResponseEntity<?> post(@PathVariable Long id, @PathVariable Long optionId, HttpServletRequest request) throws Exception {
-        pollService.vote(id, optionId, request.getRemoteAddr());
-        return ResponseEntity.ok().build();
-    }
+
 }
