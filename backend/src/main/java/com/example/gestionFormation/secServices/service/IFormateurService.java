@@ -14,4 +14,5 @@ public interface IFormateurService {
     public void deleteFormateur(Long id) ;
     public List<Formateur> getFormateursByLanguage(Long languageId);
     public Formateur assignFormateurToLanguage(Long formateurId, Long languageId);
+    List<Formateur> getFormateursByLanguageId(Long languageId);
 }

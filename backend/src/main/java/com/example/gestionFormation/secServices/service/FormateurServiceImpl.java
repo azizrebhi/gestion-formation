@@ -104,7 +104,12 @@ public class FormateurServiceImpl implements IFormateurService{
 
         return formateur;
     }
+
+    @Override
+    public List<Formateur> getFormateursByLanguageId(Long languageId) {
+        return formateurRepository.findByLanguagesId(languageId);
     }
+}
 
 
 

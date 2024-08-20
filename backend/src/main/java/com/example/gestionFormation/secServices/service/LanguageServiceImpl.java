@@ -37,6 +37,11 @@ public class LanguageServiceImpl implements ILanguageService {
     }
 
     @Override
+    public List<Language> getLanguagesByCourseId(Long courseId) {
+        return languageRepository.findByCoursId(courseId);
+    }
+
+    @Override
     public Language updateLanguage(Language language) {
         return languageRepository.save(language);
     }

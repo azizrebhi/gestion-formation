@@ -1,19 +1,20 @@
 <div class="wizard">
-    <h3>Demander une formation</h3>
-   
-    
-    <div *ngIf="currentStep === 0">
-      <div class="step-content">
-        <input type="text" placeholder="Title" [(ngModel)]="formation.title">
-        <input type="text" placeholder="Team" [(ngModel)]="formation.team">
-        <input type="date" placeholder="Start Date" [(ngModel)]="formation.startDate">
-        <input type="date" placeholder="End Date" [(ngModel)]="formation.endDate">
-      </div>
+  <h3>Demander une formation</h3>
+
+  <!-- Step 1: Formation Details -->
+  <div *ngIf="currentStep === 0">
+    <div class="step-content">
+      <input type="text" placeholder="Title" [(ngModel)]="formation.title">
+      <input type="text" placeholder="Team" [(ngModel)]="formation.team">
+      <input type="date" placeholder="Start Date" [(ngModel)]="formation.startDate">
+      <input type="date" placeholder="End Date" [(ngModel)]="formation.endDate">
     </div>
-<!-- Step 2: Course and Language Selection -->
-<div *ngIf="currentStep === 1" class="step-content">
+  </div>
+
+  <!-- Step 2: Course and Language Selection -->
+  <div *ngIf="currentStep === 1" class="step-content">
     <h4>Step 2: Choose Course and Languages</h4>
-    
+
     <div>
       <h5>Select a Course:</h5>
       <select [(ngModel)]="selectedCourseId" (change)="onCourseChange(selectedCourseId)">
@@ -23,33 +24,33 @@
         </option>
       </select>
     </div>
-    
+
     <div *ngIf="languages.length > 0">
-        <h5>Select Languages for the Course:</h5>
-        <ul>
-          <li *ngFor="let language of languages">
-            <label>
-              <input
-                type="checkbox"
-                [value]="language.id"
-                [(ngModel)]="selectedLanguages"
-                (change)="onLanguageChange()"
-              />
-              {{ language.name }}
-            </label>
-          </li>
-        </ul>
-      </div>
-  
+      <h5>Select Languages for the Course:</h5>
+      <ul>
+        <li *ngFor="let language of languages">
+          <label>
+            <input
+              type="checkbox"
+              [value]="language.id"
+              [checked]="isLanguageSelected(language.id)"
+              (change)="toggleLanguageSelection(language.id); onLanguageChange()"
+            />
+            {{ language.name }}
+          </label>
+        </li>
+      </ul>
+    </div>
+
     <div *ngIf="languages.length === 0 && selectedCourseId">
       <p>No languages available for the selected course.</p>
     </div>
   </div>
-  
-  <!-- Step 3: Formateur Selection (included for completeness) -->
+
+  <!-- Step 3: Formateur Selection -->
   <div *ngIf="currentStep === 2" class="step-content">
     <h4>Step 3: Choose Formateur</h4>
-  
+
     <div *ngIf="formateurs.length > 0">
       <h5>Select a Formateur for the Selected Languages:</h5>
       <ul>
@@ -59,29 +60,31 @@
               type="radio"
               name="formateur"
               [value]="formateur.id"
-              [(ngModel)]="selectedFormateurId" />
-            {{ formateur.name }} (Expertise: {{ formateur.expertise }})
+              [(ngModel)]="selectedFormateurId"
+            />
+            {{ formateur.name }} 
           </label>
         </li>
       </ul>
     </div>
-  
+
     <div *ngIf="formateurs.length === 0">
       <p>No formateurs are available for the selected languages.</p>
     </div>
   </div>
-    <div *ngIf="currentStep === 2">
-      <div class="step-content">
-        <h4>Step 4: Choose Delivery Method</h4>
-        <label><input type="checkbox" [(ngModel)]="formation.online"> Online</label>
-        <label><input type="checkbox" [(ngModel)]="formation.presentiel"> In-person</label>
-      </div>
-    </div>
-    
-    <div class="wizard-buttons">
-      <button class="btn btn-secondary" (click)="prev()" [disabled]="currentStep === 0">Previous</button>
-      <button class="btn btn-primary" (click)="next()" [disabled]="currentStep === steps.length - 1">Next</button>
-      <button class="btn btn-success" (click)="submit()" *ngIf="currentStep === steps.length - 1">Submit</button>
+
+  <!-- Step 4: Delivery Method -->
+  <div *ngIf="currentStep === 3">
+    <div class="step-content">
+      <h4>Step 4: Choose Delivery Method</h4>
+      <label><input type="checkbox" [(ngModel)]="formation.online"> Online</label>
+      <label><input type="checkbox" [(ngModel)]="formation.presentiel"> In-person</label>
     </div>
   </div>
-  
+
+  <div class="wizard-buttons">
+    <button class="btn btn-secondary" (click)="prev()" [disabled]="currentStep === 0">Previous</button>
+    <button class="btn btn-primary" (click)="next()" [disabled]="currentStep === steps.length - 1">Next</button>
+    <button class="btn btn-success" (click)="submit()" *ngIf="currentStep === steps.length - 1">Submit</button>
+  </div>
+</div>

@@ -13,6 +13,7 @@ import java.util.Optional;
 @Repository
 public interface FormateurRepository extends JpaRepository<Formateur,Long> {
   Optional<Formateur> findByName(String name);
+  List<Formateur> findByLanguagesId(Long languageId);
   @Query("SELECT f FROM Formateur f JOIN f.languages l WHERE l.id = :languageId")
   List<Formateur> findByLanguageId(@Param("languageId") Long languageId);
 }

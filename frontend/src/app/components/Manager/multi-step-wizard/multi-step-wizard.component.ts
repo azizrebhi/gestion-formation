@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { Formateur } from 'src/app/Model/formateur.model';
 import { CourseService } from 'src/app/service/course.service';
 import { FormateurService } from 'src/app/service/formateur.service';
 import { LanguageService } from 'src/app/service/language.service';
@@ -13,10 +14,12 @@ export class MultiStepWizardComponent {
  
   courses: any[] = [];
   languages: any[] = [];
-  formateurs: any[] = [];
+  formateurs: Formateur[] = [];
+  selectedFormateurId: number | null = null;
+  selectedLanguages: number[] = []; // This will hold the IDs for selected languages
+
   selectedCourseId: number = 0;
-  selectedLanguages: number[] = [];
-  selectedFormateurId: number | null = null; // Track the selected formateur ID
+  
   currentStep = 0;
   steps = [
     { title: 'Step 1', content: 'Formation Details' },
@@ -59,34 +62,47 @@ export class MultiStepWizardComponent {
 
 fetchLanguages(courseId: number) {
   this.languageService.getLanguagesByCourse(courseId).subscribe(
-      (data) => {
-          console.log("Fetched Languages:", data);  // Log the fetched languages
-          this.languages = data;
-          this.formateurs = []; // Reset formateurs when languages change
-          this.selectedFormateurId = null; // Reset selected formateur ID when languages change
-      },
-      (error) => {
-          console.error("Error fetching languages:", error);  // Log any errors
-      }
+    (data) => {
+      console.log("Fetched Languages:", data);  // Log the fetched languages
+      this.languages = data;
+      this.formateurs = []; // Reset formateurs when languages change
+      this.selectedFormateurId = null; // Reset selected formateur ID when languages change
+    },
+    (error) => {
+      console.error("Error fetching languages:", error);  // Log any errors
+      this.languages = []; // Ensure languages are reset on error
+    }
   );
 }
+
+
 onLanguageChange() {
   if (this.selectedLanguages.length === 0) {
-      this.formateurs = [];
-      return;
+    this.formateurs = [];
+    this.selectedFormateurId = null;
+    return;
   }
 
-  const requests = this.selectedLanguages.map((languageId) =>
-      this.formateurService.getFormateursByLanguage(languageId)
+  const requests = this.selectedLanguages.map(languageId => 
+    this.formateurService.getFormateursByLanguage(languageId) // Assuming this returns Observable<Formateur[]>
   );
 
   forkJoin(requests).subscribe(
-      (results: any[][]) => {
-          this.formateurs = Array.from(new Set(results.flat()));
-      },
-      (error) => {
-          console.error("Error fetching formateurs:", error); // Log any errors
-      }
+    (results: Formateur[][]) => {
+      console.log("Formateurs response for selected languages:", results);
+      const formateursSet = new Set<Formateur>();
+      results.forEach(result => {
+        result.forEach(formateur => {
+          formateursSet.add(formateur);
+        });
+      });
+      this.formateurs = Array.from(formateursSet);
+      console.log("Updated Formateurs:", this.formateurs);
+    },
+    (error) => {
+      console.error("Error fetching formateurs:", error);
+      this.formateurs = [];
+    }
   );
 }
 
@@ -114,4 +130,19 @@ onLanguageChange() {
       console.log('Please select a formateur before submitting.');
     }
   }
+  toggleLanguageSelection(languageId: number): void {
+    const index = this.selectedLanguages.indexOf(languageId);
+    if (index > -1) {
+      // If the language ID is already in the array, remove it
+      this.selectedLanguages.splice(index, 1);
+    } else {
+      // If the language ID is not in the array, add it
+      this.selectedLanguages.push(languageId);
+    }
+  }
+
+  isLanguageSelected(languageId: number): boolean {
+    return this.selectedLanguages.includes(languageId);
+  }
+  
 }

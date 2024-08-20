@@ -11,5 +11,6 @@ public interface ILanguageService {
     Language updateLanguage(Language language) ;
     public void deleteLanguage(Long id);
     List<Language> getAllLanguages();
+    List<Language> getLanguagesByCourseId(Long courseId);
 
 }

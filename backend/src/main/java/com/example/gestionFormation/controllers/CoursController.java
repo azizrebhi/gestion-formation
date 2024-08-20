@@ -4,6 +4,8 @@ import com.example.gestionFormation.entities.Cours;
 import com.example.gestionFormation.entities.Formateur;
 import com.example.gestionFormation.entities.Language;
 import com.example.gestionFormation.secServices.service.CoursServiceImpl;
+import com.example.gestionFormation.secServices.service.FormateurServiceImpl;
+import com.example.gestionFormation.secServices.service.LanguageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +21,10 @@ import java.util.Set;
 public class CoursController {
     @Autowired
     private CoursServiceImpl coursService;
-
+    @Autowired
+    LanguageServiceImpl languageService;
+    @Autowired
+    FormateurServiceImpl formateurService;
     @PostMapping("/addCours")
     public Cours addCourse(@RequestParam("name") String name,
                            @RequestParam("description") String description)
@@ -53,11 +58,6 @@ public class CoursController {
     }
 
 
-    @GetMapping("/{id}/languages")
-    public List<Language> getLanguagesByCoursId(@PathVariable Long id) {
-        return coursService.getLanguagesByCoursId(id);
-    }
-    // Endpoint to retrieve course by ID with related languages and formateurs
 
     @GetMapping("/{id}/languages-and-formateurs")
     public ResponseEntity<Cours> getCoursWithLanguagesAndFormateursById(@PathVariable Long id) {
@@ -71,5 +71,16 @@ public class CoursController {
         return coursService.getCoursByNameWithLanguagesAndFormateurs(name)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    // Add the endpoint for fetching languages by course ID
+    @GetMapping("/{courseId}/languages")
+    public List<Language> getLanguagesByCourse(@PathVariable Long courseId) {
+        return languageService.getLanguagesByCourseId(courseId);
+    }
+    // Add the endpoint for fetching formateurs by language ID
+    @GetMapping("/languages/{languageId}/formateurs")
+    public List<Formateur> getFormateursByLanguage(@PathVariable Long languageId) {
+        return formateurService.getFormateursByLanguageId(languageId);
     }
 }

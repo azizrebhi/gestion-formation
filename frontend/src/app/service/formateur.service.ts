@@ -8,30 +8,34 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class FormateurService {
 
-  private apiUrl = 'http://localhost:8086/academie/api/formateurs' // Update with your API base URL
+  private baseUrl = 'http://localhost:8086/academie/api/formateurs' // Update with your API base URL
 
   constructor(private http: HttpClient) {}
 
   getAllFormateurs(): Observable<Formateur[]> {
-    return this.http.get<Formateur[]>(`${this.apiUrl}/all_formateurs`);
+    return this.http.get<Formateur[]>(`${this.baseUrl}/all_formateurs`);
   }
   getFormateurById(id: number): Observable<Formateur> {
-    return this.http.get<Formateur>(`${this.apiUrl}/${id}`);
+    return this.http.get<Formateur>(`${this.baseUrl}/${id}`);
   }
 
   createFormateur(formateur: Formateur): Observable<Formateur> {
-    return this.http.post<Formateur>(`${this.apiUrl}/addFormateur`, formateur);
+    return this.http.post<Formateur>(`${this.baseUrl}/addFormateur`, formateur);
   }
   updateFormateur(id: number, formateur: Formateur): Observable<Formateur> {
-    return this.http.put<Formateur>(`${this.apiUrl}/updateFormateur/${id}`, formateur);
+    return this.http.put<Formateur>(`${this.baseUrl}/updateFormateur/${id}`, formateur);
   }
 
   deleteFormateur(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+ 
+  
+
+
+
   getFormateursByLanguage(languageId: number): Observable<Formateur[]> {
-    const params = new HttpParams().set('languageId', languageId.toString());
-    return this.http.get<Formateur[]>(`${this.apiUrl}/by-language`, { params });
+    return this.http.get<Formateur[]>(`${this.baseUrl}/by-language?languageId=${languageId}`);
   }
 }
 

@@ -8,8 +8,9 @@ import { Observable } from 'rxjs';
 export class LanguageService {
 
   constructor(private http: HttpClient) {}
-  private baseUrl = 'http://localhost:8086/academie/api/courses/';
+  private baseUrl = 'http://localhost:8086/academie/api/courses';
   getLanguagesByCourse(courseId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${courseId}/languages`);
   }
+ 
 }
