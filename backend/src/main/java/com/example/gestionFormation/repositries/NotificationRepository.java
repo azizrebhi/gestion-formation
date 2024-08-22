@@ -11,8 +11,5 @@ import java.util.List;
 
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
-    Notification findTopByOrderByIdDesc();
-    @Query("SELECT n FROM Notification n WHERE :user NOT MEMBER OF n.seenBy")
-    List<Notification> findBySeenByNotContaining(@Param("user") User user);
 
 }

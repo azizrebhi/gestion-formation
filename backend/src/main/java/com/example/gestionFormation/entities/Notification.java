@@ -1,39 +1,30 @@
 package com.example.gestionFormation.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-import java.util.List;
-@Entity
 @Data
+@AllArgsConstructor
 
-@Table(name = "notifications")
-
+@Entity
 public class Notification {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter
-    private String content;
 
-    private int count=0;
+    private String message;
+    private String timestamp;
 
-    @ManyToOne
-    @JoinColumn(name = "created_by_id_utilisateur")
-    private User createdBy;
+    public Notification() {}
 
-    LocalDateTime timestamp = LocalDateTime.now();
-
-    @ManyToMany(mappedBy = "seenNotifications")
-    private List<User> seenBy;
-
-    public void increment() {
-        this.count++;
+    public Notification(String message, String timestamp) {
+        this.message = message;
+        this.timestamp = timestamp;
     }
-
-
 
 }

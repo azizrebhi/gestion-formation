@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Service
 public class NotificationServiceImpl implements INotificationService{
-    @Autowired
+  /*  @Autowired
     NotificationRepository notificationRepository;
     @Autowired
     UserRepository userRepository;
@@ -41,9 +41,7 @@ public class NotificationServiceImpl implements INotificationService{
         }
 
 
-
-
-    }
+*/
 
 
 }

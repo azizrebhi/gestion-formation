@@ -60,20 +60,21 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.cors().and() // Ensure CORS is applied before security
+                .csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/**").permitAll()  // Permettre l'accès aux points de terminaison d'authentification
-                                .requestMatchers("/admin/**").hasRole("ADMIN")  // Restreindre l'accès aux administrateurs
-                                .requestMatchers("/formateur/**").hasRole("FORMATEUR")  // Restreindre l'accès aux formateurs
+                        auth.requestMatchers("/api/**").permitAll()  // Allow access to authentication endpoints
+                                .requestMatchers("/admin/**").hasRole("ADMIN")  // Restrict access to admins
+                                .requestMatchers("/formateur/**").hasRole("FORMATEUR")  // Restrict access to formateurs
                                 .requestMatchers(
                                         "/swagger-ui/**",
                                         "/v3/api-docs/**",
                                         "/swagger-resources/**",
                                         "/swagger-ui.html",
                                         "/webjars/**"
-                                ).permitAll()  // Permettre l'accès aux ressources Swagger
+                                ).permitAll()  // Allow access to Swagger resources
                                 .anyRequest().authenticated()
                 );
 
@@ -82,7 +83,6 @@ public class WebSecurityConfig {
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-
     }
 
     @Bean

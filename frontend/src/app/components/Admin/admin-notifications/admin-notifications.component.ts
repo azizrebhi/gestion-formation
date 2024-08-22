@@ -16,7 +16,7 @@ export class AdminNotificationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeWebSocketConnection();
-    this.notifications = this.notificationService.getAllNotifications(); // Fetch all notifications
+   // this.notifications = this.notificationService.getAllNotifications(); // Fetch all notifications
   }
 
   initializeWebSocketConnection() {

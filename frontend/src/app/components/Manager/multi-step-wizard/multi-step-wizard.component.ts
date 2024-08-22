@@ -149,12 +149,12 @@ onLanguageChange() {
     } else {
         console.log('Please select a formateur before submitting.');
     }}
-  notifyAdmin() {
-    // Subscribe to notifications here if not already done
-    this.notificationService.getNotifications().subscribe(notification => {
-      console.log('New notification received:', notification);
-    });
-  }
+    notifyAdmin() {
+      // Subscribe to the notifications observable
+      this.notificationService.notifications$.subscribe(notification => {
+        console.log('New notification received:', notification);
+      });
+    }
   toggleLanguageSelection(languageId: number): void {
     const index = this.selectedLanguages.indexOf(languageId);
     if (index > -1) {

@@ -8,7 +8,7 @@ import { Demand } from '../Model/demand.model';
 })
 export class DemandeService {
 
-  private baseUrl = 'http://localhost:8086/academie/api/demands"';  // Adjust this URL based on your API
+  private baseUrl = 'http://localhost:8086/academie/api/demands';  // Adjust this URL based on your API
 
   constructor(private http: HttpClient) {}
 
