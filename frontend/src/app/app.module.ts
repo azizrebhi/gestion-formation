@@ -39,6 +39,7 @@ import {  MatDialogModule } from "@angular/material/dialog";
   import { MatNativeDateModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { AuthInterceptor } from "./service/auth.interceptor";
+import { AdminNotificationsComponent } from './components/Admin/admin-notifications/admin-notifications.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { AuthInterceptor } from "./service/auth.interceptor";
     DemandeFormationComponent,
     SujetComponent,
     FormationComponent,
-    AddformComponent
+    AddformComponent,
+    AdminNotificationsComponent
   ],
   imports: [
     

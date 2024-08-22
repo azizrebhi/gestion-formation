@@ -24,12 +24,11 @@ export class AuthService {
     const storedUser = this.storageService.getUser();
     this.userSubject.next(storedUser);
   }
-
   login(username: string, password: string): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(
       AUTH_API + 'login',
       { username, password },
-      httpOptions
+      { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), withCredentials: true }
     ).pipe(
       tap(response => {
         this.storageService.saveUser(response);
@@ -41,6 +40,7 @@ export class AuthService {
       })
     );
   }
+  
 
   register(formValues: { username: string; email: string; role: string[]; password: string }): Observable<any> {
     return this.http.post(AUTH_API + 'register', {

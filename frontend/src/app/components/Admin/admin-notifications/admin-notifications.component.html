@@ -1,0 +1,20 @@
+<div class="notifications-container">
+  <h3>Admin Notifications</h3>
+  <ul class="notifications-list">
+    <li *ngFor="let notification of notifications" class="notification-item">
+      <div class="notification-title">
+        {{ notification.title }}
+      </div>
+      <div class="notification-details">
+        <p><strong>Team:</strong> {{ notification.team }}</p>
+        <p><strong>Start Date:</strong> {{ notification.startDate | date }}</p>
+        <p><strong>End Date:</strong> {{ notification.endDate | date }}</p>
+        <p><strong>Formateur:</strong> {{ notification.formateurName }}</p>
+        <p><strong>Mode:</strong> 
+          <span *ngIf="notification.online">Online</span>
+          <span *ngIf="notification.presentiel">In-person</span>
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>

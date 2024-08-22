@@ -1,9 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { Demand } from 'src/app/Model/demand.model';
 import { Formateur } from 'src/app/Model/formateur.model';
 import { CourseService } from 'src/app/service/course.service';
+import { DemandeService } from 'src/app/service/demande.service';
 import { FormateurService } from 'src/app/service/formateur.service';
 import { LanguageService } from 'src/app/service/language.service';
+import { NotificationService } from 'src/app/service/notification.service';
 
 @Component({
   selector: 'app-multi-step-wizard',
@@ -40,9 +43,10 @@ export class MultiStepWizardComponent {
   constructor(
     private courseService: CourseService,
     private languageService: LanguageService,
-    private formateurService: FormateurService
+    private formateurService: FormateurService,
+    private demandeService: DemandeService, // Inject the new service
+    private notificationService: NotificationService // Inject NotificationService
   ) {}
-
   ngOnInit() {
     this.fetchCourses();
   }
@@ -120,15 +124,36 @@ onLanguageChange() {
 
   submit() {
     if (this.selectedFormateurId !== null) {
-      const formationRequest = {
-        ...this.formation,
-        selectedFormateurId: this.selectedFormateurId // Include the selected formateur in the submission
-      };
-      console.log('Formation requested:', formationRequest);
-      // Handle form submission here
+        const formationRequest: Demand = {
+            title: this.formation.title,
+            team: this.formation.team,
+            startDate: this.formation.startDate,
+            endDate: this.formation.endDate,
+            online: this.formation.online,
+            presentiel: this.formation.presentiel,
+            selectedCourseId: this.selectedCourseId,
+            selectedLanguages: this.selectedLanguages,
+            selectedFormateurId: this.selectedFormateurId
+        };
+
+        this.demandeService.submitDemande(formationRequest).subscribe(
+            response => {
+                console.log('Formation request submitted:', response);
+                this.notifyAdmin(); // Notify admin
+                // Optionally, display a success message or reset the form here
+            },
+            error => {
+                console.error('Error submitting formation request:', error);
+            }
+        );
     } else {
-      console.log('Please select a formateur before submitting.');
-    }
+        console.log('Please select a formateur before submitting.');
+    }}
+  notifyAdmin() {
+    // Subscribe to notifications here if not already done
+    this.notificationService.getNotifications().subscribe(notification => {
+      console.log('New notification received:', notification);
+    });
   }
   toggleLanguageSelection(languageId: number): void {
     const index = this.selectedLanguages.indexOf(languageId);
