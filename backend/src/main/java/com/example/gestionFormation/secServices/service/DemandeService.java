@@ -38,7 +38,14 @@ public class DemandeService {
 
         // Create and send a notification
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Notification notification = new Notification("New demande submitted", timestamp);
+        Notification notification = new Notification();
+// Set properties appropriately
+        notification.setTitle("New demande submitted");
+        notification.setTeam(demande.getTeam());
+        notification.setStartDate(demande.getStartDate().toString()); // Format if needed
+        notification.setEndDate(demande.getEndDate().toString());
+        notification.setFormateurName("Formateur Name Here"); // Set correctly
+// Send it via WebSocket
         messagingTemplate.convertAndSend("/topic/notifications", notification);
 
         return savedDemande;

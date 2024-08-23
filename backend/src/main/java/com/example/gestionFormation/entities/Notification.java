@@ -9,22 +9,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+
 
 @Entity
 public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String message;
-    private String timestamp;
 
-    public Notification() {}
+    private String title;
+    private String team; // This should contain the team info
+    private String startDate;
+    private String endDate;
+    private String formateurName; // This should contain the formateur's name
+    private boolean online;
+    private boolean presentiel;
 
-    public Notification(String message, String timestamp) {
-        this.message = message;
-        this.timestamp = timestamp;
-    }
+    // Getters and setters
+
 
 }

@@ -45,7 +45,7 @@ export class SujetComponent implements OnInit {
   }
 
   getAllSujets() {
-    this.http.get("http://localhost:8080/sujets/getSujets")
+    this.http.get("http://localhost:8086/sujets/getSujets")
       .subscribe((resultData: any) => {
         this.SujetArray = resultData;
       });
@@ -57,7 +57,7 @@ export class SujetComponent implements OnInit {
       imageSujet: this.imageSujet
     };
 
-    this.http.post('http://localhost:8080/sujets/addSujet', sujet)
+    this.http.post('http://localhost:8086/sujets/addSujet', sujet)
       .subscribe(
         data => {
           alert("Sujet registered Successfully");

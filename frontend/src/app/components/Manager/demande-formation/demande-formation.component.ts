@@ -9,7 +9,7 @@ import { LanguageService } from 'src/app/service/language.service';
   templateUrl: './demande-formation.component.html',
   styleUrls: ['./demande-formation.component.css']
 })
-export class DemandeFormationComponent implements OnInit {
+export class DemandeFormationComponent  {
   currentStep = 1;
   courses: any[] = [];
   languages: any[] = [];

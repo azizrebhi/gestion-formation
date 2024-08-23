@@ -18,7 +18,19 @@ export class NotificationService {
   // Declare the notificationsSubject as a BehaviorSubject of Notification[]
   private notificationsSubject: BehaviorSubject<Notification[]> = new BehaviorSubject<Notification[]>([]); 
   notifications$: Observable<Notification[]> = this.notificationsSubject.asObservable();
+  private notificationsSource = new BehaviorSubject<any[]>([]);
+  currentNotifications = this.notificationsSource.asObservable();
 
+ 
+
+  updateNotifications(notifications: any[]) {
+    this.notificationsSource.next(notifications);
+  }
+
+  addNotification(notification: any) {
+    const current = this.notificationsSource.getValue();
+    this.notificationsSource.next([...current, notification]);
+  }
   constructor() {
     this.connect();
   }
@@ -35,18 +47,19 @@ export class NotificationService {
       setTimeout(() => this.connect(), 5000); // Attempt to reconnect after 5 seconds
     });
   }
+   // Method to get the current notifications
+   getNotifications(): Notification[] {
+    return this.notificationsSubject.value;
+  }
 
   private subscribeToNotifications() {
     if (this.stompClient) {
-      this.stompClient.subscribe('/topic/notifications', (notification: any) => {
-        const parsedNotification: Notification = JSON.parse(notification.body);
-        // Update notifications and notify subscribers
-        this.notificationsSubject.next([...this.notificationsSubject.value, parsedNotification]);
-        console.log('New notification received:', parsedNotification);
-      });
-    } else {
-      console.error('STOMP client not initialized.');
+        this.stompClient.subscribe('/topic/notifications', (notification: any) => {
+            const parsedNotification: Notification = JSON.parse(notification.body);
+            this.notificationsSubject.next([...this.notificationsSubject.value, parsedNotification]);
+            console.log('New notification received:', parsedNotification.message); // This should show the message content
+        });
     }
-  }
+}
   
 }

@@ -41,7 +41,7 @@ export class FormationComponent  {
 
 
   getAllFormations(sujetId: number) {
-    this.http.get<any[]>(`http://localhost:8080/formations/getFormations`)
+    this.http.get<any[]>(`http://localhost:8086/formations/getFormations`)
       .subscribe((resultData: any[]) => {
         this.FormationArray = resultData.map(formation => ({
           idFormation: formation[0],
@@ -69,7 +69,7 @@ export class FormationComponent  {
      
     };
   
-    this.http.post('http://localhost:8080/formations/addFormation', formation)
+    this.http.post('http://localhost:8086/formations/addFormation', formation)
       .subscribe(
         data => {
           alert("Formation registered Successfully");
@@ -89,7 +89,7 @@ export class FormationComponent  {
   }
 
   deleteFormation(formationId: number) {
-    this.http.delete(`http://localhost:8080/formations/deleteById/${formationId}`)
+    this.http.delete(`http://localhost:8086/formations/deleteById/${formationId}`)
       .subscribe(
         data => {
           alert("Formation deleted successfully");

@@ -40,6 +40,7 @@ import {  MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { AuthInterceptor } from "./service/auth.interceptor";
 import { AdminNotificationsComponent } from './components/Admin/admin-notifications/admin-notifications.component';
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { AdminNotificationsComponent } from './components/Admin/admin-notificati
     ToastrModule.forRoot(),
     MatDialogModule,
     MatIconModule, // Add MatIconModule here
+    MatSnackBarModule
     //BrowserAnimationsModule,
   ],
   providers: [
