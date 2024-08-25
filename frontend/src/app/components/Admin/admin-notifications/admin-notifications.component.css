@@ -1,0 +1,64 @@
+.notifications-container {
+    max-width: 600px; /* Set a maximum width for the notifications container */
+    margin: 20px auto; /* Center the container on the page */
+    padding: 20px; /* Add padding inside the container */
+    background-color: #f9f9f9; /* Light background color */
+    border-radius: 8px; /* Smooth corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h3 {
+    text-align: center; /* Center the title */
+    color: #333; /* Dark color for the title */
+}
+
+.notifications-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.notification-item {
+    border: 1px solid #e0e0e0; /* Light border around each notification */
+    border-radius: 5px; /* Rounded corners */
+    margin: 10px 0; /* Spacing between notifications */
+    padding: 15px; /* Padding inside each notification */
+    background-color: #ffffff; /* White background for notification item */
+    transition: background-color 0.3s; /* Smooth background color transition on hover */
+}
+
+.notification-item:hover {
+    background-color: #f1f1f1; /* Light grey background on hover */
+}
+
+.notification-title {
+    font-size: 1.2em; /* Bigger font size for the title */
+    font-weight: bold; /* Bold text for the title */
+    color: #007bff; /* Blue color for the title */
+}
+
+.notification-details {
+    margin-top: 10px; /* Space above details */
+    font-size: 0.9em; /* Slightly smaller font size for details */
+    color: #555; /* Dark grey color for details */
+}
+
+.notification-details p {
+    margin: 5px 0; /* Spacing between detail paragraphs */
+}
+
+/* Optional styling for online and in-person mode */
+.notification-details span {
+    padding: 2px 5px; /* Add some padding */
+    border-radius: 3px; /* Rounded corners for mode indicators */
+}
+
+.notification-details span:nth-child(1) {
+    background-color: #d4edda; /* Green background for online mode */
+    color: #155724; /* Dark green text */
+}
+
+.notification-details span:nth-child(2) {
+    background-color: #fff3cd; /* Yellow background for in-person mode */
+    color: #856404; /* Dark yellow text */
+}

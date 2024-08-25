@@ -13,6 +13,8 @@ import { ListFormateursComponent } from './components/Admin/list-formateurs/list
 import { HomeManagerComponent } from './components/Manager/home-manager/home-manager.component';
 import { CoursesComponent } from './components/Manager/courses/courses.component';
 import { MultiStepWizardComponent } from './components/Manager/multi-step-wizard/multi-step-wizard.component';
+import { AdminNotificationsComponent } from './components/Admin/admin-notifications/admin-notifications.component';
+import { AcceuilComponent } from './components/Admin/acceuil/acceuil.component';
 
 const routes: Routes = [
  /* {path:'',component:SujetComponent ,},
@@ -22,6 +24,10 @@ const routes: Routes = [
   { path: 'registre', component: RegisterComponent },
   { path: 'homeAdmin', component: HomeAdminComponent, canActivate: [AuthGuard], data: { role: 'ROLE_ADMIN' }, children: [
       { path: 'listFormateur', component: ListFormateursComponent },
+      {path:'notification' , component:AdminNotificationsComponent},
+      { path: 'acceuil', component: AcceuilComponent }, // Add this route
+      { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
+
     ]
   },
   { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' } },
@@ -30,6 +36,8 @@ const routes: Routes = [
     { path: 'wizard', component: MultiStepWizardComponent },
     {path:'sujet',component:SujetComponent ,},
     {path:'formation' , component:FormationComponent},
+   
+
   ]
 
 },

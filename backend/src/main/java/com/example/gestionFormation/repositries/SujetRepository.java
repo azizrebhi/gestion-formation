@@ -1,4 +1,4 @@
-package com.example.gestionFormation.repository;
+package com.example.gestionFormation.repositries;
 
 import com.example.gestionFormation.entities.Sujet;
 import org.springframework.data.jpa.repository.JpaRepository;

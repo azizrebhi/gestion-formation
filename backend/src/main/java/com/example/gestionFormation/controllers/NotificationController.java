@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class NotificationController {
+    /*
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
 
@@ -19,5 +20,5 @@ public class NotificationController {
         // Process the notification if needed
         return notification;
     }
-    
+    */
 }

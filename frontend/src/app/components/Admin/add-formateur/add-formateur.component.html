@@ -1,17 +1,17 @@
-<h1 class="mb-4">Ajouter un Formateur</h1>
-<div>
+
+<div class="form-container">
   <form [formGroup]="addFormateurForm" (ngSubmit)="formateurAjoute()">
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="name">Nom</label>
-      <input type="text" id="name" class="form-control" formControlName="name" />
+      <input type="text" id="name" class="form-input" formControlName="name" />
       <div *ngIf="addFormateurForm.controls['name'].hasError('required')" class="text-danger">
         Nom est requis
       </div>
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" id="email" class="form-control" formControlName="email" />
+      <input type="email" id="email" class="form-input" formControlName="email" />
       <div *ngIf="addFormateurForm.controls['email'].hasError('required')" class="text-danger">
         Email est requis
       </div>
@@ -20,33 +20,38 @@
       </div>
     </div>
 
-    <div class="form-group mb-3">
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" class="form-control" formControlName="password" />
-      <div *ngIf="addFormateurForm.controls['password'].hasError('required')" class="text-danger">
-        Mot de passe est requis
-      </div>
-    </div>
-
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="telephone">Téléphone</label>
-      <input type="text" id="telephone" class="form-control" formControlName="telephone" />
+      <input type="text" id="telephone" class="form-input" formControlName="telephone" />
       <div *ngIf="addFormateurForm.controls['telephone'].hasError('required')" class="text-danger">
         Téléphone est requis
       </div>
     </div>
 
-    <div class="form-group mb-3">
+    <div class="form-group">
       <label for="adresse">Adresse</label>
-      <input type="text" id="adresse" class="form-control" formControlName="adresse" />
+      <input type="text" id="adresse" class="form-input" formControlName="adresse" />
       <div *ngIf="addFormateurForm.controls['adresse'].hasError('required')" class="text-danger">
         Adresse est requise
       </div>
     </div>
 
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" (click)="closeDialog()">Annuler</button>
-      <button type="submit" class="btn btn-primary">Ajouter</button>
+    <div class="form-group">
+      <label for="languages">Languages</label>
+      <ng-multiselect-dropdown 
+      [placeholder]="'Select Languages'"
+      [data]="languages"
+      [settings]="dropdownSettings"
+      formControlName="selectedLanguages">
+    </ng-multiselect-dropdown>
+      <div *ngIf="addFormateurForm.controls['selectedLanguages'].hasError('required')" class="text-danger">
+        Languages are required
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button type="button" class="btn-secondary" (click)="closeDialog()">Annuler</button>
+      <button type="submit" class="btn-primary">Ajouter</button>
     </div>
   </form>
 </div>

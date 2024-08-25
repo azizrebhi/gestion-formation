@@ -25,12 +25,18 @@
           <button class="close-btn" (click)="toggleSidebar()">×</button>
         </div>
         <ul class="list-unstyled components">
-          <li><a href="#">Home</a></li>
+          
+         
+
+        <!--
           <li>
             <a (click)="toggleNotifications()">
               Notifications ({{ (notificationService.currentNotifications | async)?.length || 0 }})
+              <li><a [routerLink]="['/homeAdmin/acceuil']">Acceuil</a></li>
             </a>
           </li>
+          -->  
+          <li><a [routerLink]="['/homeAdmin/notification']">Notification</a></li>
           <li><a [routerLink]="['/homeAdmin/listFormateur']">Formateurs</a></li>
         </ul>
         <div class="profile-actions">

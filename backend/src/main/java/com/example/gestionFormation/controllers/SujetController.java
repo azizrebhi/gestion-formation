@@ -1,7 +1,7 @@
 package com.example.gestionFormation.controllers;
 
 import com.example.gestionFormation.entities.Sujet;
-import com.example.gestionFormation.service.SujetService;
+import com.example.gestionFormation.secServices.service.SujetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

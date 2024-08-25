@@ -1,9 +1,10 @@
+import { Language } from "./Language.model";
+
 export interface Formateur {
-    id: number;
-    name: string;
-    email: string;
-    telephone: number;
-    adresse: string;
-    password: string;
-  }
-  
+  id?: number;
+  name: string;
+  email: string;
+  telephone: string;
+  adresse: string;
+  selectedLanguages?: Language[]; // Optional property
+}

@@ -18,8 +18,8 @@ public class DemandeService {
     @Autowired
     private DemandeRepository demandeRepository;
 
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
+   /* @Autowired
+    private SimpMessagingTemplate messagingTemplate;*/
 
     public Demand saveDemande(Demand demandeRequest) {
         Demand demande = new Demand();
@@ -37,7 +37,7 @@ public class DemandeService {
         Demand savedDemande = demandeRepository.save(demande);
 
         // Create and send a notification
-        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+      /*  String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         Notification notification = new Notification();
 // Set properties appropriately
         notification.setTitle("New demande submitted");
@@ -46,7 +46,7 @@ public class DemandeService {
         notification.setEndDate(demande.getEndDate().toString());
         notification.setFormateurName("Formateur Name Here"); // Set correctly
 // Send it via WebSocket
-        messagingTemplate.convertAndSend("/topic/notifications", notification);
+        messagingTemplate.convertAndSend("/topic/notifications", notification);*/
 
         return savedDemande;
     }

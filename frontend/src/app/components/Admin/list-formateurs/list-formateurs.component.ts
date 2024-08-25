@@ -20,6 +20,7 @@ export class ListFormateursComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadFormateurs();
+    
   }
 
   loadFormateurs(): void {

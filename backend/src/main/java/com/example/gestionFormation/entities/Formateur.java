@@ -25,10 +25,9 @@ public class Formateur {
     private String email;
     private Integer telephone;
     private String adresse;
-    private String password;
 
-    @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Event> events;
+  /*  @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Event> events;*/
     @ManyToMany
     @JoinTable(
             name = "formateur_language",
@@ -40,7 +39,6 @@ public class Formateur {
 
     @ManyToOne
     @JoinColumn(name = "cours_id")
-
     @JsonIgnore
     private Cours cours;
 

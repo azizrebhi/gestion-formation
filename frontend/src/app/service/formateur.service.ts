@@ -18,9 +18,8 @@ export class FormateurService {
   getFormateurById(id: number): Observable<Formateur> {
     return this.http.get<Formateur>(`${this.baseUrl}/${id}`);
   }
-
-  createFormateur(formateur: Formateur): Observable<Formateur> {
-    return this.http.post<Formateur>(`${this.baseUrl}/addFormateur`, formateur);
+  createFormateur(coursId: number, languageIds: number[], formateur: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/addFormateur/${coursId}/${languageIds.join(',')}`, formateur);
   }
   updateFormateur(id: number, formateur: Formateur): Observable<Formateur> {
     return this.http.put<Formateur>(`${this.baseUrl}/updateFormateur/${id}`, formateur);
@@ -30,9 +29,6 @@ export class FormateurService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
  
-  
-
-
 
   getFormateursByLanguage(languageId: number): Observable<Formateur[]> {
     return this.http.get<Formateur[]>(`${this.baseUrl}/by-language?languageId=${languageId}`);

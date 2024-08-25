@@ -1,11 +1,11 @@
 <!-- list-formateur.component.html -->
-<app-nav></app-nav>
+
 
 <div class="container">
   <div class="header" style="  background-color: #1e2d3b;">
-    <h3>Manage Formateurs</h3>
+    <h3>Liste des Formateurs</h3>
     <div class="actions">
-      <button class="delete-btn" (click)="deleteSelected()">supprimer </button>
+     
      
       
       <button class="add-btn" (click)="openAddFormateurDialog()">Ajouter un Formateur</button>
@@ -24,8 +24,9 @@
         <th>Email</th>
         <th>Addresse</th>
         <th>Telephone</th>
+        <th>Cours</th>
         <th>Actions</th>
-        <th>status de demande</th>
+       
       </tr>
     </thead>
     <tbody>
@@ -35,10 +36,11 @@
         <td>{{ formateur.email }}</td>
         <td>{{ formateur.adresse }}</td>
         <td>{{ formateur.telephone }}</td>
+        <td>{{ formateur.telephone }}</td>
         <td class="actions">
           <button class="delete-btn" (click)="deleteFormateur(formateur)">Delete</button>
           <button class="add-btn" (click)="editFormateur(formateur)">Edit</button>
-          <button class="add-btn" (click)="onDemandeClick(formateur.id)">Demande</button>
+         
           <div class="modal fade" id="staticBackdrop4" tabindex="-1" aria-labelledby="sendInvitationModalLabel"
             aria-hidden="true">
             <div class="modal-dialog d-flex justify-content-center">

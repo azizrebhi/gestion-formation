@@ -29,6 +29,7 @@ import { MultiStepWizardComponent } from "./components/Manager/multi-step-wizard
 import { DemandeFormationComponent } from "./components/Manager/demande-formation/demande-formation.component";
 import { SujetComponent } from "./sujet/sujet.component";
 import {  MatDialogModule } from "@angular/material/dialog";
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
    import { MatSelectModule } from "@angular/material/select";
 
   import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -41,6 +42,8 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { AuthInterceptor } from "./service/auth.interceptor";
 import { AdminNotificationsComponent } from './components/Admin/admin-notifications/admin-notifications.component';
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { AcceuilComponent } from './components/Admin/acceuil/acceuil.component';
+import { EditFormateurComponent } from './components/Admin/edit-formateur/edit-formateur.component';
 
 
 @NgModule({
@@ -68,7 +71,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     SujetComponent,
     FormationComponent,
     AddformComponent,
-    AdminNotificationsComponent
+    AdminNotificationsComponent,
+    AcceuilComponent,
+    EditFormateurComponent
   ],
   imports: [
     
@@ -90,8 +95,10 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     ToastrModule.forRoot(),
     MatDialogModule,
     MatIconModule, // Add MatIconModule here
-    MatSnackBarModule
-    //BrowserAnimationsModule,
+    MatSnackBarModule,
+    NgMultiSelectDropDownModule.forRoot()
+  
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

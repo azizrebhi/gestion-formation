@@ -1,27 +1,44 @@
 <div class="body">
-  
-<h1  class="sujet-title">Category List </h1>
+  <h1 class="sujet-title">Category List </h1>
 
-<div class="swiper-container">
-  <div class="swiper-wrapper">
-   <div class="swiper-slide" *ngFor="let Sujet of SujetArray">
-    <mat-card class="sujet-card" [ngStyle]="{
-      'background-size': 'cover',
-      'background-repeat': 'no-repeat',
-      'background-position': 'center'
-      
-    }">
-      <!--<a  class="nom-sujet" [routerLink]="['/formation']">{{Sujet.nomSujet}}</a> -->
-      <a [routerLink]="['/homeManager/formation']">{{Sujet.nomSujet}}</a>
-    </mat-card>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <!-- Static Subjects -->
+      <div class="swiper-slide" *ngFor="let subject of [
+        { nomSujet: 'Language de programmation', imageSujet: 'assets/lang.png' },
+        { nomSujet: 'Agile', imageSujet: 'assets/agile.png' },
+        { nomSujet: 'SoftSKILLs', imageSujet: 'assets/soft.png' },
+        { nomSujet: 'Language de programmation', imageSujet: 'assets/lang.png' },
+        { nomSujet: 'Agile', imageSujet: 'assets/agile.png' },
 
-   </div>
+
+        
+      ]">
+        <mat-card class="sujet-card" [ngStyle]="{
+          'background-image': 'url(' + subject.imageSujet + ')',
+          'background-size': 'cover',
+          'background-repeat': 'no-repeat',
+          'background-position': 'center'
+        }">
+          <a [routerLink]="['/homeManager/formation']">{{ subject.nomSujet }}</a>
+        </mat-card>
+      </div>
+
+      <!-- Dynamic Subjects -->
+      <div class="swiper-slide" *ngFor="let Sujet of SujetArray">
+        <mat-card class="sujet-card" [ngStyle]="{
+          'background-image': 'url(' + Sujet.imageSujet + ')',
+          'background-size': 'cover',
+          'background-repeat': 'no-repeat',
+          'background-position': 'center'
+        }">
+          <a [routerLink]="['/homeManager/formation']">{{ Sujet.nomSujet }}</a>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Add Navigation -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
   </div>
-
-  <!-- Add Navigation -->
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-</div>
-
-
 </div>

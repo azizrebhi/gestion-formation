@@ -9,6 +9,12 @@ import Swiper, { Navigation } from 'swiper';
 })
 export class SujetComponent implements OnInit {
   SujetArray: any[] = [];
+  // Static subjects
+  staticSubjects: any[] = [
+    { nomSujet: 'Static Subject 1', imageSujet: 'path/to/image1.jpg' },
+    { nomSujet: 'Static Subject 2', imageSujet: 'path/to/image2.jpg' },
+    { nomSujet: 'Static Subject 3', imageSujet: 'path/to/image3.jpg' },
+  ];
 
   nomSujet: string = "";
   imageSujet: string = "";
@@ -18,10 +24,10 @@ export class SujetComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    Swiper.use([Navigation]); // Initialize Swiper with Navigation module
+    Swiper.use([Navigation]);
     const swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3, // Display 3 slides per view
-      spaceBetween: 30, // Space between slides
+      slidesPerView: 3,
+      spaceBetween: 30,
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -47,7 +53,8 @@ export class SujetComponent implements OnInit {
   getAllSujets() {
     this.http.get("http://localhost:8086/sujets/getSujets")
       .subscribe((resultData: any) => {
-        this.SujetArray = resultData;
+        // Combine static and dynamic data here
+        this.SujetArray = [...this.staticSubjects, ...resultData];
       });
   }
 
@@ -63,7 +70,7 @@ export class SujetComponent implements OnInit {
           alert("Sujet registered Successfully");
           this.nomSujet = "";
           this.imageSujet = "";
-          this.getAllSujets(); // Refresh list after adding a new sujet
+          this.getAllSujets();
         },
         error => {
           alert("An error has occurred");

@@ -36,32 +36,8 @@ public class FormateurServiceImpl implements IFormateurService{
         return formateurRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public Formateur updateFormateur(Long id, Formateur formateur) {
-        Formateur existingFormateur = formateurRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Formateur not found"));
-        existingFormateur.setName(formateur.getName());
-        existingFormateur.setEmail(formateur.getEmail());
-        existingFormateur.setTelephone(formateur.getTelephone());
-        existingFormateur.setAdresse(formateur.getAdresse());
 
 
-
-        return formateurRepository.save(existingFormateur);
-    }
-
-    public Formateur createFormateur(Formateur formateur) {
-        // Set default password and generate a token
-        formateur.setPassword("test33");
-
-        return formateurRepository.save(formateur);
-    }
-   /* public void saveTokenForFormateur(Long formateurId, String token) {
-        Formateur formateur = formateurRepository.findById(formateurId).orElse(null);
-        if (formateur != null) {
-            formateur.setToken(token); // Assuming Formateur entity has a token field
-            formateurRepository.save(formateur);
-        }
-    }*/
 
     @Override
     public void deleteFormateur(Long id) {
@@ -109,6 +85,63 @@ public class FormateurServiceImpl implements IFormateurService{
     public List<Formateur> getFormateursByLanguageId(Long languageId) {
         return formateurRepository.findByLanguagesId(languageId);
     }
+
+    @Override
+    public Formateur addFormateurToLanguage(Long coursId, Long languageId, Formateur formateur) {
+        Optional<Cours> coursOptional = coursRepository.findById(coursId);
+        Optional<Language> languageOptional = languageRepository.findById(languageId);
+
+        if(coursOptional.isPresent() && languageOptional.isPresent()){
+            Cours cours = coursOptional.get();
+            Language language = languageOptional.get();
+
+            // Associate the formateur with the language
+            formateur.getLanguages().add(language);
+            language.getFormateurs().add(formateur);
+            formateur.setCours(cours); // if you want to set the cours reference in formateur
+
+            formateurRepository.save(formateur);
+            return formateur; // return the saved formateur
+        } else {
+            // Handle case where Cours or Language does not exist
+            throw new IllegalArgumentException("Cours or Language not found");
+        }
+
+    }
+
+    @Override
+    public Formateur updateFormateur(Long formateurId, Long coursId, Long languageId, Formateur updatedFormateur) {
+        Optional<Formateur> formateurOptional = formateurRepository.findById(formateurId);
+        Optional<Cours> coursOptional = coursRepository.findById(coursId);
+        Optional<Language> languageOptional = languageRepository.findById(languageId);
+
+        if (formateurOptional.isPresent() && coursOptional.isPresent() && languageOptional.isPresent()) {
+            Formateur existingFormateur = formateurOptional.get();
+            Cours cours = coursOptional.get();
+            Language language = languageOptional.get();
+
+            // Update Formateur details
+            existingFormateur.setName(updatedFormateur.getName());
+            existingFormateur.setEmail(updatedFormateur.getEmail());
+            existingFormateur.setTelephone(updatedFormateur.getTelephone());
+            existingFormateur.setAdresse(updatedFormateur.getAdresse());
+
+
+            // Assign the formateur to the language and course
+            if (!existingFormateur.getLanguages().contains(language)) {
+                existingFormateur.getLanguages().add(language);
+                language.getFormateurs().add(existingFormateur);
+            }
+
+            existingFormateur.setCours(cours); // Ensure the Formateur is associated with the correct course
+
+            formateurRepository.save(existingFormateur);
+            return existingFormateur;
+        } else {
+            throw new IllegalArgumentException("Formateur, Cours, or Language not found");
+        }
+    }
+
 }
 
 

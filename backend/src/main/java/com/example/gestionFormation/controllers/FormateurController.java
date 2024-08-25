@@ -26,20 +26,17 @@ public class FormateurController {
     LanguageServiceImpl languageService;
     @Autowired
     EmailService emailService;
-    @PostMapping("/addFormateur")
-    public ResponseEntity<Formateur> createFormateur(@RequestBody @Valid Formateur formateur) {
-        // Set the default password
-        formateur.setPassword("test33");
 
-        Formateur createdFormateur = formateurService.createFormateur(formateur);
+    @PutMapping("/update/{formateurId}")
+    public Formateur updateFormateur(
+            @PathVariable Long formateurId,
+            @RequestParam Long coursId,
+            @RequestParam Long languageId,
+            @RequestBody Formateur updatedFormateur) {
 
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdFormateur);
+        return formateurService.updateFormateur(formateurId, coursId, languageId, updatedFormateur);
     }
-    @PutMapping("/updateFormateur/{id}")
-    public Formateur updateEvent(@PathVariable Long id, @RequestBody @Valid Formateur formateur) {
-        return formateurService.updateFormateur(id, formateur);
-    }
+
     @GetMapping("/all_formateurs")
     public List<Formateur> getAllFormateurs() {
         return formateurService.getAllFormateurs();
@@ -50,7 +47,10 @@ public class FormateurController {
         return formateurService.getFormateurById(id);
     }
 
-
+    @PostMapping("/addFormateur/{coursId}/{languageId}")
+    public Formateur addFormateur(@PathVariable Long coursId, @PathVariable Long languageId, @RequestBody Formateur formateur) {
+        return formateurService.addFormateurToLanguage(coursId, languageId, formateur);
+    }
     @PostMapping("/{formateurId}/assign-language/{languageId}")
     public ResponseEntity<Formateur> assignFormateurToLanguage(@PathVariable Long formateurId,
                                                                @PathVariable Long languageId) {

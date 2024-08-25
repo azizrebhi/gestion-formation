@@ -1,9 +1,9 @@
-package com.example.gestionFormation.service;
+package com.example.gestionFormation.secServices.service;
 
 import com.example.gestionFormation.entities.Formation;
 import com.example.gestionFormation.entities.Sujet;
-import com.example.gestionFormation.repository.FormationRepository;
-import com.example.gestionFormation.repository.SujetRepository;
+import com.example.gestionFormation.repositries.FormationRepository;
+import com.example.gestionFormation.repositries.SujetRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
