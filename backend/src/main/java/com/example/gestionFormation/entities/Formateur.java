@@ -1,6 +1,7 @@
 package com.example.gestionFormation.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,20 +27,18 @@ public class Formateur {
     private Integer telephone;
     private String adresse;
 
-  /*  @OneToMany(mappedBy = "formateur", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Event> events;*/
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "formateur_language",
             joinColumns = @JoinColumn(name = "formateur_id"),
             inverseJoinColumns = @JoinColumn(name = "language_id")
     )
-    @JsonIgnore
+    @JsonManagedReference
     private Set<Language> languages = new HashSet<>();
+
 
     @ManyToOne
     @JoinColumn(name = "cours_id")
     @JsonIgnore
     private Cours cours;
-
 }

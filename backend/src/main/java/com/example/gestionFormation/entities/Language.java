@@ -27,7 +27,8 @@ public class Language {
 
     @ManyToMany(mappedBy = "languages")
     @JsonIgnore
-    private Set<Formateur> formateurs = new HashSet<>(); // Many-to-many association
+    private Set<Formateur> formateurs = new HashSet<>();
+
 
     @ManyToOne
     @JoinColumn(name = "cours_id")

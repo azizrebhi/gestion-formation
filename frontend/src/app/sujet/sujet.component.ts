@@ -1,6 +1,9 @@
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Swiper, { Navigation } from 'swiper';
+import { MatDialog } from '@angular/material/dialog';
+import { AddcarouselmodalComponent } from '../addcarouselmodal/addcarouselmodal.component';
 
 @Component({
   selector: 'app-sujet-cards',
@@ -9,22 +12,25 @@ import Swiper, { Navigation } from 'swiper';
 })
 export class SujetComponent implements OnInit {
   SujetArray: any[] = [];
-  // Static subjects
-  staticSubjects: any[] = [
-    { nomSujet: 'Static Subject 1', imageSujet: 'path/to/image1.jpg' },
-    { nomSujet: 'Static Subject 2', imageSujet: 'path/to/image2.jpg' },
-    { nomSujet: 'Static Subject 3', imageSujet: 'path/to/image3.jpg' },
-  ];
 
-  nomSujet: string = "";
-  imageSujet: string = "";
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private dialog: MatDialog) {
     this.getAllSujets();
   }
 
+  openAddCourseModal() {
+    const dialogRef = this.dialog.open(AddcarouselmodalComponent, {
+      width: '400px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.getAllSujets(); // Refresh the list
+      }
+    });
+  }
+
   ngOnInit(): void {
-    Swiper.use([Navigation]);
+    Swiper.use([Navigation]); // Initialize Swiper with Navigation module
     const swiper = new Swiper('.swiper-container', {
       slidesPerView: 3,
       spaceBetween: 30,
@@ -51,31 +57,25 @@ export class SujetComponent implements OnInit {
   }
 
   getAllSujets() {
-    this.http.get("http://localhost:8086/sujets/getSujets")
+    this.http.get("http://localhost:8086/academie/sujets/getSujets")
       .subscribe((resultData: any) => {
-        // Combine static and dynamic data here
-        this.SujetArray = [...this.staticSubjects, ...resultData];
+        this.SujetArray = resultData;
       });
   }
 
-  registerSujet() {
-    let sujet = {
-      nomSujet: this.nomSujet,
-      imageSujet: this.imageSujet
-    };
-
-    this.http.post('http://localhost:8086/sujets/addSujet', sujet)
-      .subscribe(
-        data => {
-          alert("Sujet registered Successfully");
-          this.nomSujet = "";
-          this.imageSujet = "";
-          this.getAllSujets();
-        },
-        error => {
-          alert("An error has occurred");
-          console.error("Registration error:", error);
-        }
-      );
+  deleteSujet(id: number) {
+    if (confirm('Are you sure you want to delete this category?')) {
+      this.http.delete( "//localhost:8086/academie/sujets/deleteSujet/${id}")
+        .subscribe(
+          response => {
+            alert('Category deleted successfully');
+            this.getAllSujets(); // Refresh the list after deletion
+          },
+          error => {
+            alert('An error occurred while deleting the category');
+            console.error('Delete error:', error);
+          }
+        );
+    }
   }
 }

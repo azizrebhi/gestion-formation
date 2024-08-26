@@ -18,14 +18,17 @@ export class FormateurService {
   getFormateurById(id: number): Observable<Formateur> {
     return this.http.get<Formateur>(`${this.baseUrl}/${id}`);
   }
+
+
+  updateFormateur(id: number, languageId: number, formateur: Formateur): Observable<Formateur> {
+    const params = new HttpParams().set('languageId', languageId.toString());
+    return this.http.put<Formateur>(`${this.baseUrl}/update/${id}`, formateur, { params });
+  }
   createFormateur(languageId: number, formateur: Formateur): Observable<Formateur> {
     return this.http.post<Formateur>(`${this.baseUrl}/addFormateur/${languageId}`, formateur);
   }
   
-  updateFormateur(formateurId: number, languageId: number, formateur: Formateur): Observable<Formateur> {
-    return this.http.put<Formateur>(`${this.baseUrl}/update/${formateurId}?languageId=${languageId}`, formateur);
-  }
-  
+
 
   deleteFormateur(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);

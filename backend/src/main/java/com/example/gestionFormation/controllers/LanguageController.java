@@ -1,6 +1,7 @@
 package com.example.gestionFormation.controllers;
 
 import com.example.gestionFormation.entities.Cours;
+import com.example.gestionFormation.entities.Formateur;
 import com.example.gestionFormation.entities.Language;
 import com.example.gestionFormation.secServices.service.CoursServiceImpl;
 import com.example.gestionFormation.secServices.service.LanguageServiceImpl;
@@ -61,8 +62,10 @@ public class LanguageController {
     public void deleteLanguage(@PathVariable Long id) {
         languageService.deleteLanguage(id);
     }
-    @GetMapping("/languages")
+
+    @GetMapping("/all_languages")
     public List<Language> getAllLanguages() {
         return languageService.getAllLanguages();
     }
+
 }

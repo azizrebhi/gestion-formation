@@ -1,0 +1,61 @@
+
+/* Dialog Title */
+.dialog-title {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Dialog Content */
+.dialog-content {
+  padding: 20px;
+  background-color: #f9fafc;
+}
+
+/* Form Field */
+.form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Input Field */
+.input-field {
+  font-size: 1em;
+  padding: 10px;
+}
+
+/* Dialog Actions */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 15px;
+  background-color: #f4f6f8;
+  border-top: 1px solid #ddd;
+}
+
+/* Cancel Button */
+.cancel-button {
+  color: #999;
+  font-weight: bold;
+  padding: 8px 15px;
+  transition: color 0.3s ease;
+}
+
+.cancel-button:hover {
+  color: #333e48;
+}
+
+/* Add Button */
+.add-button {
+  background-color: #00ae4e;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 15px;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #259c68;
+}

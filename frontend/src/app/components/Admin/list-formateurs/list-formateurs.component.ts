@@ -6,6 +6,7 @@ import { InvitationComponent } from '../invitation/invitation.component';
 import * as bootstrap from 'bootstrap';
 import { AddFormateurComponent } from '../add-formateur/add-formateur.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { EditFormateurComponent } from '../edit-formateur/edit-formateur.component';
 
 @Component({
   selector: 'app-list-formateurs',
@@ -51,8 +52,16 @@ export class ListFormateursComponent implements OnInit {
   }
 
   editFormateur(formateur: Formateur): void {
-    console.log('Edit', formateur);
-    // Implement edit functionality, maybe open a form with current data
+    const dialogRef = this.dialog.open(EditFormateurComponent, {
+      width: '600px',
+      data: { formateur }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loadFormateurs(); // Recharge la liste des formateurs si le dialogue a été fermé avec succès
+      }
+    });
   }
 
   deleteSelected(): void {

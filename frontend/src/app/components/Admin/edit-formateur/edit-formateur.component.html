@@ -1,1 +1,45 @@
-<p>edit-formateur works!</p>
+<div class="form-container">
+    <form [formGroup]="editFormateurForm" (ngSubmit)="updateFormateur()">
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input type="text" id="name" class="form-input" formControlName="name" />
+        <div *ngIf="editFormateurForm.controls['name'].hasError('required')" class="text-danger">
+          Nom est requis
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-input" formControlName="email" />
+        <div *ngIf="editFormateurForm.controls['email'].hasError('required')" class="text-danger">
+          Email est requis
+        </div>
+        <div *ngIf="editFormateurForm.controls['email'].hasError('email')" class="text-danger">
+          Email invalide
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input type="text" id="telephone" class="form-input" formControlName="telephone" />
+        <div *ngIf="editFormateurForm.controls['telephone'].hasError('required')" class="text-danger">
+          Téléphone est requis
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="adresse">Adresse</label>
+        <input type="text" id="adresse" class="form-input" formControlName="adresse" />
+        <div *ngIf="editFormateurForm.controls['adresse'].hasError('required')" class="text-danger">
+          Adresse est requise
+        </div>
+      </div>
+
+      <!-- Removed Languages selection area -->
+  
+      <div class="form-footer">
+        <button type="button" class="btn-secondary" (click)="cancel()">Annuler</button>
+        <button type="submit" class="btn-primary">Modifier</button>
+      </div>
+    </form>
+</div>

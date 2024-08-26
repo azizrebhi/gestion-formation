@@ -46,6 +46,7 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AcceuilComponent } from './components/Admin/acceuil/acceuil.component';
 import { EditFormateurComponent } from './components/Admin/edit-formateur/edit-formateur.component';
 import { CommonModule } from "@angular/common";
+import { AddcarouselmodalComponent } from './addcarouselmodal/addcarouselmodal.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { CommonModule } from "@angular/common";
     AddformComponent,
     AdminNotificationsComponent,
     AcceuilComponent,
-    EditFormateurComponent
+    EditFormateurComponent,
+    AddcarouselmodalComponent
   ],
   imports: [
     

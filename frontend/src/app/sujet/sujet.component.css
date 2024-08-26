@@ -1,3 +1,4 @@
+
 @import 'swiper/swiper-bundle.css';
 
 /* Body Background */
@@ -70,6 +71,7 @@
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
 }
 
 .sujet-card:hover {
@@ -133,9 +135,39 @@
 .swiper-button-prev {
   color: #259c68;
   transition: color 0.3s ease;
+  padding-top: 260px ;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   color: #ffffff;
+}
+
+
+.sujet-description {
+  color: #ffffff;
+  font-size: 1em;
+  margin-top: 15px;
+  line-height: 1.4em;
+  z-index: 2;
+  text-align: justify;
+  padding-top: 30px;
+}
+
+
+.add-course-button {
+  display: block;
+  margin: 20px auto;
+  background-color: #45a049;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-course-button:hover {
+  background-color: #1f7c54;
 }

@@ -1,39 +1,46 @@
-<!-- addform.component.html -->
+
 <h1 mat-dialog-title>Add New Course</h1>
 <div mat-dialog-content>
   <form class="ngForm">
     <mat-form-field appearance="fill">
       <mat-label>Nom Formation</mat-label>
-      <input matInput placeholder="Enter formation name"  required>
+      <input matInput placeholder="Enter formation name" [(ngModel)]="nomFormation" name="nomFormation" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Categorie</mat-label>
-      <input matInput placeholder="Enter category" name="categorie" required>
+      <input matInput placeholder="Enter category" [(ngModel)]="categorie" name="categorie" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Durée (hours)</mat-label>
-      <input matInput type="number" placeholder="Enter duration"  name="duree" required>
+      <input matInput type="number" placeholder="Enter duration" [(ngModel)]="duree" name="duree" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Video URL</mat-label>
-      <input matInput placeholder="Enter video URL"  name="video" required>
+      <input matInput placeholder="Enter video URL" [(ngModel)]="video" name="video" required>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Enter description" name="description" required></textarea>
+      <textarea matInput placeholder="Enter description" [(ngModel)]="description" name="description" required></textarea>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Level</mat-label>
-      <input matInput type="number" placeholder="Enter level"  name="level" required>
+      <input matInput type="number" placeholder="Enter level" [(ngModel)]="level" name="level" required>
+    </mat-form-field>
+
+    <!-- New field for Sujet ID -->
+    <mat-form-field appearance="fill">
+      <mat-label>Category ID</mat-label>
+      <input matInput type="number" placeholder="Enter subject ID" [(ngModel)]="sujetId" name="sujetId" required>
     </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>
-  <button mat-button >Cancel</button>
-  <button mat-button  >Save</button>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onAddCourse()">Save</button>
 </div>
+

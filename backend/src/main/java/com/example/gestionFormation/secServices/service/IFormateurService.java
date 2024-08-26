@@ -10,11 +10,11 @@ public interface IFormateurService {
     public List<Formateur> getAllFormateurs();
     public Formateur getFormateurById(Long id);
 
-
+    public Formateur addFormateurToLangue(Long languageId, Formateur formateur);
     public void deleteFormateur(Long id) ;
     public List<Formateur> getFormateursByLanguage(Long languageId);
-    public Formateur assignFormateurToLanguage(Long formateurId, Long languageId);
+
     List<Formateur> getFormateursByLanguageId(Long languageId);
-    public Formateur addFormateurToLanguage(Long coursId, Long languageId, Formateur formateur);
-    Formateur updateFormateur(Long formateurId, Long coursId, Long languageId, Formateur updatedFormateur);
+    Formateur updateFormateur(Long formateurId, Formateur updatedFormateur);
+    public Formateur getFormateurWithLanguages(Long formateurId);
 }
