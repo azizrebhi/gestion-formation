@@ -5,6 +5,7 @@ import { FormateurService } from 'src/app/service/formateur.service';
 import { InvitationComponent } from '../invitation/invitation.component';
 import * as bootstrap from 'bootstrap';
 import { AddFormateurComponent } from '../add-formateur/add-formateur.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-list-formateurs',
@@ -16,7 +17,9 @@ export class ListFormateursComponent implements OnInit {
   selectedFormateurId: number | null = null;
 
  
-  constructor(private formateurService: FormateurService,private dialog: MatDialog) {}
+  constructor(private formateurService: FormateurService
+    ,private dialog: MatDialog,
+    private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.loadFormateurs();
@@ -77,15 +80,17 @@ export class ListFormateursComponent implements OnInit {
   openAddFormateurDialog(): void {
     const dialogRef = this.dialog.open(AddFormateurComponent, {
       width: '600px',
-      data: {} // You can pass any data to the dialog if needed
+      data: {} // Pass any data if needed
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Handle the result if needed (e.g., refresh the list of formateurs)
-        console.log('Formateur ajouté');
+        this.loadFormateurs(); // Reload the list of formateurs
       }
     });
   }
+  
+
+   
 }
 

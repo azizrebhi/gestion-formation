@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Language } from '../Model/Language.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class LanguageService {
   getLanguagesByCourse(courseId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/${courseId}/languages`);
   }
-  getAllLanguages(): Observable<any[]> {
-    return this.http.get<any[]>(this.url);
-  }
+
+    getAllLanguages(): Observable<Language[]> {
+      return this.http.get<Language[]>(`${this.url}/all_languages`);
+    }
+  
 }

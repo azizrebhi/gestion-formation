@@ -4,8 +4,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormateurService } from 'src/app/service/formateur.service';
 import { LanguageService } from 'src/app/service/language.service';
-import { Formateur } from 'src/app/Model/formateur.model'; // Adjust import based on your project structure
-import { Language } from 'src/app/Model/Language.model'; // Adjust import based on your project structure
+import { Formateur } from 'src/app/Model/formateur.model'; 
+import { Language } from 'src/app/Model/Language.model'; 
+
+
 @Component({
   selector: 'app-add-formateur',
   templateUrl: './add-formateur.component.html',
@@ -16,12 +18,14 @@ export class AddFormateurComponent implements OnInit {
   languages: Language[] = [];
   dropdownSettings = {
     singleSelection: false,
-    text: "Select Languages",
+    idField: 'id',
+    textField: 'name',
     selectAllText: 'Select All',
     unSelectAllText: 'Unselect All',
-    enableSearchFilter: true,
-    classes: "myclass custom-class"
+    itemsShowLimit: 3,
+    allowSearchFilter: true
   };
+  
 
   constructor(
     private formateurService: FormateurService,
@@ -36,44 +40,56 @@ export class AddFormateurComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       telephone: ['', Validators.required],
       adresse: ['', Validators.required],
-      selectedLanguages: [[]] // Initialize as an empty array
+      selectedLanguages: [[], Validators.required] // Initialize as an empty array, set as required
     });
   }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.loadLanguages(); // Ensure this method is called to load languages
   }
   
+ // AddFormateurComponent.ts
+loadLanguages(): void {
+  this.languageService.getAllLanguages().subscribe(
+    (data: Language[]) => {
+      console.log('Fetched languages:', data);  // Check if 'name' property is present
+      this.languages = data;  // Assign fetched data to the languages array
+    },
+    error => {
+      console.error('Error fetching languages', error);
+    }
+  );
+}
 
-  loadLanguages(): void {
-    this.languageService.getAllLanguages().subscribe(
-      (data: Language[]) => {
-        console.log('Fetched languages:', data); // Log the data
-        this.languages = data;
+
+formateurAjoute() {
+  if (this.addFormateurForm.valid) {
+    const formData = this.addFormateurForm.value;
+    const formateur: Formateur = {
+      name: formData.name,
+      email: formData.email,
+      telephone: formData.telephone,
+      adresse: formData.adresse,
+      selectedLanguages: formData.selectedLanguages
+    };
+
+    const selectedLanguageIds = formData.selectedLanguages.map((lang: Language) => lang.id);
+
+    this.formateurService.createFormateur(selectedLanguageIds, formateur).subscribe(
+      response => {
+        console.log('Formateur créé avec succès', response);
+        this.dialogRef.close(response); // Pass the new formateur data
+        alert('Formateur ajouté avec succès!');
       },
       error => {
-        console.error('Error fetching languages', error);
+        console.error('Erreur lors de la création du formateur', error);
+        alert('Erreur lors de l\'ajout du formateur.');
       }
     );
   }
-  formateurAjoute() {
-    if (this.addFormateurForm.valid) {
-      const formateur: Formateur = this.addFormateurForm.value;
-      const selectedLanguageIds = formateur.selectedLanguages?.map((lang: Language) => lang.id) || [];
-  
-      this.formateurService.createFormateur(this.data.coursId, selectedLanguageIds, formateur).subscribe(
-        response => {
-          console.log('Formateur créé avec succès', response);
-          this.dialogRef.close(true); // Close the dialog and signal success
-          this.snackBar.open('Formateur ajouté avec succès!', 'Close', { duration: 3000 });
-        },
-        error => {
-          console.error('Erreur lors de la création du formateur', error);
-          this.snackBar.open('Erreur lors de l\'ajout du formateur.', 'Close', { duration: 3000 });
-        }
-      );
-    }
-  }
-  
+}
+
+
 
   closeDialog(): void {
     this.dialogRef.close(false);

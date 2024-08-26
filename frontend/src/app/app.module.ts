@@ -31,6 +31,7 @@ import { SujetComponent } from "./sujet/sujet.component";
 import {  MatDialogModule } from "@angular/material/dialog";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
    import { MatSelectModule } from "@angular/material/select";
+  
 
   import { MatDatepickerModule } from "@angular/material/datepicker";
   import { MatCardModule } from "@angular/material/card";
@@ -44,6 +45,7 @@ import { AdminNotificationsComponent } from './components/Admin/admin-notificati
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AcceuilComponent } from './components/Admin/acceuil/acceuil.component';
 import { EditFormateurComponent } from './components/Admin/edit-formateur/edit-formateur.component';
+import { CommonModule } from "@angular/common";
 
 
 @NgModule({
@@ -96,7 +98,9 @@ import { EditFormateurComponent } from './components/Admin/edit-formateur/edit-f
     MatDialogModule,
     MatIconModule, // Add MatIconModule here
     MatSnackBarModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    CommonModule
+    
   
     
   ],

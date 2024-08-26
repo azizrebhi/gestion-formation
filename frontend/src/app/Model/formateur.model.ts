@@ -1,4 +1,7 @@
+
+import { Cours } from "./Cours.model";
 import { Language } from "./Language.model";
+
 
 export interface Formateur {
   id?: number;
@@ -6,5 +9,6 @@ export interface Formateur {
   email: string;
   telephone: string;
   adresse: string;
-  selectedLanguages?: Language[]; // Optional property
+  selectedLanguages: Language[]; // Optional property
+ 
 }

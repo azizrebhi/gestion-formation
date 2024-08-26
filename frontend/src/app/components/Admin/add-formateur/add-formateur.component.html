@@ -1,4 +1,3 @@
-
 <div class="form-container">
   <form [formGroup]="addFormateurForm" (ngSubmit)="formateurAjoute()">
     <div class="form-group">
@@ -39,15 +38,17 @@
     <div class="form-group">
       <label for="languages">Languages</label>
       <ng-multiselect-dropdown 
-      [placeholder]="'Select Languages'"
-      [data]="languages"
-      [settings]="dropdownSettings"
-      formControlName="selectedLanguages">
-    </ng-multiselect-dropdown>
+        [placeholder]="'Select Languages'"
+        [data]="languages"
+        [settings]="dropdownSettings"
+        formControlName="selectedLanguages">
+      </ng-multiselect-dropdown>
       <div *ngIf="addFormateurForm.controls['selectedLanguages'].hasError('required')" class="text-danger">
         Languages are required
       </div>
     </div>
+
+  
 
     <div class="form-footer">
       <button type="button" class="btn-secondary" (click)="closeDialog()">Annuler</button>
