@@ -25,10 +25,10 @@ export class FormateurService {
     return this.http.put<Formateur>(`${this.baseUrl}/update/${id}`, formateur, { params });
   }
   createFormateur(languageId: number, formateur: Formateur): Observable<Formateur> {
+    console.log('Creating Formateur with:', formateur);
     return this.http.post<Formateur>(`${this.baseUrl}/addFormateur/${languageId}`, formateur);
   }
   
-
 
   deleteFormateur(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);

@@ -70,15 +70,22 @@ formateurAjoute() {
       email: formData.email,
       telephone: formData.telephone,
       adresse: formData.adresse,
-      selectedLanguages: formData.selectedLanguages
+      selectedLanguages: [] // Languages are handled by backend, so this can be empty
     };
 
-    const selectedLanguageIds = formData.selectedLanguages.map((lang: Language) => lang.id);
+    // Ensure at least one language is selected
+    if (formData.selectedLanguages.length === 0) {
+      alert('Please select at least one language.');
+      return;
+    }
 
-    this.formateurService.createFormateur(selectedLanguageIds, formateur).subscribe(
+    // Get the first selected language ID
+    const selectedLanguageId = formData.selectedLanguages[0].id;
+
+    this.formateurService.createFormateur(selectedLanguageId, formateur).subscribe(
       response => {
         console.log('Formateur créé avec succès', response);
-        this.dialogRef.close(response); // Pass the new formateur data
+        this.dialogRef.close(response);
         alert('Formateur ajouté avec succès!');
       },
       error => {
@@ -88,6 +95,7 @@ formateurAjoute() {
     );
   }
 }
+
 
 
 

@@ -32,6 +32,6 @@ public class Language {
 
     @ManyToOne
     @JoinColumn(name = "cours_id")
-    @JsonBackReference
+    @JsonIgnore
     private Cours cours;
 }

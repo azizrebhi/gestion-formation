@@ -33,7 +33,7 @@ public class Formateur {
             joinColumns = @JoinColumn(name = "formateur_id"),
             inverseJoinColumns = @JoinColumn(name = "language_id")
     )
-    @JsonManagedReference
+    @JsonIgnore
     private Set<Language> languages = new HashSet<>();
 
 

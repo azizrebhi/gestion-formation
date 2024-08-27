@@ -36,23 +36,28 @@ public class FormateurServiceImpl implements IFormateurService{
         return formateurRepository.findById(id).orElse(null);
     }
 
+
+
     @Override
     public Formateur addFormateurToLangue(Long languageId, Formateur formateur) {
         Optional<Language> languageOptional = languageRepository.findById(languageId);
 
         if (languageOptional.isPresent()) {
             Language language = languageOptional.get();
-            Cours cours = language.getCours(); // Obtenez le cours associé à la langue
+            Cours cours = language.getCours();
 
-            formateur.setCours(cours); // Associez le formateur au cours de la langue
-            formateur.getLanguages().add(language); // Associez le formateur à la langue
+            // Ensure only the selected language is added
+            formateur.setCours(cours); // Automatically set the associated course
+            formateur.getLanguages().clear(); // Clear existing languages
+            formateur.getLanguages().add(language); // Add the selected language
 
-            formateurRepository.save(formateur); // Sauvegardez le formateur avec ses associations
-            return formateur;
+            return formateurRepository.save(formateur); // Save and return the formateur
         } else {
             throw new IllegalArgumentException("Langue non trouvée");
         }
     }
+
+
 
     @Override
     public void deleteFormateur(Long id) {

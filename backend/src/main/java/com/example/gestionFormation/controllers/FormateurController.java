@@ -28,6 +28,7 @@ public class FormateurController {
 
     @PostMapping("/addFormateur/{languageId}")
     public ResponseEntity<Formateur> addFormateur(@PathVariable Long languageId, @RequestBody Formateur formateur) {
+        System.out.println("Received Formateur: " + formateur);
         Formateur savedFormateur = formateurService.addFormateurToLangue(languageId, formateur);
         return ResponseEntity.ok(savedFormateur);
     }
