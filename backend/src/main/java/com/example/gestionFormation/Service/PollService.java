@@ -73,13 +73,7 @@ public class PollService {
                 .orElseThrow(() -> new Exception("Form not found"));
         Poll poll = pollRepository.findById(pollId)
                 .orElseThrow(() -> new Exception("Poll not found"));
-
-
         // Check if the IP has already voted in this form
-        if (form.getIpAddresses().contains(ip)) {
-            throw new Exception("You can only vote once in this form!");
-        }
-
         List<Option> options = poll.getOptions().stream()
                 .filter(option -> Objects.equals(option.getId(), optionId))
                 .collect(Collectors.toList());
@@ -88,7 +82,6 @@ public class PollService {
             Option option = options.get(0);
             option.setScore(option.getScore() + 1);
             optionRepository.save(option);
-
             // Save the IP address for this form
             form.getIpAddresses().add(ip);
             formRepository.save(form);
@@ -105,8 +98,8 @@ public class PollService {
         User user = userRepository.findOneByUsername(username);
         return pollRepository.findAllByUserAndVisible(user, true);
     }
-
 }
+
 
 
 

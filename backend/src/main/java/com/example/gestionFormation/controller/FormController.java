@@ -62,7 +62,6 @@ public class FormController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
             }
         }
-
         return ResponseEntity.ok("Votes submitted successfully.");
     }
 

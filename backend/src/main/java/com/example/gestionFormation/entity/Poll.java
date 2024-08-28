@@ -31,10 +31,14 @@ public class Poll implements Serializable {
 
     private String title;
 
-
-
+    private String Categorie;
     private Boolean visible;
-
+    public String getCategorie() {
+        return Categorie;
+    }
+    public void setCategorie(String categorie) {
+        Categorie = categorie;
+    }
     @JsonIgnore
     @ManyToMany(mappedBy = "polls")
     private List<Form> forms;
