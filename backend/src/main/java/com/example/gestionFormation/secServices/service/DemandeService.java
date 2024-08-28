@@ -59,6 +59,22 @@ public class DemandeService {
         Optional<Demand> demande = demandeRepository.findById(id);
         return demande.orElseThrow(() -> new RuntimeException("Demand not found"));
     }
+    public boolean deleteDemande(Long id) {
+        if (demandeRepository.existsById(id)) {
+            demandeRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public Optional<Demand> updateDemande(Long id, Demand demande) {
+        if (demandeRepository.existsById(id)) {
+            demande.setId(id);
+            Demand updatedDemande = demandeRepository.save(demande);
+            return Optional.of(updatedDemande);
+        }
+        return Optional.empty();
+    }
 
     public List<Demand> getAllDemandes() {
         return demandeRepository.findAll();

@@ -9,6 +9,8 @@ import { FormateurService } from 'src/app/service/formateur.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
 import { WebSocketService } from 'src/app/service/web-socket.service';
+import { Router } from '@angular/router'; 
+//import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-multi-step-wizard',
@@ -48,7 +50,9 @@ export class MultiStepWizardComponent {
     private formateurService: FormateurService,
     private demandeService: DemandeService, // Inject the new service
     private notificationService: NotificationService ,// Inject NotificationService
-    private webSocketService: WebSocketService 
+    private webSocketService: WebSocketService ,
+    private router: Router,
+   // private dialogRef: MatDialogRef<MultiStepWizardComponent>
   ) {}
   ngOnInit() {
     this.fetchCourses();
@@ -127,31 +131,40 @@ onLanguageChange() {
 
   submit() {
     if (this.selectedFormateurId !== null) {
-        const formationRequest: Demand = {
-            title: this.formation.title,
-            team: this.formation.team,
-            startDate: this.formation.startDate,
-            endDate: this.formation.endDate,
-            online: this.formation.online,
-            presentiel: this.formation.presentiel,
-            selectedCourseId: this.selectedCourseId,
-            selectedLanguages: this.selectedLanguages,
-            selectedFormateurId: this.selectedFormateurId
-        };
-
-        this.demandeService.submitDemande(formationRequest).subscribe(
-            response => {
-                console.log('Formation request submitted:', response);
-                this.notifyAdmin(response); // Send notification after successful request
-            },
-            error => {
-                console.error('Error submitting formation request:', error);
-            }
-        );
+      const formationRequest: Demand = {
+        title: this.formation.title,
+        team: this.formation.team,
+        startDate: this.formation.startDate,
+        endDate: this.formation.endDate,
+        online: this.formation.online,
+        presentiel: this.formation.presentiel,
+        selectedCourseId: this.selectedCourseId,
+        selectedLanguages: this.selectedLanguages,
+        selectedFormateurId: this.selectedFormateurId
+      };
+  
+      this.demandeService.submitDemande(formationRequest).subscribe(
+        response => {
+          console.log('Formation request submitted:', response);
+          alert('La demande a été soumise avec succès.');
+    // Close the modal after alert
+          //this.dialogRef.close();
+          this.notifyAdmin(response);
+  
+          // Redirection avec rechargement
+          this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.router.navigate(['/homeManager/liste']);
+          });
+        },
+        error => {
+          console.error('Error submitting formation request:', error);
+        }
+      );
     } else {
-        console.log('Please select a formateur before submitting.');
+      console.log('Veuillez sélectionner un formateur avant de soumettre.');
     }
-}
+  }
+  
 notifyAdmin(demand: Demand) {
   if (this.selectedFormateurId !== null) {
     this.formateurService.getFormateurById(this.selectedFormateurId).subscribe(

@@ -1,0 +1,41 @@
+<div class="form-container">
+    <form [formGroup]="editDemandForm" (ngSubmit)="updateDemand()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" class="form-input" formControlName="title" />
+        <div *ngIf="editDemandForm.controls['title'].hasError('required')" class="text-danger">
+          Title is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="team">Team</label>
+        <input type="text" id="team" class="form-input" formControlName="team" />
+        <div *ngIf="editDemandForm.controls['team'].hasError('required')" class="text-danger">
+          Team is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate" class="form-input" formControlName="startDate" />
+        <div *ngIf="editDemandForm.controls['startDate'].hasError('required')" class="text-danger">
+          Start Date is required
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate" class="form-input" formControlName="endDate" />
+        <div *ngIf="editDemandForm.controls['endDate'].hasError('required')" class="text-danger">
+          End Date is required
+        </div>
+      </div>
+  
+      <div class="form-footer">
+        <button type="button" class="btn-secondary" (click)="cancel()">Cancel</button>
+        <button type="submit" class="btn-primary">Update</button>
+      </div>
+    </form>
+  </div>
+  

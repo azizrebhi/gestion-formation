@@ -1,1 +1,46 @@
-<p>list-demande-formation works!</p>
+<div class="container">
+    <div class="header" style="background-color: #1e2d3b;">
+      <h3>Liste des Demandes de Formation</h3>
+      <div class="actions">
+        <button class="add-btn" (click)="openAddDemandeDialog()">Ajouter une Demande</button>
+      </div>
+    </div>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Titre</th>
+          <th>Équipe</th>
+          <th>Date de Début</th>
+          <th>Date de Fin</th>
+          <th>Formateur</th>
+          <th>Cours</th>
+          <th>Langues</th>
+          <th>Mode</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demande of demandes">
+          <td><input type="checkbox"></td>
+          <td>{{ demande.title }}</td>
+          <td>{{ demande.team }}</td>
+          <td>{{ demande.startDate | date }}</td>
+          <td>{{ demande.endDate | date }}</td>
+          <td>{{ getFormateurName(demande.selectedFormateurId) }}</td>
+          <td>{{ getCourseName(demande.selectedCourseId) }}</td>
+          <td>{{ getLanguageNames(demande.selectedLanguages) }}</td>
+          <td>
+            <span *ngIf="demande.online">En ligne</span>
+            <span *ngIf="demande.presentiel">Présentiel</span>
+          </td>
+          <td class="actions">
+            <button class="edit-btn" (click)="editDemande(demande)">Modifier</button>
+            <button class="delete-btn" (click)="deleteDemande(demande.id)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -48,6 +48,7 @@ import { EditFormateurComponent } from './components/Admin/edit-formateur/edit-f
 import { CommonModule } from "@angular/common";
 import { AddcarouselmodalComponent } from './addcarouselmodal/addcarouselmodal.component';
 import { ListDemandeFormationComponent } from './components/Manager/list-demande-formation/list-demande-formation.component';
+import { EditDemandModalComponent } from './components/Manager/edit-demand-modal/edit-demand-modal.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import { ListDemandeFormationComponent } from './components/Manager/list-demande
     AcceuilComponent,
     EditFormateurComponent,
     AddcarouselmodalComponent,
-    ListDemandeFormationComponent
+    ListDemandeFormationComponent,
+    EditDemandModalComponent
   ],
   imports: [
     

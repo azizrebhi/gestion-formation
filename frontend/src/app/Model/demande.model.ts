@@ -1,5 +1,5 @@
-export interface Demand {
-   
+export interface Demande {
+   id:number ;
     title: string;
     team: string;
     startDate: string; // or Date, depending on your preference

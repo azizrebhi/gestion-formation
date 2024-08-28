@@ -15,6 +15,7 @@ import { CoursesComponent } from './components/Manager/courses/courses.component
 import { MultiStepWizardComponent } from './components/Manager/multi-step-wizard/multi-step-wizard.component';
 import { AdminNotificationsComponent } from './components/Admin/admin-notifications/admin-notifications.component';
 import { AcceuilComponent } from './components/Admin/acceuil/acceuil.component';
+import { ListDemandeFormationComponent } from './components/Manager/list-demande-formation/list-demande-formation.component';
 
 const routes: Routes = [
  /* {path:'',component:SujetComponent ,},
@@ -32,8 +33,11 @@ const routes: Routes = [
   },
   { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' } },
   { path: 'homeManager', component: HomeManagerComponent, canActivate: [AuthGuard], data: { role: 'ROLE_MANAGER' },children:[
+    { path: 'liste', component: ListDemandeFormationComponent },
     { path: 'courses', component: CoursesComponent }, 
     { path: 'wizard', component: MultiStepWizardComponent },
+   
+   
     {path:'sujet',component:SujetComponent ,},
     {path:'formation' , component:FormationComponent},
    
