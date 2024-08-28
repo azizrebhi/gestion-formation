@@ -6,6 +6,18 @@
           <input [(ngModel)]="poll.title" id="title" name="title" type="text" placeholder="Question" class="validate" required>
         </div>
       </div>
+
+      <!-- Category Selection -->
+      <div class="row">
+        <div class="input-field col s6">
+          <select [(ngModel)]="poll.Categorie" id="category" name="category" class="browser-default" required>
+            <option value="" disabled selected>Select a category</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Option Input -->
       <div class="row">
         <div class="input-field col s4">
           <input id="option" #option name="option" type="text" class="validate" (keyup.enter)="addOption(option.value);option.value='';" placeholder="Add an option">
@@ -14,6 +26,8 @@
           <button type="button" class="btn waves-effect waves-light indigo darken-1" (click)="addOption(option.value);option.value='';">Add Option</button>
         </div>
       </div>
+
+      <!-- Display Options -->
       <div class="options-list" *ngFor="let o of options">
         <div class="row">
           <div class="input-field col s4">
@@ -25,12 +39,13 @@
         </div>
       </div>
 
-
+      <!-- Submit Button -->
       <div class="row">
         <div class="input-field col s4">
           <button [disabled]="f.invalid || options.length == 0" class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">Submit</button>
         </div>
       </div>
     </form>
+
   </div>
 </div>

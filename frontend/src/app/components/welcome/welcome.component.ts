@@ -35,19 +35,23 @@ export type ChartOptions = {
 })
 export class WelcomeComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>[] = [];
+  public chartOptions: ChartOptions[] = [];
   polls: Poll[] = [];
   public percentages: number[][] = [];
+  public categoryStatistics: { [key: string]: { sum: number, average: number, count: number } } = {};
 
-  constructor(private pollService: PollService) { }
+  constructor(private pollService: PollService) {}
 
   ngOnInit() {
     this.pollService.getPolls().subscribe(polls => {
       this.polls = polls;
+      this.chartOptions = []; // Reset chart options
+      this.categoryStatistics = {}; // Reset category statistics
+
       this.polls.forEach((poll, index) => {
-        const totalVotes = poll.options.reduce((sum, option) => sum + +option.score, 0);
-        const chartData: number[] = poll.options.map(option => (totalVotes === 0 ? 0 : (+option.score / totalVotes) * 100));
-        const categories: string[] = poll.options.map(option => String(option.option));
+        const totalVotes = poll.options.reduce((sum, option) => sum + option.score, 0);
+        const chartData: number[] = poll.options.map(option => (totalVotes === 0 ? 0 : (option.score / totalVotes) * 100));
+        const categories: string[] = poll.options.map(option => option.option);
         const colors = [
           "#00bf6f", "#507cb6", "#d4526e", "#13d8aa", "#A5978B",
           "#2b908f", "#f9a3a4", "#90ee7e", "#f48024", "#69d2e7"
@@ -56,6 +60,16 @@ export class WelcomeComponent implements OnInit {
         // Save the percentages for use in the table
         this.percentages[index] = chartData;
 
+        // Update statistics for each category
+        const category = poll.Categorie;
+        if (!this.categoryStatistics[category]) {
+          this.categoryStatistics[category] = { sum: 0, average: 0, count: 0 };
+        }
+
+        this.categoryStatistics[category].sum += chartData[0]; // Assuming first question's percentage
+        this.categoryStatistics[category].count += 1;
+
+        // Add chart options for each poll
         this.chartOptions.push({
           series: [
             {
@@ -76,7 +90,7 @@ export class WelcomeComponent implements OnInit {
               }
             }
           },
-          colors: colors.slice(0, poll.options.length), // Ensure the colors array matches the number of options
+          colors: colors.slice(0, poll.options.length),
           dataLabels: {
             enabled: true,
             textAnchor: "start",
@@ -130,9 +144,13 @@ export class WelcomeComponent implements OnInit {
           }
         });
       });
+
+      // Calculate average for each category
+      for (let category in this.categoryStatistics) {
+        this.categoryStatistics[category].average = this.categoryStatistics[category].sum / this.categoryStatistics[category].count;
+      }
     }, error => {
       console.log(error);
     });
   }
-
 }

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import {Poll} from "../../poll.model";
-import {PollService} from "../../poll.service";
-
+import { Poll } from "../../poll.model";
+import { PollService } from "../../poll.service";
 
 @Component({
   selector: 'app-add-poll',
@@ -9,8 +8,9 @@ import {PollService} from "../../poll.service";
   styleUrls: ['./add-poll.component.css']
 })
 export class AddPollComponent {
-  poll: Poll = new Poll(); // Poll object to bind to the form
-  options: { id: number, option: string, score: number }[] = []; // Ensure types are lowercase
+  poll: Poll = new Poll();
+  options: { id: number, option: string, score: number }[] = [];
+  categories: string[] = ['Organisation et conditions de déroulement ', 'Intérêt pour la formation ', 'Qualité de l\'animation', 'Appréciation de l\'efficacité de la formation'];
 
   constructor(private pollService: PollService) {}
 
@@ -28,18 +28,21 @@ export class AddPollComponent {
 
   onSubmitPollForm() {
     console.log('Submit button clicked');
-    if (this.poll.title && this.options.length > 0) {
-      this.pollService.savePoll(this.poll).subscribe(response => {
-        console.log('Poll saved:', response);
-        alert('Poll saved successfully!');
-        // Reset form or navigate to another page after saving the poll
-      }, error => {
-        console.error('Error saving poll:', error);
-        alert('An error occurred while saving the poll. Please try again.');
-      });
+    console.log('Poll data:', this.poll); // Log the poll data for debugging
+    if (this.poll.title && this.poll.Categorie && this.options.length > 0) {
+      this.pollService.savePoll(this.poll).subscribe(
+        response => {
+          console.log('Poll saved:', response);
+          alert('Poll saved successfully!');
+          // Reset form or navigate to another page after saving the poll
+        },
+        error => {
+          console.error('Error saving poll:', error);
+          alert('An error occurred while saving the poll. Please try again.');
+        }
+      );
     } else {
-      alert('Please provide a title and at least one option for the poll.');
+      alert('Please provide a title, select a category, and add at least one option for the poll.');
     }
   }
-
 }

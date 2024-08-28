@@ -1,12 +1,13 @@
 export class Poll {
   id: string;
   title: string;
-  options: { id: number, option: string, score: number }[]; // Update here
+  options: { id: number, option: string, score: number }[] = [];
   user: string;
-  voted?: boolean; // Use lowercase boolean
-
+  Categorie: string;
+  voted?: boolean;
   constructor() {
-    this.voted = false;
-    this.options = []; // Initialize options as an empty array
+    this.title = '';
+    this.Categorie = '';
+    this.options = [];
   }
 }
