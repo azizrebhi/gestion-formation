@@ -10,28 +10,30 @@ import { PollService } from "../../poll.service";
 export class AddPollComponent {
   poll: Poll = new Poll();
   options: { id: number, option: string, score: number }[] = [];
-  categories: string[] = ['Organisation et conditions de déroulement ', 'Intérêt pour la formation ', 'Qualité de l\'animation', 'Appréciation de l\'efficacité de la formation'];
-
+  categories: string[] = [
+    'Organisation et conditions de déroulement',
+    'Intérêt pour la formation',
+    'Qualité de l\'animation',
+    'Appréciation de l\'efficacité de la formation'
+  ];
   constructor(private pollService: PollService) {}
-
   addOption(optionText: string) {
     if (optionText) {
-      this.options.push({ id: this.options.length + 1, option: optionText, score: 0 });
+      this.options.push({ id: 0, option: optionText, score: 0 });
       this.poll.options = this.options;
     }
   }
-
   removeOption(option: { id: number, option: string, score: number }) {
     this.options = this.options.filter(o => o !== option);
     this.poll.options = this.options;
   }
-
   onSubmitPollForm() {
     console.log('Submit button clicked');
-    console.log('Poll data:', this.poll); // Log the poll data for debugging
-    if (this.poll.title && this.poll.Categorie && this.options.length > 0) {
+    console.log('Poll data:', this.poll);
+    if (this.poll.title && this.poll.categorie && this.options.length > 0) {
       this.pollService.savePoll(this.poll).subscribe(
         response => {
+
           console.log('Poll saved:', response);
           alert('Poll saved successfully!');
           // Reset form or navigate to another page after saving the poll

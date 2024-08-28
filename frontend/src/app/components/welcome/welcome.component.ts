@@ -61,13 +61,15 @@ export class WelcomeComponent implements OnInit {
         this.percentages[index] = chartData;
 
         // Update statistics for each category
-        const category = poll.Categorie;
+        const category = poll.categorie;
         if (!this.categoryStatistics[category]) {
           this.categoryStatistics[category] = { sum: 0, average: 0, count: 0 };
         }
 
-        this.categoryStatistics[category].sum += chartData[0]; // Assuming first question's percentage
-        this.categoryStatistics[category].count += 1;
+        // Calculate the sum of percentages for all options in the poll
+        const pollAveragePercentage = chartData.reduce((sum, percent) => sum + percent, 0) / chartData.length;
+        this.categoryStatistics[category].sum += pollAveragePercentage; // Add the poll's average percentage to the sum
+        this.categoryStatistics[category].count += 1; // Increment the count of polls in this category
 
         // Add chart options for each poll
         this.chartOptions.push({

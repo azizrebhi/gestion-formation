@@ -10,7 +10,7 @@
       <!-- Category Selection -->
       <div class="row">
         <div class="input-field col s6">
-          <select [(ngModel)]="poll.Categorie" id="category" name="category" class="browser-default" required>
+          <select [(ngModel)]="poll.categorie" id="category" name="category" class="browser-default" required>
             <option value="" disabled selected>Select a category</option>
             <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
           </select>
@@ -38,8 +38,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Submit Button -->
       <div class="row">
         <div class="input-field col s4">
           <button [disabled]="f.invalid || options.length == 0" class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">Submit</button>
