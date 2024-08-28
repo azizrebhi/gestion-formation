@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-import {Form} from "../form";
-import {FormService} from "../FormService";
-
+import { Form } from "../form";
+import { FormService } from "../FormService";
 
 @Component({
   selector: 'app-display-form',
@@ -24,5 +22,18 @@ export class DisplayFormComponent implements OnInit {
     }, error => {
       console.error('Error fetching forms:', error);
     });
+  }
+
+  // New method to delete a form
+  deleteForm(id: string): void {
+    if (confirm('Are you sure you want to delete this form?')) {
+      this.formService.deleteForm(id).subscribe(() => {
+        // After successful deletion, remove the form from the local list
+        this.forms = this.forms.filter(form => form.id !== id);
+        console.log('Form deleted successfully');
+      }, error => {
+        console.error('Error deleting form:', error);
+      });
+    }
   }
 }

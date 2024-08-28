@@ -5,27 +5,19 @@
         <li class="nav-item">
           <img src="assets/ACTIA_white_RVB.png" class="navbar-logo"> <!-- Added a class for styling -->
         </li>
-
-        <!-- Menu à gauche -->
         <li class="nav-item dropdown">
-
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="formateur">Formateur</a></li>
-
-
-            <li><a class="dropdown-item" routerLink="welcome">Welcome</a></li>
           </ul>
         </li>
       </ul>
-
-      <!-- Menu à droite -->
       <ul class="navbar-nav ml-auto">
+        <li><a class="dropdown-item" routerLink="formateur">Formateur</a></li>
+        <li><a class="dropdown-item" routerLink="welcome">Welcome</a></li>
         <li><a class="dropdown-item" routerLink="feedback">My forms</a></li>
         <li><a class="dropdown-item" routerLink="formation">Create Form</a></li>
         <li class="nav-item">
           <a routerLink="/add-poll">Create Poll</a>
         </li>
-        <!-- Si non connecté -->
         <li class="nav-item">
           <a href="/login" class="nav-link active" aria-current="page" routerLink="login">Login</a>
         </li>

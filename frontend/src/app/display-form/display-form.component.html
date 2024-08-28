@@ -7,16 +7,18 @@
 
   <div class="card-grid">
     <div *ngFor="let form of forms" class="card">
-      <div class="card-image">
-        <img src="assets/Designer (14).jpeg" alt="Form Image">
-      </div>
-      <div class="card-content">
-        <span class="card-title">{{ form.title }}</span>
-      </div>
-      <div class="card-action">
-        <button class="btn" [routerLink]="['/form', form.id]">View Details</button>
-        <button class="btn red darken-3">Delete</button>
-      </div>
+      <!-- 'X' button for deleting the form -->
+      <button class="btn-delete" (click)="deleteForm(form.id)">×</button>
+
+      <!-- Card content with routerLink for navigation -->
+      <a [routerLink]="['/form', form.id]" class="card-link">
+        <div class="card-image">
+          <img src="assets/Designer (15).jpeg" alt="Form Image">
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{ form.title }}</span>
+        </div>
+      </a>
     </div>
   </div>
 </div>

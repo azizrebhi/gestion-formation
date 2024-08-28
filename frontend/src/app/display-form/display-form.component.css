@@ -36,11 +36,42 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
 }
 
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Delete button styles */
+/* Delete button styles */
+.btn-delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 1.8em; /* Increased size of 'X' */
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease; /* Added transition for color and size */
+  z-index: 10; /* Ensure the button is above other elements */
+}
+
+.btn-delete:hover {
+  color: #4caf50; /* Green color on hover */
+  transform: scale(1.2); /* Slight enlargement on hover */
+}
+
+/* Card link styles */
+.card-link {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit text color */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 /* Card image styles */
@@ -66,36 +97,5 @@ h2 {
 
 /* Card action styles */
 .card-action {
-  padding: 10px 15px;
-  display: flex;
-  justify-content: space-between;
-  background: #f0f0f0;
-  border-top: 1px solid #e0e0e0;
-  border-radius: 0 0 10px 10px;
-}
-
-/* Button styles */
-.btn {
-  background-color: #6200ea;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #3700b3;
-}
-
-.btn.red.darken-3 {
-  background-color: #d32f2f;
-}
-
-.btn.red.darken-3:hover {
-  background-color: #b71c1c;
+  display: none; /* Hide the existing card action buttons */
 }
