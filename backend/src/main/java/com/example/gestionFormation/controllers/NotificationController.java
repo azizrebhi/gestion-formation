@@ -8,21 +8,17 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+
 public class NotificationController {
 
-        private final SimpMessagingTemplate messagingTemplate;
-
-        public NotificationController(SimpMessagingTemplate messagingTemplate) {
-            this.messagingTemplate = messagingTemplate;
-        }
-
-        @MessageMapping("/sendNotification")
-        public void sendNotification(NotificationMessage notificationMessage) {
-            // Use the correct destination path
-            messagingTemplate.convertAndSend("/topic/notifications", notificationMessage);
-        }
+    @MessageMapping("/sendNotification") // This matches your sendNotification destination
+    @SendTo("/topic/notifications") // This is where the clients will be subscribed to receive notifications
+    public NotificationMessage sendNotification(NotificationMessage notification) throws Exception {
+        return notification; // Simply forward the notification to the topic
+    }
     }
 
 

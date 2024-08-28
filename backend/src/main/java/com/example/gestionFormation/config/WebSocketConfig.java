@@ -19,14 +19,16 @@ import java.util.List;
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws-notifications").setAllowedOrigins("http://localhost:4200").withSockJS();
+    public void registerStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
+        stompEndpointRegistry.addEndpoint("/ws-notifications")
+                .setAllowedOrigins("http://localhost:4200")
+                .withSockJS(); // Enable SockJS
     }
 
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/topic"); // Prefix for topics
-        config.setApplicationDestinationPrefixes("/app"); // Prefix for messages from clients
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.enableSimpleBroker("/topic/notifications"); // Change this to match client code
+        registry.setApplicationDestinationPrefixes("/app");
     }
     @Override
     public boolean configureMessageConverters(List<MessageConverter> messageConverters) {

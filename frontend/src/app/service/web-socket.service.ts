@@ -46,13 +46,12 @@ export class WebSocketService {
 
   public sendNotification(notification: NotificationMessage) {
     if (this.client.connected) {
-      this.client.publish({
-        destination: '/app/sendNotification',
-        body: JSON.stringify(notification)
-      });
-      console.log('Notification sent:', notification);
+        this.client.publish({
+            destination: '/app/sendNotification', // Ensure this matches your controller's endpoint
+            body: JSON.stringify(notification)
+        });
     } else {
-      console.warn('STOMP client is not connected');
+        console.warn('STOMP client is not connected');
     }
-  }
+}
 }

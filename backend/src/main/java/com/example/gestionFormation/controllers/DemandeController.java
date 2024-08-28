@@ -30,20 +30,12 @@ public class DemandeController {
     }
 
     // Endpoint to get all demands
-    @GetMapping
+    @GetMapping("/all_demands")
     public ResponseEntity<List<Demand>> getAllDemandes() {
         List<Demand> demandes = demandeService.getAllDemandes();
         return ResponseEntity.ok(demandes);
     }
 
-   /* @PostMapping("/submit")
-    public ResponseEntity<Demand> submitDemande(@RequestBody Demand demandeRequest) {
-        Demand savedDemande = demandeService.saveDemande(demandeRequest);
 
-        // Appeler la méthode pour envoyer une notification à l'admin
-        demandeService.notifyAdmin(savedDemande);
-
-        return ResponseEntity.ok(savedDemande);
-    }*/
 
 }

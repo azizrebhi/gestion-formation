@@ -14,4 +14,9 @@ export class DemandeService {
 
   submitDemande(demande: Demand): Observable<any> {
     return this.http.post(this.baseUrl, demande);
-  }}
+  }
+
+
+  getAllDemandes(): Observable<Demand[]> {
+    return this.http.get<Demand[]>(`${this.baseUrl}/all_demands`);
+}}

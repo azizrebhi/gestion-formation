@@ -153,18 +153,32 @@ onLanguageChange() {
     }
 }
 notifyAdmin(demand: Demand) {
-  const notificationMessage: NotificationMessage = {
-      title: 'New demand submitted',
-      team: demand.team,
-      startDate: demand.startDate.toString(),
-      endDate: demand.endDate.toString(),
-      formateurName: 'Formateur Name Here', // Replace with actual formateur name if available
-      online: demand.online,
-      presentiel: demand.presentiel
-  };
+  if (this.selectedFormateurId !== null) {
+    this.formateurService.getFormateurById(this.selectedFormateurId).subscribe(
+      (formateur: Formateur) => {
+        const notificationMessage: NotificationMessage = {
+          title: 'New demand submitted',
+          team: demand.team,
+          startDate: demand.startDate.toString(),
+          endDate: demand.endDate.toString(),
+          formateurName: formateur.name, // Use the formateur's name
+          online: demand.online,
+          presentiel: demand.presentiel
+        };
 
-  this.webSocketService.sendNotification(notificationMessage);
+        this.webSocketService.sendNotification(notificationMessage);
+      },
+      (error) => {
+        console.error('Error fetching formateur details:', error);
+        // Handle error as needed
+      }
+    );
+  } else {
+    console.log('No formateur selected.');
+    // Handle the case where no formateur is selected
+  }
 }
+
   toggleLanguageSelection(languageId: number): void {
     const index = this.selectedLanguages.indexOf(languageId);
     if (index > -1) {
