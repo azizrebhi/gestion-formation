@@ -1,12 +1,13 @@
 package com.example.gestionFormation.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 
@@ -14,18 +15,36 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Notification {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @Setter
+    private String content;
+
+    private int count=0;
+
+    @ManyToOne
+    @JoinColumn(name = "created_by_id_utilisateur")
+    private User createdBy;
+
+    LocalDateTime timestamp = LocalDateTime.now();
+
+    @ManyToMany(mappedBy = "seenNotifications")
+    private List<User> seenBy;
 
 
-    private String title;
-    private String team; // This should contain the team info
-    private String startDate;
-    private String endDate;
-    private String formateurName; // This should contain the formateur's name
-    private boolean online;
-    private boolean presentiel;
 
-    // Getters and setters
+    public String getContent() {
+        return content;
+    }
 
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void increment() {
+        this.count++;
+    }
 
 }
+

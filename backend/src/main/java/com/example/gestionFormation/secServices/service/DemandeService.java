@@ -2,6 +2,7 @@ package com.example.gestionFormation.secServices.service;
 
 import com.example.gestionFormation.entities.Demand;
 import com.example.gestionFormation.entities.Notification;
+import com.example.gestionFormation.entities.NotificationMessage;
 import com.example.gestionFormation.repositries.DemandeRepository;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,10 @@ public class DemandeService {
     @Autowired
     private DemandeRepository demandeRepository;
 
-   /* @Autowired
-    private SimpMessagingTemplate messagingTemplate;*/
+    @Autowired
+    private NotificationService notificationService; // Add this line
+
+
 
     public Demand saveDemande(Demand demandeRequest) {
         Demand demande = new Demand();
@@ -36,17 +39,18 @@ public class DemandeService {
         // Save the demande in the database
         Demand savedDemande = demandeRepository.save(demande);
 
-        // Create and send a notification
-      /*  String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        Notification notification = new Notification();
-// Set properties appropriately
-        notification.setTitle("New demande submitted");
-        notification.setTeam(demande.getTeam());
-        notification.setStartDate(demande.getStartDate().toString()); // Format if needed
-        notification.setEndDate(demande.getEndDate().toString());
-        notification.setFormateurName("Formateur Name Here"); // Set correctly
-// Send it via WebSocket
-        messagingTemplate.convertAndSend("/topic/notifications", notification);*/
+        // Create and send notification after saving the demand
+        NotificationMessage notificationMessage = new NotificationMessage(
+                savedDemande.getTitle(),  // Using saved demand title
+                savedDemande.getTeam(),
+                savedDemande.getStartDate(), // Ensure this is in the correct format
+                savedDemande.getEndDate(),   // Ensure this is in the correct format
+                "Formateur Name Placeholder", // Replace with actual formateur name
+                savedDemande.isOnline(),
+                savedDemande.isPresentiel()
+        );
+
+        notificationService.sendNotification(notificationMessage); // Send the notification
 
         return savedDemande;
     }

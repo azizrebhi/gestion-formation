@@ -96,13 +96,8 @@ public class FormateurServiceImpl implements IFormateurService{
     }
     @Override
     public Formateur getFormateurWithLanguages(Long formateurId) {
-        Formateur formateur = formateurRepository.findById(formateurId)
+        return formateurRepository.findById(formateurId)
                 .orElseThrow(() -> new IllegalArgumentException("Formateur not found"));
-
-        Set<Language> languages = languageRepository.findByFormateurId(formateurId);
-        formateur.setLanguages(languages);
-
-        return formateur;
     }
 }
 

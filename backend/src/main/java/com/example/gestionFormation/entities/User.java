@@ -46,8 +46,7 @@ public class User {
     private  Integer Telephone;
     private String Adresse ;
    // private boolean enabled;
-   @ManyToMany
-   private List<Notification> seenNotifications;
+
     private String resetToken;
     private LocalDateTime resetTokenExpirationTime;
 
@@ -78,7 +77,8 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Pausecafe> Pausecafes;
-
+    @ManyToMany
+    private List<Notification> seenNotifications;
 
     public User(String name, String email, String password) {
         this.name = name;

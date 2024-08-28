@@ -13,7 +13,9 @@ interface Notification {
   providedIn: 'root'
 })
 export class NotificationService {
-  private stompClient: any;
+
+  
+ /* private stompClient: any;
 
   // Declare the notificationsSubject as a BehaviorSubject of Notification[]
   private notificationsSubject: BehaviorSubject<Notification[]> = new BehaviorSubject<Notification[]>([]); 
@@ -60,6 +62,6 @@ export class NotificationService {
             console.log('New notification received:', parsedNotification.message); // This should show the message content
         });
     }
-}
+}*/
   
 }

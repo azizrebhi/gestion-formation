@@ -2,11 +2,13 @@ import { Component, Input } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { Demand } from 'src/app/Model/demand.model';
 import { Formateur } from 'src/app/Model/formateur.model';
+import { NotificationMessage } from 'src/app/Model/notificationMessage.model';
 import { CourseService } from 'src/app/service/course.service';
 import { DemandeService } from 'src/app/service/demande.service';
 import { FormateurService } from 'src/app/service/formateur.service';
 import { LanguageService } from 'src/app/service/language.service';
 import { NotificationService } from 'src/app/service/notification.service';
+import { WebSocketService } from 'src/app/service/web-socket.service';
 
 @Component({
   selector: 'app-multi-step-wizard',
@@ -45,7 +47,8 @@ export class MultiStepWizardComponent {
     private languageService: LanguageService,
     private formateurService: FormateurService,
     private demandeService: DemandeService, // Inject the new service
-    private notificationService: NotificationService // Inject NotificationService
+    private notificationService: NotificationService ,// Inject NotificationService
+    private webSocketService: WebSocketService 
   ) {}
   ngOnInit() {
     this.fetchCourses();
@@ -139,8 +142,7 @@ onLanguageChange() {
         this.demandeService.submitDemande(formationRequest).subscribe(
             response => {
                 console.log('Formation request submitted:', response);
-                this.notifyAdmin(); // Notify admin
-                // Optionally, display a success message or reset the form here
+                this.notifyAdmin(response); // Send notification after successful request
             },
             error => {
                 console.error('Error submitting formation request:', error);
@@ -148,13 +150,21 @@ onLanguageChange() {
         );
     } else {
         console.log('Please select a formateur before submitting.');
-    }}
-    notifyAdmin() {
-      // Subscribe to the notifications observable
-      this.notificationService.notifications$.subscribe(notification => {
-        console.log('New notification received:', notification);
-      });
     }
+}
+notifyAdmin(demand: Demand) {
+  const notificationMessage: NotificationMessage = {
+      title: 'New demand submitted',
+      team: demand.team,
+      startDate: demand.startDate.toString(),
+      endDate: demand.endDate.toString(),
+      formateurName: 'Formateur Name Here', // Replace with actual formateur name if available
+      online: demand.online,
+      presentiel: demand.presentiel
+  };
+
+  this.webSocketService.sendNotification(notificationMessage);
+}
   toggleLanguageSelection(languageId: number): void {
     const index = this.selectedLanguages.indexOf(languageId);
     if (index > -1) {

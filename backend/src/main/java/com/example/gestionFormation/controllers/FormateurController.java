@@ -38,17 +38,16 @@ public class FormateurController {
         return formateurService.getAllFormateurs();
     }
 
-    @GetMapping("/{id}/details")
-    public ResponseEntity<Formateur> getFormateurById(@PathVariable Long id) {
-        Formateur formateur = formateurService.getFormateurById(id);
-        return ResponseEntity.ok(formateur);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Formateur> getFormateurWithLanguages(@PathVariable Long id) {
         Formateur formateur = formateurService.getFormateurWithLanguages(id);
+        if (formateur == null) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(formateur);
     }
+
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Formateur> updateFormateur(@PathVariable Long id, @RequestBody Formateur updatedFormateur) {
