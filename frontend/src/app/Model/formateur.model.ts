@@ -9,6 +9,6 @@ export interface Formateur {
   email: string;
   telephone: string;
   adresse: string;
-  selectedLanguages: Language[]; // Optional property
+  languages: Language[]; // Optional property
  
 }

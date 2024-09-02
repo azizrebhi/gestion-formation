@@ -81,7 +81,7 @@ export class EditFormateurComponent implements OnInit {
         email: formData.email,
         telephone: formData.telephone,
         adresse: formData.adresse,
-        selectedLanguages: [] // Placeholder if you have no languages to send
+        languages: [] // Placeholder if you have no languages to send
       };
 
       const languageId = 1; // Replace with actual logic to get the language ID

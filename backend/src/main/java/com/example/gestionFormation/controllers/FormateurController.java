@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/formateurs")
@@ -33,13 +34,21 @@ public class FormateurController {
         return ResponseEntity.ok(savedFormateur);
     }
 
+    // Endpoint to fetch all formateurs with their languages
     @GetMapping("/all_formateurs")
-    public List<Formateur> getAllFormateurs() {
-        return formateurService.getAllFormateurs();
+    public ResponseEntity<List<Formateur>> getAllFormateurs() {
+        List<Formateur> formateurs = formateurService.getAllFormateurs();
+        return ResponseEntity.ok(formateurs);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Formateur> getFormateurById(@PathVariable Long id) {
+        Optional<Formateur> formateur = formateurService.getFormateurById(id);
+        return formateur.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
-    @GetMapping("/{id}")
+    // Fetch formateur by ID with its languages and associated course
+    @GetMapping("/withLanguages/{id}")
     public ResponseEntity<Formateur> getFormateurWithLanguages(@PathVariable Long id) {
         Formateur formateur = formateurService.getFormateurWithLanguages(id);
         if (formateur == null) {
