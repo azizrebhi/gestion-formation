@@ -20,8 +20,7 @@ public class Sujet {
     private Long sujet_id;
 
     private String nomSujet;
-    private String imageSujet;
-
+    private String description ;
     @OneToMany(mappedBy = "sujet", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<Formation> sujetFormations;

@@ -20,12 +20,13 @@ public class FormationService {
     @Autowired
     private SujetRepository sujetRepository;
 
-    public Formation saveFormation(Formation formation, Long sujetId) {
-        Sujet sujet = sujetRepository.findById(sujetId)
-                .orElseThrow(() -> new RuntimeException("Sujet not found"));
+    public Formation saveFormation(Formation formation, String nomSujet) {
+        Sujet sujet = sujetRepository.findByNomSujet(nomSujet)
+                .orElseThrow(() -> new RuntimeException("Sujet not found with nomSujet: " + nomSujet));
         formation.setSujet(sujet);
         return formationRepository.save(formation);
     }
+
 
     public List<Formation> saveFormations(List<Formation> formations) {
         return formationRepository.saveAll(formations);

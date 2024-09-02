@@ -47,7 +47,7 @@ public class SujetService {
         Sujet existingSujet = sujetRepository.findById(sujet.getSujet_id()).orElse(null);
         if (existingSujet != null) {
             existingSujet.setNomSujet(sujet.getNomSujet());
-            existingSujet.setImageSujet(sujet.getImageSujet());
+            existingSujet.setDescription(sujet.getDescription());
             existingSujet.setSujetFormations(sujet.getSujetFormations());
             return sujetRepository.save(existingSujet);
         } else {
@@ -67,4 +67,12 @@ public class SujetService {
 
         return sujetRepository.save(sujet);
     }
+
+
+
+    public List<String> getAllSujetNames() {
+        return sujetRepository.findAllSujetNames();
+    }
+
+
 }

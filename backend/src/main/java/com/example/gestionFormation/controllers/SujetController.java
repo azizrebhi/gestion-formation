@@ -55,4 +55,14 @@ public class SujetController {
         Sujet sujet = sujetService.ajouterFormationAuSujet(sujetId, formationId);
         return ResponseEntity.ok(sujet);
     }
+
+    @Autowired
+    public SujetController(SujetService sujetService) {
+        this.sujetService = sujetService;
+    }
+
+    @GetMapping("/getNames")
+    public List<String> getAllSujetNames() {
+        return sujetService.getAllSujetNames();
+    }
 }
