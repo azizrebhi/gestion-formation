@@ -1,25 +1,20 @@
-
-<h1 mat-dialog-title class="dialog-title">Add New Category</h1>
-<div mat-dialog-content class="dialog-content">
-  <form [formGroup]="addCourseForm">
-    <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Category Name</mat-label>
-      <input matInput formControlName="nomSujet" class="input-field" [(ngModel)]="nomSujet" id="nomSujet">
-    </mat-form-field>
-      
-    <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Image URL</mat-label>
-      <input matInput formControlName="imageSujet" class="input-field" [(ngModel)]="imageSujet" id="imageSujet">
-    </mat-form-field>
-      
-    <mat-form-field appearance="fill" class="form-field">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" class="input-field"></textarea>
-    </mat-form-field>
+<div class="form-container">
+  <h1 class="dialog-title">Ajouter une nouvelle categorie </h1>
+  <form [formGroup]="addCourseForm" (ngSubmit)="onAddCourse()">
+    
+    <div class="form-group">
+      <label for="nomSujet">Nom</label>
+      <input type="text" id="nomSujet" class="form-input" formControlName="nomSujet" [(ngModel)]="nomSujet" placeholder="Enter category name" />
+    </div>
+    
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-input" formControlName="description" [(ngModel)]="description" placeholder="Enter description"></textarea>
+    </div>
+    
+    <div class="form-footer">
+      <button type="button" class="btn-secondary" (click)="onCancel()">Annuler</button>
+      <button type="submit" class="btn-primary">Ajouter</button>
+    </div>
   </form>
 </div>
-<div mat-dialog-actions class="dialog-actions">
-  <button mat-button class="cancel-button" (click)="onCancel()">Cancel</button>
-  <button mat-button class="add-button" (click)="onAddCourse()">Add</button>
-</div>
-

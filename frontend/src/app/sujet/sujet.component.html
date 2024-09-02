@@ -4,7 +4,7 @@
 
 
   <div class="swiper-container">
-    <button mat-raised-button  class="add-course-button"  (click)="openAddCourseModal()">Ajouter Category</button>
+    <button mat-raised-button  class="add-course-button"  (click)="openAddCourseModal()">Ajouter une Categorie +</button>
 
     <div class="swiper-wrapper">
       <div class="swiper-slide" *ngFor="let Sujet of SujetArray">
@@ -13,11 +13,11 @@
           'background-repeat': 'no-repeat',
           'background-position': 'center'
         }">
+          
           <a class="nom-sujet" [routerLink]="['/homeManager/formation']">{{Sujet.nomSujet}}</a> 
           
           <!-- Static Description -->
-          <p class="sujet-description">
-            Une catégorie de cours regroupe des formations similaires pour structurer et orienter l'apprentissage dans un domaine spécifique.          </p>
+          <p class="sujet-description">{{Sujet.description}}</p>
         </mat-card>
       </div>
     </div>

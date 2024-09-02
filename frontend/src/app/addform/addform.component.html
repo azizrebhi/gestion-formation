@@ -1,46 +1,42 @@
+<div class="form-container">
+  <h1 class="dialog-title">Ajouter un Nouveau Cours</h1>
+  <form class="ngForm" (ngSubmit)="onAddCourse()">
 
-<h1 mat-dialog-title>Add New Course</h1>
-<div mat-dialog-content>
-  <form class="ngForm">
-    <mat-form-field appearance="fill">
-      <mat-label>Nom Formation</mat-label>
-      <input matInput placeholder="Enter formation name" [(ngModel)]="nomFormation" name="nomFormation" required>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="nomFormation">Nom de la Formation</label>
+      <input type="text" id="nomFormation" class="form-input" placeholder="Entrez le nom de la formation" [(ngModel)]="nomFormation" name="nomFormation" required />
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Categorie</mat-label>
-      <input matInput placeholder="Enter category" [(ngModel)]="categorie" name="categorie" required>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="categorie">Catégorie</label>
+      <select id="categorie" class="form-input" [(ngModel)]="selectedCategorie" name="categorie" required>
+        <option *ngFor="let name of categories" [value]="name">{{ name }}</option>
+      </select>
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Durée (hours)</mat-label>
-      <input matInput type="number" placeholder="Enter duration" [(ngModel)]="duree" name="duree" required>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="duree">Durée (heures)</label>
+      <input type="number" id="duree" class="form-input" placeholder="Entrez la durée" [(ngModel)]="duree" name="duree" required />
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Video URL</mat-label>
-      <input matInput placeholder="Enter video URL" [(ngModel)]="video" name="video" required>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="video">URL de la Vidéo</label>
+      <input type="text" id="video" class="form-input" placeholder="Entrez l'URL de la vidéo" [(ngModel)]="video" name="video" required />
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
-      <textarea matInput placeholder="Enter description" [(ngModel)]="description" name="description" required></textarea>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-input" placeholder="Entrez la description" [(ngModel)]="description" name="description" required></textarea>
+    </div>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Level</mat-label>
-      <input matInput type="number" placeholder="Enter level" [(ngModel)]="level" name="level" required>
-    </mat-form-field>
+    <div class="form-group">
+      <label for="level">Niveau</label>
+      <input type="number" id="level" class="form-input" placeholder="Entrez le niveau" [(ngModel)]="level" name="level" required />
+    </div>
 
-    <!-- New field for Sujet ID -->
-    <mat-form-field appearance="fill">
-      <mat-label>Category ID</mat-label>
-      <input matInput type="number" placeholder="Enter subject ID" [(ngModel)]="sujetId" name="sujetId" required>
-    </mat-form-field>
+    <div class="form-footer">
+      <button type="button" class="btn-secondary" (click)="onCancel()">Annuler</button>
+      <button type="submit" class="btn-primary">Enregistrer</button>
+    </div>
   </form>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button (click)="onAddCourse()">Save</button>
-</div>
-

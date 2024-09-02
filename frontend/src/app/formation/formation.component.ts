@@ -29,11 +29,13 @@ export class FormationComponent  {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddformComponent, {
       width: '500px',
+      height: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
         if (result) {
             console.log('Form data:', result);
+            this.getAllFormations(0) ;
             // Handle the form data here (e.g., send it to a service or API)
         }
     });
@@ -87,13 +89,12 @@ export class FormationComponent  {
         }
       );
   }
-
   deleteFormation(formationId: number) {
-    this.http.delete(`//localhost:8086/academie/formations/deleteById/${formationId}`)
+    this.http.delete(`//localhost:8086/academie/formations/deleteById/${formationId}`, { responseType: 'text' }) // Expecting a text response
       .subscribe(
         data => {
           alert("Formation deleted successfully");
-          this.getAllFormations(0); // Refresh list after deletion
+          this.getAllFormations(0); // Refresh the list after deletion
         },
         error => {
           alert("An error occurred while deleting the formation");
