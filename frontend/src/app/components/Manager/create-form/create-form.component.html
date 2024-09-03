@@ -1,0 +1,43 @@
+
+<div id="app">
+  <form (ngSubmit)="onSubmitForm()" class="form-container">
+    <h2>Create New Form</h2>
+
+    <!-- Form Title -->
+    <div class="row">
+      <div class="input-field col s12">
+        <input [(ngModel)]="form.title" id="title" name="title" type="text" placeholder="Form Title" class="validate" required>
+      </div>
+    </div>
+
+    <!-- Available Polls -->
+    <div class="row">
+      <div class="input-field col s12">
+        <label for="poll">Add Polls to Form:</label>
+        <select [(ngModel)]="selectedPoll" (change)="addPollToForm(selectedPoll)" name="poll" class="browser-default">
+          <option *ngFor="let poll of polls" [ngValue]="poll">{{poll.title}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Selected Polls -->
+    <div class="options-list" *ngFor="let poll of form.polls">
+      <div class="row">
+        <div class="input-field col s10">
+          {{poll.title}}
+        </div>
+        <div class="input-field col s2">
+          <button type="button" class="btn red darken-3" (click)="removePollFromForm(poll)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="row">
+      <div class="input-field col s12">
+        <button class="btn cyan accent-4" type="submit" >Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+

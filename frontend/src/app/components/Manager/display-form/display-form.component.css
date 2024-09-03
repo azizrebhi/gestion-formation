@@ -1,0 +1,101 @@
+/* General styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-top: 30px;
+  padding: 0 15px;
+}
+
+h2 {
+  font-size: 1.8em;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Card styles */
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 260px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Delete button styles */
+/* Delete button styles */
+.btn-delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 1.8em; /* Increased size of 'X' */
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease; /* Added transition for color and size */
+  z-index: 10; /* Ensure the button is above other elements */
+}
+
+.btn-delete:hover {
+  color: #4caf50; /* Green color on hover */
+  transform: scale(1.2); /* Slight enlargement on hover */
+}
+
+/* Card link styles */
+.card-link {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit text color */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Card image styles */
+.card-image img {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Card content styles */
+.card-content {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Card action styles */
+.card-action {
+  display: none; /* Hide the existing card action buttons */
+}

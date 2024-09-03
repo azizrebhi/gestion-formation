@@ -10,7 +10,7 @@
         </button>
       </div>
     </div>
-  
+
     <!-- Sidebar Section -->
  <!-- aside.component.html -->
 <div class="sidebar-container">
@@ -19,7 +19,7 @@
 
       margin-top: -7%;" alt="Menu Icon">
     </button>
-  
+
     <div class="right-side closed" #sidebar>
       <div class="profile-card">
         <div class="profile-header">
@@ -30,7 +30,11 @@
         <ul class="list-unstyled components">
           <li><a href="#">Home</a></li>
           <li><a href="#">Notifications</a></li>
-          <!--<li><a [routerLink]="['/homeAdmin/listFormateur']">Formateurs</a></li>-->
+          <!--li ><a [routerLink]="['/homeAdmin/listFormateur']">Formateurs</a></li-->
+          <li><a routerLink="welcome">Formateurs</a></li>
+          <li><a routerLink="Poll">Create Poll</a></li>
+          <li><a routerLink="forn">Forms</a></li>
+          <li><a routerLink="crform">create form</a></li>
           <li><a href="#">Chat</a></li>
         </ul>
         <div class="profile-actions">
@@ -41,4 +45,3 @@
     </div>
   </div>
   </div>
-  
