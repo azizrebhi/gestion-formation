@@ -22,9 +22,12 @@ public class Formation {
     private String video;
     private String description;
     private int level;
+    private String categorie ;
 
     @ManyToOne
     @JoinColumn(name = "sujet_id", nullable = false)
     @JsonBackReference
     private Sujet sujet;
+
+
 }
