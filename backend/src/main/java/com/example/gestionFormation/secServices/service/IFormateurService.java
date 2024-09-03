@@ -4,11 +4,12 @@ import com.example.gestionFormation.entities.Formateur;
 import com.example.gestionFormation.entities.Language;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface IFormateurService {
     public List<Formateur> getAllFormateurs();
-    public Formateur getFormateurById(Long id);
+    public Optional<Formateur> getFormateurById(Long id);
 
     public Formateur addFormateurToLangue(Long languageId, Formateur formateur);
     public void deleteFormateur(Long id) ;

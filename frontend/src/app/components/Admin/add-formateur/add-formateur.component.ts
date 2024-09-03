@@ -70,7 +70,7 @@ formateurAjoute() {
       email: formData.email,
       telephone: formData.telephone,
       adresse: formData.adresse,
-      selectedLanguages: [] // Languages are handled by backend, so this can be empty
+      languages: [] // Languages are handled by backend, so this can be empty
     };
 
     // Ensure at least one language is selected

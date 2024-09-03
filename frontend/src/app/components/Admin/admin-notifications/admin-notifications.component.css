@@ -1,5 +1,5 @@
 .notifications-container {
-    max-width: 600px; /* Set a maximum width for the notifications container */
+    max-width: 800px; /* Set a maximum width for the notifications container */
     margin: 20px auto; /* Center the container on the page */
     padding: 20px; /* Add padding inside the container */
     background-color: #f9f9f9; /* Light background color */
@@ -12,53 +12,93 @@ h3 {
     color: #333; /* Dark color for the title */
 }
 
-.notifications-list {
-    list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+    width: 100%;
 }
 
-.notification-item {
-    border: 1px solid #e0e0e0; /* Light border around each notification */
-    border-radius: 5px; /* Rounded corners */
-    margin: 10px 0; /* Spacing between notifications */
-    padding: 15px; /* Padding inside each notification */
-    background-color: #ffffff; /* White background for notification item */
-    transition: background-color 0.3s; /* Smooth background color transition on hover */
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color:#0cdf53;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -2px;
 }
 
-.notification-item:hover {
-    background-color: #f1f1f1; /* Light grey background on hover */
+.timeline-list {
+    padding: 0;
+    list-style: none;
+    margin: 0;
 }
 
-.notification-title {
-    font-size: 1.2em; /* Bigger font size for the title */
-    font-weight: bold; /* Bold text for the title */
-    color: #007bff; /* Blue color for the title */
+.timeline-item {
+    position: relative;
+    margin: 20px 0;
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.notification-details {
-    margin-top: 10px; /* Space above details */
-    font-size: 0.9em; /* Slightly smaller font size for details */
-    color: #555; /* Dark grey color for details */
+.timeline-item:nth-child(odd) {
+    float: left;
+    clear: right;
+    text-align: right;
 }
 
-.notification-details p {
-    margin: 5px 0; /* Spacing between detail paragraphs */
+.timeline-item:nth-child(even) {
+    float: right;
+    clear: left;
+    text-align: left;
 }
 
-/* Optional styling for online and in-person mode */
-.notification-details span {
-    padding: 2px 5px; /* Add some padding */
-    border-radius: 3px; /* Rounded corners for mode indicators */
+.timeline-date {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
 }
 
-.notification-details span:nth-child(1) {
-    background-color: #d4edda; /* Green background for online mode */
-    color: #155724; /* Dark green text */
+.timeline-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #0cdf53;
 }
 
-.notification-details span:nth-child(2) {
-    background-color: #fff3cd; /* Yellow background for in-person mode */
-    color: #856404; /* Dark yellow text */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    border: 4px solid #0cdf53;
+    top: 20px;
+    left: 50%;
+    margin-left: -7px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: calc(-50% + 40px);
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: calc(-50% + 40px);
+}
+
+.timeline-content h4 {
+    margin-top: 0;
+    color: #1bbd94;
+    font-size: 18px;
+}
+
+.timeline-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
 }

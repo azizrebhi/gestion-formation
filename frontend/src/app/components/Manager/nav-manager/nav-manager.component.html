@@ -1,25 +1,25 @@
 <!-- combined.component.html -->
 <div class="header-and-sidebar">
-    <!-- Navbar Section -->
-    <div class="navbar" style="background-color: #252525;">
-      <img src="assets/images.png" alt="Logo" class="logo">
-      <div class="search-container"style="margin-right: 105px;">
-        <input type="text" placeholder="Search..." class="search-bar">
-        <button class="search-btn">
-          <img src="assets/search-icon.png" alt="Search">
-        </button>
-      </div>
+  <!-- Navbar Section -->
+  <div class="navbar" style="background-color: #252525;">
+    <img src="assets/images.png" alt="Logo" class="logo">
+    <div class="search-container" style="margin-right: 105px;">
+      <input type="text" placeholder="Search..." class="search-bar">
+      <button class="search-btn">
+        <img src="assets/search-icon.png" alt="Search">
+      </button>
     </div>
-  
-    <!-- Sidebar Section -->
- <!-- aside.component.html -->
-<div class="sidebar-container">
+  </div>
+
+  <!-- Sidebar Section -->
+  <!-- aside.component.html -->
+  <div class="sidebar-container">
     <button class="menu-btn" (click)="toggleSidebar()">
       <img src="assets/menu.png" style="color:white;margin-right: 33px;
 
       margin-top: -7%;" alt="Menu Icon">
     </button>
-  
+
     <div class="right-side closed" #sidebar>
       <div class="profile-card">
         <div class="profile-header">
@@ -28,22 +28,18 @@
           <button class="close-btn" (click)="toggleSidebar()">×</button>
         </div>
         <ul class="list-unstyled components">
-          <li><a href="#">Home</a></li>
-          
-          <li><a [routerLink]="['/homeManager/home']">Notifications</a></li>
-          <li><a [routerLink]="['/homeManager/wizard']">Demande</a></li>
-          <li><a [routerLink]="['/homeManager/liste']">Liste des demandes</a></li>
-         
+          <li><a href="#">Acceuil</a></li>
           <li><a [routerLink]="['/homeManager/formation']">Cours</a></li>
           <li><a [routerLink]="['/homeManager/sujet']">Categorie </a></li>
+          <li><a [routerLink]="['/homeManager/liste']">Demandes</a></li>
          
+
         </ul>
         <div class="profile-actions">
-         
+
           <a (click)="onLogout()">Déconnexion</a>
         </div>
       </div>
     </div>
   </div>
-  </div>
-  
+</div>
