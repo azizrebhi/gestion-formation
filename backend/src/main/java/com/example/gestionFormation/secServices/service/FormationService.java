@@ -32,9 +32,9 @@ public class FormationService {
         return formationRepository.saveAll(formations);
     }
 
-    public List<Object[]> getFormations() {
+   /* public List<Object[]> getFormations() {
         return formationRepository.findAllWithoutVideo();
-    }
+    }*/
 
 
     public List<Formation> getFormationsBySujetId(Long sujet_id) {
@@ -69,7 +69,7 @@ public class FormationService {
         Formation existingFormation = formationRepository.findById(formation.getIdFormation()).orElse(null);
         if (existingFormation != null) {
             existingFormation.setNomFormation(formation.getNomFormation());
-            existingFormation.setCategorie(formation.getCategorie());
+           // existingFormation.setCategorie(formation.getCategorie());
             existingFormation.setDescription(formation.getDescription());
             existingFormation.setLevel(formation.getLevel());
             existingFormation.setDuree(formation.getDuree());
