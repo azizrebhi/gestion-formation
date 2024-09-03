@@ -4,7 +4,6 @@ import { RouterModule } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
-import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
@@ -61,6 +60,8 @@ import {AddPollComponent} from "./components/Manager/add-poll/add-poll.component
 import {CreateFormComponent} from "./components/Manager/create-form/create-form.component";
 import {FormDetailsComponent} from "./components/Manager/form-details/form-details.component";
 import {WelcomeComponent} from "./components/Manager/welcome/welcome.component";
+import { NavbarComponent } from './components/Formateur/navbar/navbar.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 @NgModule({
@@ -98,7 +99,8 @@ import {WelcomeComponent} from "./components/Manager/welcome/welcome.component";
     AddPollComponent,
     FormDetailsComponent,
     DisplayFormComponent,
-    CreateFormComponent
+    CreateFormComponent,
+    NavbarComponent
   ],
   imports: [
     NgApexchartsModule,
