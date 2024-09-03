@@ -11,7 +11,7 @@
       <div class="row">
         <div class="input-field col s6">
           <select [(ngModel)]="poll.categorie" id="category" name="category" class="browser-default" required>
-            <option value="" disabled selected>Select a category</option>
+            <option value="" disabled selected>Sélectionnez une catégorie</option>
             <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
           </select>
         </div>
@@ -20,10 +20,10 @@
       <!-- Option Input -->
       <div class="row">
         <div class="input-field col s4">
-          <input id="option" #option name="option" type="text" class="validate" (keyup.enter)="addOption(option.value);option.value='';" placeholder="Add an option">
+          <input id="option" #option name="option" type="text" class="validate" (keyup.enter)="addOption(option.value);option.value='';" placeholder="Ajouter une option">
         </div>
         <div class="input-field col s2">
-          <button type="button" class="btn waves-effect waves-light indigo darken-1" (click)="addOption(option.value);option.value='';">Add Option</button>
+          <button type="button" class="btn waves-effect waves-light indigo darken-1" (click)="addOption(option.value);option.value='';">Ajouter l'option</button>
         </div>
       </div>
 
@@ -34,16 +34,15 @@
             {{o.option}}
           </div>
           <div class="input-field col s2">
-            <button type="button" class="btn waves-effect waves-light red darken-3" (click)="removeOption(o)">Remove</button>
+            <button type="button" class="btn waves-effect waves-light red darken-3" (click)="removeOption(o)">Supprimer</button>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s4">
-          <button [disabled]="f.invalid || options.length == 0" class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">Submit</button>
+          <button [disabled]="f.invalid || options.length == 0" class="btn waves-effect waves-light cyan accent-4" type="submit" name="action">Soumettre</button>
         </div>
       </div>
     </form>
-
   </div>
 </div>

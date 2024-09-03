@@ -99,3 +99,24 @@ h2 {
 .card-action {
   display: none; /* Hide the existing card action buttons */
 }
+/* Add Form Button Styles */
+.btn-add-form {
+  background-color: #4caf50; /* Green color for the button */
+  color: white; /* White text color */
+  border: none; /* No border */
+  padding: 10px 20px; /* Padding for the button */
+  font-size: 1em; /* Font size */
+  font-weight: bold; /* Bold text */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  display: block; /* Make button block level */
+  margin: 0 auto 20px auto; /* Center the button and add margin */
+  text-align: center; /* Center the text */
+
+}
+
+.btn-add-form:hover {
+  background-color: #45a049; /* Darker green on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}

@@ -1,19 +1,18 @@
-
 <div id="app">
   <form (ngSubmit)="onSubmitForm()" class="form-container">
-    <h2>Create New Form</h2>
+    <h2>Créer un Nouveau Formulaire</h2>
 
     <!-- Form Title -->
     <div class="row">
       <div class="input-field col s12">
-        <input [(ngModel)]="form.title" id="title" name="title" type="text" placeholder="Form Title" class="validate" required>
+        <input [(ngModel)]="form.title" id="title" name="title" type="text" placeholder="Titre du Formulaire" class="validate" required>
       </div>
     </div>
 
     <!-- Available Polls -->
     <div class="row">
       <div class="input-field col s12">
-        <label for="poll">Add Polls to Form:</label>
+        <label for="poll">Ajouter des Sondages au Formulaire :</label>
         <select [(ngModel)]="selectedPoll" (change)="addPollToForm(selectedPoll)" name="poll" class="browser-default">
           <option *ngFor="let poll of polls" [ngValue]="poll">{{poll.title}}</option>
         </select>
@@ -27,7 +26,7 @@
           {{poll.title}}
         </div>
         <div class="input-field col s2">
-          <button type="button" class="btn red darken-3" (click)="removePollFromForm(poll)">Remove</button>
+          <button type="button" class="btn red darken-3" (click)="removePollFromForm(poll)">Supprimer</button>
         </div>
       </div>
     </div>
@@ -35,9 +34,8 @@
     <!-- Submit Button -->
     <div class="row">
       <div class="input-field col s12">
-        <button class="btn cyan accent-4" type="submit" >Submit</button>
+        <button class="btn cyan accent-4" type="submit">Soumettre</button>
       </div>
     </div>
   </form>
 </div>
-

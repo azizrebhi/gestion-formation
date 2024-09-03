@@ -13,6 +13,7 @@ import {
 } from "ng-apexcharts";
 import { Poll } from "../../../../poll.modes";
 import { PollService } from "../../../../Poll.service";
+import { Router } from '@angular/router'; // Import the Router
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -39,13 +40,16 @@ export class WelcomeComponent implements OnInit {
   polls: Poll[] = [];
   public percentages: number[][] = [];
   public categoryStatistics: { [key: string]: { sum: number, average: number, count: number } } = {};
-  constructor(private pollService: PollService) {}
+
+  constructor(private pollService: PollService, private router: Router) {}  // Inject the Router service
+
   ngOnInit() {
     console.log("hello");
     this.pollService.getPolls().subscribe(polls => {
       this.polls = polls;
       this.chartOptions = [];
       this.categoryStatistics = {};
+
       this.polls.forEach((poll, index) => {
         const totalVotes = poll.options.reduce((sum, option) => sum + option.score, 0);
         const chartData: number[] = poll.options.map(option => (totalVotes === 0 ? 0 : (option.score / totalVotes) * 100));
@@ -147,5 +151,10 @@ export class WelcomeComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  // Function to navigate to Add Question page
+  navigateToAddQuestion(): void {
+    this.router.navigate(['/homeManager/Poll']);
   }
 }
