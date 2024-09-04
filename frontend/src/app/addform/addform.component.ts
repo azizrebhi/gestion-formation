@@ -55,6 +55,7 @@ export class AddformComponent implements OnInit {
         data => {
           alert("Formation registered successfully");
           this.dialogRef.close(data);
+          
         },
         error => {
           alert("An error has occurred");
