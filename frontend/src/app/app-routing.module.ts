@@ -46,6 +46,10 @@ const routes: Routes = [
 
   { path: 'homeManager', component: HomeManagerComponent, canActivate: [AuthGuard], data: { role: 'ROLE_MANAGER' },children:[
     { path: 'liste', component: ListDemandeFormationComponent },
+    { path: 'acceuil', component: AcceuilComponent }, // Add this route
+      { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
+    //{ path: '', redirectTo: 'liste', pathMatch: 'full' },
+
     { path: 'courses', component: CoursesComponent },
     { path: 'wizard', component: MultiStepWizardComponent },
     {path:'sujet',component:SujetComponent ,},
