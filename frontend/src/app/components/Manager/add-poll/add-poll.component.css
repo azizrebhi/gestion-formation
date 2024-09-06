@@ -7,14 +7,16 @@ form {
 }
 
 /* Input Field Styles */
-.input-field input[type="text"], .input-field input[type="date"] {
+.input-field input[type="text"],
+.input-field input[type="date"] {
   border: 1px solid #ccc; /* Light grey border */
   border-radius: 4px; /* Rounded corners for input fields */
   padding: 10px; /* Add padding inside the input fields */
   font-size: 16px; /* Increase font size */
 }
 
-.input-field input[type="text"]:focus, .input-field input[type="date"]:focus {
+.input-field input[type="text"]:focus,
+.input-field input[type="date"]:focus {
   border-color: #66bb6a; /* Green border on focus */
   box-shadow: 0 0 5px #66bb6a; /* Green glow on focus */
   outline: none; /* Remove default outline */
@@ -31,8 +33,6 @@ form {
   background-color: #42a5f5; /* Custom blue color for floating button */
 }
 
-
-
 .btn-floating i {
   font-size: 20px; /* Larger icon size */
 }
@@ -44,8 +44,6 @@ form {
   padding: 10px 20px; /* Padding around the button text */
   font-size: 16px; /* Larger font size */
 }
-
-
 
 /* Option List Styles */
 .options-list {
@@ -69,4 +67,26 @@ form {
 /* General Styles */
 .row {
   margin-bottom: 20px; /* Add space between rows */
+}
+
+/* Category Selection List Styles */
+.browser-default {
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 4px; /* Rounded corners for the select dropdown */
+  padding: 10px; /* Add padding inside the select dropdown */
+  font-size: 16px; /* Larger font size for better readability */
+  background-color: white; /* White background for the dropdown */
+  color: #333; /* Dark text color for better contrast */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover and focus effects */
+}
+
+.browser-default:focus {
+  border-color: #66bb6a; /* Green border on focus */
+  box-shadow: 0 0 5px #66bb6a; /* Green glow on focus */
+  outline: none; /* Remove default outline */
+}
+
+.browser-default:hover {
+  border-color: #42a5f5; /* Light blue border on hover */
+  background-color: #f0f8ff; /* Slight blue background on hover for a nice effect */
 }

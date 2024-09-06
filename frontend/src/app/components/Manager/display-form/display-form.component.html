@@ -1,5 +1,8 @@
 <div class="container">
-  <h2>Your Forms</h2>
+  <h2>Vos formulaires</h2>
+
+  <!-- Button to add a new form -->
+  <button class="btn-add-form" (click)="navigateToAddForm()">Ajouter un nouveau formulaire</button>
 
   <div *ngIf="forms.length === 0">
     <p>No forms available.</p>

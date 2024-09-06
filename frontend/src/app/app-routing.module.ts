@@ -40,7 +40,10 @@ const routes: Routes = [
 
     ]
   },
-  { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' },
+  { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' },children:[
+      {path:'feedback' , component:WelcomeComponent},
+      {path:'Poll' , component:AddPollComponent},
+    ]
 
      },
 

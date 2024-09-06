@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';  // Import Router for navigation
 import { FormService } from 'src/FormService';
-import {Form} from "../../../../Form";
-
+import { Form } from "../../../../Form";
 
 @Component({
   selector: 'app-display-form',
@@ -11,7 +11,7 @@ import {Form} from "../../../../Form";
 export class DisplayFormComponent implements OnInit {
   forms: Form[] = [];
 
-  constructor(private formService: FormService) {}
+  constructor(private formService: FormService, private router: Router) {}  // Inject Router
 
   ngOnInit(): void {
     this.loadForms();
@@ -24,6 +24,7 @@ export class DisplayFormComponent implements OnInit {
       console.error('Error fetching forms:', error);
     });
   }
+
   // New method to delete a form
   deleteForm(id: string): void {
     if (confirm('Are you sure you want to delete this form?')) {
@@ -35,5 +36,10 @@ export class DisplayFormComponent implements OnInit {
         console.error('Error deleting form:', error);
       });
     }
+  }
+
+  // Method to navigate to the "Add Form" page
+  navigateToAddForm(): void {
+    this.router.navigate(['/homeManager/crform']);  // Update the path as needed
   }
 }

@@ -70,3 +70,26 @@ tbody tr:hover {
 th, td {
   border-bottom: 1px solid #ddd; /* Light border for rows */
 }
+.center-align {
+  text-align: center;
+  margin: 20px 0;  /* Adds spacing above and below the button */
+}
+
+button.btn {
+  background-color: #00796b;  /* Teal background */
+  color: #fff;  /* White text */
+  border: none;
+  border-radius: 50px;  /* Rounded button */
+  padding: 10px 30px;  /* Comfortable padding */
+  font-size: 1.1em;  /* Slightly larger font size */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;  /* Smooth hover and active effects */
+}
+
+button.btn:hover {
+  background-color: #005a4f;  /* Darker teal on hover */
+}
+
+button.btn:active {
+  transform: scale(0.95);  /* Slight "click" effect */
+}
