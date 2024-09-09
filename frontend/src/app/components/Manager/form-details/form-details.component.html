@@ -1,0 +1,27 @@
+<div class="form-details-wrapper" *ngIf="form">
+  <div class="form-details-container">
+    <h2>{{ form.title }}</h2>
+
+    <div *ngFor="let poll of form.polls" class="poll-card">
+      <h3>{{ poll.title }}</h3>
+
+      <div *ngFor="let option of poll.options" class="option-item">
+        <label class="radio-label">
+          <input type="radio" name="option-{{ poll.id }}" (click)="onSelectOption(+poll.id, option.id)">
+          <span class="custom-radio"></span>
+          {{ option.option }}
+        </label>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="submit-button-container">
+      <button  class="btn submit-btn" (click)="onSubmitForm()"  >Submit</button>
+    </div>
+
+    <!-- Display the vote message -->
+    <div *ngIf="voteMessage" class="alert-message">
+      {{ voteMessage }}
+    </div>
+  </div>
+</div>

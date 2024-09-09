@@ -15,20 +15,21 @@ public class FormationController {
     @Autowired
     private FormationService formationService;
 
-    @PostMapping("/addFormation/{sujetId}")
-    public Formation addFormation(@RequestBody Formation formation, @PathVariable Long sujetId) {
-        return formationService.saveFormation(formation, sujetId);
+    @PostMapping("/addFormation/{nomSujet}")
+    public Formation addFormation(@RequestBody Formation formation, @PathVariable String nomSujet) {
+        return formationService.saveFormation(formation, nomSujet);
     }
+
 
     @PostMapping("/addFormations")
     public List<Formation> addFormations(@RequestBody List<Formation> formations) {
         return formationService.saveFormations(formations);
     }
 
-    @GetMapping("/getFormations")
+    /*@GetMapping("/getFormations")
     public List<Object[]> getFormations() {
         return formationService.getFormations();
-    }
+    }*/
 
     @GetMapping("/getFormationsById/{sujet_id}")
     public List<Formation> getFormationsById(@PathVariable Long sujet_id) {

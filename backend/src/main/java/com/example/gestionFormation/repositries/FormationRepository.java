@@ -11,7 +11,7 @@ import java.util.List;
 public interface FormationRepository extends JpaRepository<Formation, Long> {
 
 
-    @Query("SELECT f.idFormation, f.nomFormation, f.categorie, f.duree, f.description, f.level, f.sujet.id " +
+   /* @Query("SELECT f.idFormation, f.nomFormation, f.categorie, f.duree, f.description, f.level, f.sujet.id " +
             "FROM Formation f")
-    List<Object[]> findAllWithoutVideo();
+    List<Object[]> findAllWithoutVideo();*/
 }

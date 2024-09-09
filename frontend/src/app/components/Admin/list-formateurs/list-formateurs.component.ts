@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Formateur } from 'src/app/Model/formateur.model';
 import { FormateurService } from 'src/app/service/formateur.service';
-import { InvitationComponent } from '../invitation/invitation.component';
-import * as bootstrap from 'bootstrap';
-import { AddFormateurComponent } from '../add-formateur/add-formateur.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AddFormateurComponent } from '../add-formateur/add-formateur.component';
 import { EditFormateurComponent } from '../edit-formateur/edit-formateur.component';
 
 @Component({
@@ -15,22 +13,22 @@ import { EditFormateurComponent } from '../edit-formateur/edit-formateur.compone
 })
 export class ListFormateursComponent implements OnInit {
   formateurs: Formateur[] = [];
-  selectedFormateurId: number | null = null;
 
- 
-  constructor(private formateurService: FormateurService
-    ,private dialog: MatDialog,
-    private snackBar: MatSnackBar) {}
+  constructor(
+    private formateurService: FormateurService,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.loadFormateurs();
-    
   }
 
   loadFormateurs(): void {
     this.formateurService.getAllFormateurs().subscribe(
       (data: Formateur[]) => {
-        this.formateurs = data;
+        console.log('Formateurs fetched:', data);
+        this.formateurs = data; // Directly assign the fetched data
       },
       error => {
         console.error('Error fetching formateurs', error);
@@ -38,11 +36,14 @@ export class ListFormateursComponent implements OnInit {
     );
   }
 
+  
+
   deleteFormateur(formateur: Formateur): void {
     if (formateur.id) {
       this.formateurService.deleteFormateur(formateur.id).subscribe(
         () => {
-          this.loadFormateurs(); // Refresh the list
+          this.loadFormateurs(); // Refresh the list after deletion
+          this.snackBar.open('Formateur supprimé avec succès', 'Fermer', { duration: 3000 });
         },
         error => {
           console.error('Error deleting formateur', error);
@@ -54,42 +55,19 @@ export class ListFormateursComponent implements OnInit {
   editFormateur(formateur: Formateur): void {
     const dialogRef = this.dialog.open(EditFormateurComponent, {
       width: '600px',
-      data: { formateur }
+      data: { formateurId: formateur.id }
     });
-
+  
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.loadFormateurs(); // Recharge la liste des formateurs si le dialogue a été fermé avec succès
+        this.loadFormateurs(); // Refresh the list after editing
       }
     });
   }
 
-  deleteSelected(): void {
-    // Implement bulk delete functionality if needed
-  }
-
-  addNewFormateur(): void {
-    console.log('Add New Employee');
-    // Implement logic to add a new employee
-  }
-    onDemandeClick(formateurId: number): void {
-    this.selectedFormateurId = formateurId;
-
-    // Use the Bootstrap modal API to show the modal
-    const modalElement = document.getElementById('staticBackdrop4');
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
-    }
-  }
-
-  onInvitationSent(): void {
-    this.selectedFormateurId = null;
-  }
   openAddFormateurDialog(): void {
     const dialogRef = this.dialog.open(AddFormateurComponent, {
-      width: '600px',
-      data: {} // Pass any data if needed
+      width: '600px'
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -98,8 +76,4 @@ export class ListFormateursComponent implements OnInit {
       }
     });
   }
-  
-
-   
 }
-

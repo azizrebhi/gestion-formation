@@ -18,7 +18,6 @@ public class Formation {
     private long idFormation;
 
     private String nomFormation;
-    private String categorie;
     private Long duree;
     private String video;
     private String description;

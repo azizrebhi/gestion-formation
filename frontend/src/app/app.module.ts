@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppRoutingModule } from "./app-routing.module";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastrModule } from "ngx-toastr";
 import { NotFoundComponentComponent } from "./components/not-found-component/not-found-component.component";
@@ -30,15 +31,13 @@ import { DemandeFormationComponent } from "./components/Manager/demande-formatio
 import { SujetComponent } from "./sujet/sujet.component";
 import {  MatDialogModule } from "@angular/material/dialog";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-   import { MatSelectModule } from "@angular/material/select";
-  
-
-  import { MatDatepickerModule } from "@angular/material/datepicker";
-  import { MatCardModule } from "@angular/material/card";
-  import { MatInputModule } from "@angular/material/input";
-  import { MatIconModule } from "@angular/material/icon";
-  import { MatButtonModule } from "@angular/material/button";
-  import { MatNativeDateModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatCardModule } from "@angular/material/card";
+import { MatInputModule } from "@angular/material/input";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatNativeDateModule } from "@angular/material/core";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { AuthInterceptor } from "./service/auth.interceptor";
 import { AdminNotificationsComponent } from './components/Admin/admin-notifications/admin-notifications.component';
@@ -49,6 +48,20 @@ import { CommonModule } from "@angular/common";
 import { AddcarouselmodalComponent } from './addcarouselmodal/addcarouselmodal.component';
 import { ListDemandeFormationComponent } from './components/Manager/list-demande-formation/list-demande-formation.component';
 import { EditDemandModalComponent } from './components/Manager/edit-demand-modal/edit-demand-modal.component';
+
+
+
+
+import { PollService } from "src/Poll.service";
+import { DisplayFormComponent } from './components/Manager/display-form/display-form.component';
+
+
+import {AddPollComponent} from "./components/Manager/add-poll/add-poll.component";
+import {CreateFormComponent} from "./components/Manager/create-form/create-form.component";
+import {FormDetailsComponent} from "./components/Manager/form-details/form-details.component";
+import {WelcomeComponent} from "./components/Manager/welcome/welcome.component";
+import { NavbarComponent } from './components/Formateur/navbar/navbar.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 
 @NgModule({
@@ -81,10 +94,16 @@ import { EditDemandModalComponent } from './components/Manager/edit-demand-modal
     EditFormateurComponent,
     AddcarouselmodalComponent,
     ListDemandeFormationComponent,
-    EditDemandModalComponent
+    EditDemandModalComponent,
+    WelcomeComponent,
+    AddPollComponent,
+    FormDetailsComponent,
+    DisplayFormComponent,
+    CreateFormComponent,
+    NavbarComponent
   ],
   imports: [
-    
+    NgApexchartsModule,
     RouterModule,
     BrowserModule,
     AppRoutingModule,
@@ -106,16 +125,17 @@ import { EditDemandModalComponent } from './components/Manager/edit-demand-modal
     MatSnackBarModule,
     NgMultiSelectDropDownModule.forRoot(),
     CommonModule
-    
-  
-    
+
+
+
   ],
-  providers: [
+  providers: [PollService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [
     AppComponent,
   ]
-
 })
-export class AppModule { }
+export class AppModule {
+
+}

@@ -12,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class AddcarouselmodalComponent {
   addCourseForm: FormGroup;
   nomSujet: string = '';  // Category Name
-  imageSujet: string = '';  // Image URL
+  description : string = '';  // Image URL
 
   constructor(
     private fb: FormBuilder,
@@ -21,7 +21,7 @@ export class AddcarouselmodalComponent {
   ) {
     this.addCourseForm = this.fb.group({
       nomSujet: [''],  // Category Name
-      imageSujet: [''] // Image URL
+      description: [''] // Image URL
     });
   }
 
@@ -29,7 +29,7 @@ export class AddcarouselmodalComponent {
     if (this.addCourseForm.valid) {
       const sujetData = {
         nomSujet: this.nomSujet,
-        imageSujet: this.imageSujet
+        description: this.description
       };
       this.registerSujet(sujetData);
     }
@@ -41,7 +41,7 @@ export class AddcarouselmodalComponent {
         data => {
           alert("Sujet registered successfully");
           this.nomSujet = ""; // Clear the input fields after successful registration
-          this.imageSujet = "";
+          this.description = "";
           this.dialogRef.close(data); // Close the dialog and return the data
         },
         error => {

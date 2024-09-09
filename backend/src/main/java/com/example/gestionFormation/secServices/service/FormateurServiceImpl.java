@@ -28,12 +28,12 @@ public class FormateurServiceImpl implements IFormateurService{
 
     @Override
     public List<Formateur> getAllFormateurs() {
-        return formateurRepository.findAll();
+        return formateurRepository.findAllWithLanguages();
     }
 
     @Override
-    public Formateur getFormateurById(Long id) {
-        return formateurRepository.findById(id).orElse(null);
+    public Optional<Formateur> getFormateurById(Long id) {
+        return formateurRepository.findById(id);
     }
 
 

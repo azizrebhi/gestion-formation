@@ -20,20 +20,21 @@ public class FormationService {
     @Autowired
     private SujetRepository sujetRepository;
 
-    public Formation saveFormation(Formation formation, Long sujetId) {
-        Sujet sujet = sujetRepository.findById(sujetId)
-                .orElseThrow(() -> new RuntimeException("Sujet not found"));
+    public Formation saveFormation(Formation formation, String nomSujet) {
+        Sujet sujet = sujetRepository.findByNomSujet(nomSujet)
+                .orElseThrow(() -> new RuntimeException("Sujet not found with nomSujet: " + nomSujet));
         formation.setSujet(sujet);
         return formationRepository.save(formation);
     }
+
 
     public List<Formation> saveFormations(List<Formation> formations) {
         return formationRepository.saveAll(formations);
     }
 
-    public List<Object[]> getFormations() {
+   /* public List<Object[]> getFormations() {
         return formationRepository.findAllWithoutVideo();
-    }
+    }*/
 
 
     public List<Formation> getFormationsBySujetId(Long sujet_id) {
@@ -68,7 +69,7 @@ public class FormationService {
         Formation existingFormation = formationRepository.findById(formation.getIdFormation()).orElse(null);
         if (existingFormation != null) {
             existingFormation.setNomFormation(formation.getNomFormation());
-            existingFormation.setCategorie(formation.getCategorie());
+           // existingFormation.setCategorie(formation.getCategorie());
             existingFormation.setDescription(formation.getDescription());
             existingFormation.setLevel(formation.getLevel());
             existingFormation.setDuree(formation.getDuree());

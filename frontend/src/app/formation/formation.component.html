@@ -1,11 +1,11 @@
 <div class="body">
     <div class="formation-list">
-        <h1 style="margin-bottom: 100px;">Available Courses</h1>
-        <button class="add-button" mat-button (click)="openDialog()">Add Course +</button>
+        <h1 style="margin-bottom: 100px;"> Cours Disponibles </h1>
+        <button class="add-button" mat-button (click)="openDialog()">Ajouter un nouveau Cours +</button>
         <div *ngFor="let formation of FormationArray" class="formation-card">
             <div class="header">
                 <h2>{{ formation.nomFormation }}</h2>
-                <span class="badge level-{{ formation.level }}">Level {{ formation.level }}</span>
+                <span class="badge level-{{ formation.level }}">Niveau {{ formation.level }}</span>
             </div>
   
             <div class="content">
