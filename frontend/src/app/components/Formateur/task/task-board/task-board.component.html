@@ -1,0 +1,38 @@
+<button class="btn btn-primary" (click)="openTaskModal()">Ajouter Task</button>
+<div class="task-board">
+  <div class="task-column">
+    <h2> A faire</h2>
+    <div *ngFor="let task of todoTasks" class="task-card">
+      <div class="task-title">{{ task.title }}</div>
+      <div class="task-info">Début: {{ task.startDate | date }}</div>
+      <div class="task-info">Fin: {{ task.endDate | date }}</div>
+      <div class="task-info">Mode: {{ task.mode }}</div>
+      <div class="task-info">Équipe: {{ task.team }}</div>
+      <button class="btn-move" (click)="updateTaskStatus(task, 'IN_PROGRESS')">Passer à En cours</button>
+    </div>
+  </div>
+
+  <div class="task-column">
+    <h2>En cours</h2>
+    <div *ngFor="let task of inProgressTasks" class="task-card">
+      <div class="task-title">{{ task.title }}</div>
+      <div class="task-info">Début: {{ task.startDate | date }}</div>
+      <div class="task-info">Fin: {{ task.endDate | date }}</div>
+      <div class="task-info">Mode: {{ task.mode }}</div>
+      <div class="task-info">Équipe: {{ task.team }}</div>
+      <button class="btn-move" (click)="updateTaskStatus(task, 'DONE')">Passer à Terminé</button>
+    </div>
+  </div>
+
+  <div class="task-column">
+    <h2>Terminé</h2>
+    <div *ngFor="let task of doneTasks" class="task-card">
+      <div class="task-title">{{ task.title }}</div>
+      <div class="task-info">Début: {{ task.startDate | date }}</div>
+      <div class="task-info">Fin: {{ task.endDate | date }}</div>
+      <div class="task-info">Mode: {{ task.mode }}</div>
+      <div class="task-info">Équipe: {{ task.team }}</div>
+      <button class="btn-delete" (click)="deleteTask(task.id!)">Supprimer</button>
+    </div>
+  </div>
+</div>

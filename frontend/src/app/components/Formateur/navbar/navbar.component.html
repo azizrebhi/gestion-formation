@@ -28,13 +28,12 @@
           <button class="close-btn" (click)="toggleSidebar()">×</button>
         </div>
         <ul class="list-unstyled components">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Notifications</a></li>
-          <!--<li><a [routerLink]="['/homeAdmin/listFormateur']">Formateurs</a></li>-->
-          <li><a href="#">Chat</a></li>
+        
+         <li><a [routerLink]="['/homeFormateur/task']">Tasks</a></li>
+       
         </ul>
         <div class="profile-actions">
-          <a href="#">Mon compte</a>
+         
           <a (click)="onLogout()">Déconnexion</a>
         </div>
       </div>

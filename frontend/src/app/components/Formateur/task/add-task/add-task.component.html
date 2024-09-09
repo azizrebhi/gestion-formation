@@ -1,0 +1,90 @@
+<div class="form-container">
+    <h1 class="form-title">Ajouter une nouvelle tâche</h1>
+    <form #taskForm="ngForm" (ngSubmit)="onSubmit(taskForm)" novalidate>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          class="form-input"
+          [(ngModel)]="task.title"
+          placeholder="Enter task title"
+          #title="ngModel"
+          required
+        />
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="error-message">
+          <div *ngIf="title.errors?.['required']">Title is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="dateDebut">Date Début</label>
+        <input
+          type="date"
+          id="dateDebut"
+          name="dateDebut"
+          class="form-input"
+          [(ngModel)]="task.startDate"
+          #dateDebut="ngModel"
+          required
+        />
+        <div *ngIf="dateDebut.invalid && (dateDebut.dirty || dateDebut.touched)" class="error-message">
+          <div *ngIf="dateDebut.errors?.['required']">Start date is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="dateFin">Date Fin</label>
+        <input
+          type="date"
+          id="dateFin"
+          name="dateFin"
+          class="form-input"
+          [(ngModel)]="task.endDate"
+          #dateFin="ngModel"
+          required
+        />
+        <div *ngIf="dateFin.invalid && (dateFin.dirty || dateFin.touched)" class="error-message">
+          <div *ngIf="dateFin.errors?.['required']">End date is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="mode">Mode</label>
+        <select
+          id="mode"
+          name="mode"
+          class="form-input"
+          [(ngModel)]="task.mode"
+          #mode="ngModel"
+          required
+        >
+          <option value="" disabled>Selectionner mode</option>
+          <option value="Presentiel">Presentiel</option>
+          <option value="EnLigne">En Ligne</option>
+        </select>
+        <div *ngIf="mode.invalid && (mode.dirty || mode.touched)" class="error-message">
+          <div *ngIf="mode.errors?.['required']">Mode is required.</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="equipe">Équipe</label>
+        <input
+          type="text"
+          id="equipe"
+          name="equipe"
+          class="form-input"
+          [(ngModel)]="task.team"
+          placeholder="Enter team"
+        />
+      </div>
+  
+      <div class="form-footer">
+        <button type="button" class="btn-secondary" (click)="onCancel()">Annuler</button>
+        <button type="submit" class="btn-primary" [disabled]="!taskForm.form.valid">Ajouter</button>
+      </div>
+    </form>
+  </div>
+  

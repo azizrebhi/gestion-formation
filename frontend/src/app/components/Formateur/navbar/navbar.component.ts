@@ -1,4 +1,3 @@
-// nav.component.ts
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/Model/user.model';
@@ -6,11 +5,11 @@ import { AuthService } from 'src/app/service/auth.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
-  selector: 'app-nav',
-  templateUrl: './nav.component.html',
-  styleUrls: ['./nav.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class NavComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   @ViewChild('sidebar', { static: true }) sidebarRef!: ElementRef;
   user: User | null = null;
 

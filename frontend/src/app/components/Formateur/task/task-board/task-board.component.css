@@ -1,0 +1,82 @@
+/* General Styles */
+.task-board {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;  /* Adds space between columns */
+}
+
+.task-column {
+  width: 30%;
+  background-color: #f7f7f7;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-card {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.task-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.task-title {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.task-info {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+button {
+  padding: 5px 10px;
+  border: none;
+  margin-top: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Specific Button Styles */
+.btn-primary {
+  background-color: #00b36e;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #00b36e;
+}
+
+.btn-move {
+  background-color: #00ff62;
+  color: white;
+}
+
+.btn-move:hover {
+  background-color: #00cc50;
+}
+
+.btn-delete {
+  background-color: #4dff91;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #818080;
+}
