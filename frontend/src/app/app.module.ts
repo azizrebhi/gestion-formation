@@ -49,6 +49,12 @@ import { AddcarouselmodalComponent } from './addcarouselmodal/addcarouselmodal.c
 import { ListDemandeFormationComponent } from './components/Manager/list-demande-formation/list-demande-formation.component';
 import { EditDemandModalComponent } from './components/Manager/edit-demand-modal/edit-demand-modal.component';
 
+import { TaskBoardComponent } from './components/Formateur/task/task-board/task-board.component';
+import { AddTaskComponent } from './components/Formateur/task/add-task/add-task.component';
+import { HistoricTaskComponent } from './components/Formateur/task/historic-task/historic-task.component';
+
+
+
 
 
 
@@ -100,7 +106,10 @@ import { NgApexchartsModule } from "ng-apexcharts";
     FormDetailsComponent,
     DisplayFormComponent,
     CreateFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    TaskBoardComponent,
+       AddTaskComponent,
+       HistoricTaskComponent
   ],
   imports: [
     NgApexchartsModule,

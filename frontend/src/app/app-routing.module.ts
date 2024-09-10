@@ -22,6 +22,8 @@ import {CreateFormComponent} from "./components/Manager/create-form/create-form.
 import {DisplayFormComponent} from "./components/Manager/display-form/display-form.component";
 import {FormDetailsComponent} from "./components/Manager/form-details/form-details.component";
 import {WelcomeComponent} from "./components/Manager/welcome/welcome.component";
+import { TaskBoardComponent } from './components/Formateur/task/task-board/task-board.component';
+import { HistoricTaskComponent } from './components/Formateur/task/historic-task/historic-task.component';
 
 const routes: Routes = [
  /* {path:'',component:SujetComponent ,},
@@ -41,7 +43,10 @@ const routes: Routes = [
     ]
   },
   { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' },children:[
-      {path:'feedback' , component:WelcomeComponent},
+    { path: 'task', component: TaskBoardComponent },
+    { path: 'list_des_tasks', component: HistoricTaskComponent },
+    { path: '', redirectTo: 'task', pathMatch: 'full' },
+    {path:'feedback' , component:WelcomeComponent},
       {path:'Poll' , component:AddPollComponent},
     ]
 

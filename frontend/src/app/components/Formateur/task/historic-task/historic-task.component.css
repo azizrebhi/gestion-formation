@@ -1,0 +1,31 @@
+.completed-tasks {
+    padding: 20px 40px;  /* Adds 40px space on left and right, 20px on top and bottom */
+    margin: 0 auto;      /* Center the table horizontally */
+    max-width: 1200px;   /* Set a max-width to limit the table's width */
+  }
+  
+  table {
+    width: 100%;  /* Make the table take up the available space inside the container */
+    border-collapse: collapse;  /* Ensure borders are properly aligned */
+  }
+  
+  thead th {
+    padding: 12px;
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  h2 {
+    text-align: center;  /* Center the heading */
+    margin-bottom: 20px;  /* Add space below the heading */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;  /* Light background for even rows */
+  }
+  
