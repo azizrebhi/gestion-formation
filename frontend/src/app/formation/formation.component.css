@@ -70,7 +70,7 @@
 
 /* Delete Button Styles */
 .delete-button {
-  background-color: #00769b;
+  background-color: #252525;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -81,7 +81,7 @@
 }
 
 .delete-button:hover {
-  background-color: #00769a;
+  background-color: #252529;
 }
 
 /* Content Section of Each Card */

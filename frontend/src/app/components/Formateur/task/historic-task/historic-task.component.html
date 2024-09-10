@@ -1,0 +1,24 @@
+<div class="completed-tasks">
+    <h2>Tâches Complètes</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Début</th>
+          <th>Fin</th>
+          <th>Mode</th>
+          <th>Équipe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of completedTasks">
+          <td>{{ task.title }}</td>
+          <td>{{ task.startDate | date }}</td>
+          <td>{{ task.endDate | date }}</td>
+          <td>{{ task.mode }}</td>
+          <td>{{ task.team }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
