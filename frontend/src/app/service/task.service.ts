@@ -41,5 +41,13 @@ export class TaskServiceService {
   deleteTask(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  private completedTasks: Task[] = [];
 
+  getCompletedTasks(): Task[] {
+    return this.completedTasks;
+  }
+
+  addCompletedTask(task: Task): void {
+    this.completedTasks.push(task);
+  }
 }

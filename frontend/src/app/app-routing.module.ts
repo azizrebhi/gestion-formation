@@ -17,6 +17,7 @@ import { AdminNotificationsComponent } from './components/Admin/admin-notificati
 import { AcceuilComponent } from './components/Admin/acceuil/acceuil.component';
 import { ListDemandeFormationComponent } from './components/Manager/list-demande-formation/list-demande-formation.component';
 import { TaskBoardComponent } from './components/Formateur/task/task-board/task-board.component';
+import { HistoricTaskComponent } from './components/Formateur/task/historic-task/historic-task.component';
 
 const routes: Routes = [
  /* {path:'',component:SujetComponent ,},
@@ -34,6 +35,7 @@ const routes: Routes = [
   },
   { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' },children:[
     { path: 'task', component: TaskBoardComponent },
+    { path: 'list_des_tasks', component: HistoricTaskComponent },
     { path: '', redirectTo: 'task', pathMatch: 'full' },
   ]},
 

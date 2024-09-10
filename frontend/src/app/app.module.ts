@@ -52,6 +52,7 @@ import { EditDemandModalComponent } from './components/Manager/edit-demand-modal
 import { NavbarComponent } from "./components/Formateur/navbar/navbar.component";
 import { TaskBoardComponent } from './components/Formateur/task/task-board/task-board.component';
 import { AddTaskComponent } from './components/Formateur/task/add-task/add-task.component';
+import { HistoricTaskComponent } from './components/Formateur/task/historic-task/historic-task.component';
 
 
 
@@ -90,7 +91,8 @@ import { AddTaskComponent } from './components/Formateur/task/add-task/add-task.
  
     NavbarComponent,
        TaskBoardComponent,
-       AddTaskComponent
+       AddTaskComponent,
+       HistoricTaskComponent
   ],
   imports: [
     

@@ -16,6 +16,7 @@ export class TaskBoardComponent implements OnInit {
   todoTasks: Task[] = [];
   inProgressTasks: Task[] = [];
   doneTasks: Task[] = [];
+  completedTasks: Task[] = [];
 
   constructor(
     private taskService: TaskServiceService,
@@ -88,13 +89,11 @@ export class TaskBoardComponent implements OnInit {
 
   // Delete a task
   deleteTask(taskId: number): void {
-    this.taskService.deleteTask(taskId).subscribe(
-      () => {
-        this.getTasks();  // Refresh tasks after deletion
-      },
-      (error) => {
-        console.error('Error deleting task', error);
-      }
-    );
-  }
+    const taskToDelete = this.doneTasks.find(task => task.id === taskId);
+  
+    if (taskToDelete) {
+      this.doneTasks = this.doneTasks.filter(task => task.id !== taskId);
+      this.taskService.addCompletedTask(taskToDelete); // Save the task in the service
+    }}
+  
 }

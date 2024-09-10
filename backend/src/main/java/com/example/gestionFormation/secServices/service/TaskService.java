@@ -1,12 +1,14 @@
 package com.example.gestionFormation.secServices.service;
 
 import com.example.gestionFormation.entities.Task;
+import com.example.gestionFormation.enumeration.TaskStatus;
 import com.example.gestionFormation.repositries.TaskRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -38,10 +40,20 @@ public class TaskService {
         task.setStatus(updatedTask.getStatus());
         return taskRepository.save(task);
     }
-    public Page<Task> getAllTasks(Pageable pageable) {
-        return taskRepository.findAll(pageable);
-    }
+
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }

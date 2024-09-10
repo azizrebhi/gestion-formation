@@ -39,14 +39,21 @@
   color: #555;
 }
 
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
 button {
   padding: 5px 10px;
   border: none;
   margin-top: 20px;
   border-radius: 5px;
-  margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s;
+  font-size: 0.875em;  /* Smaller font size */
 }
 
 button:hover {
@@ -60,7 +67,7 @@ button:hover {
 }
 
 .btn-primary:hover {
-  background-color: #00b36e;
+  background-color: #009b5e;
 }
 
 .btn-move {
@@ -73,10 +80,10 @@ button:hover {
 }
 
 .btn-delete {
-  background-color: #4dff91;
+  background-color: #525252;
   color: white;
 }
 
 .btn-delete:hover {
-  background-color: #818080;
+  background-color: #525252;
 }

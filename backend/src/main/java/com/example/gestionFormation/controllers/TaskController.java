@@ -1,8 +1,11 @@
 package com.example.gestionFormation.controllers;
 
 import com.example.gestionFormation.entities.Task;
+import com.example.gestionFormation.enumeration.TaskStatus;
 import com.example.gestionFormation.secServices.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,8 +41,12 @@ public class TaskController {
         return taskService.updateTask(id, updatedTask);
     }
 
+
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
     }
+
+
+
 }

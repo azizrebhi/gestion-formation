@@ -36,7 +36,7 @@ public class Task {
     private String team;
 
     @Enumerated(EnumType.STRING)
-    private TaskStatus status; // ToDo, InProgress, Done
+    private TaskStatus status;
 
 
 
