@@ -43,7 +43,7 @@ export class FormationComponent  {
 
 
   getAllFormations(sujetId: number) {
-    this.http.get<any[]>(`//localhost:8086/academie/formations/getFormations`)
+    this.http.get<any[]>(`http://localhost:8086/academie/formations/getFormations`)
       .subscribe((resultData: any[]) => {
         this.FormationArray = resultData.map(formation => ({
           idFormation: formation[0],

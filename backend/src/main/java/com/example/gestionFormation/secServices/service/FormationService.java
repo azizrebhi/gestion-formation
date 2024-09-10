@@ -32,9 +32,9 @@ public class FormationService {
         return formationRepository.saveAll(formations);
     }
 
-   /* public List<Object[]> getFormations() {
+    public List<Object[]> getFormations() {
         return formationRepository.findAllWithoutVideo();
-    }*/
+    }
 
 
     public List<Formation> getFormationsBySujetId(Long sujet_id) {
