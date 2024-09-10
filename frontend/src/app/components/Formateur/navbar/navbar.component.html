@@ -29,17 +29,14 @@
           <button class="close-btn" (click)="toggleSidebar()">×</button>
         </div>
         <ul class="list-unstyled components">
-          <li><a href="#">Home</a></li>
-
-          <!--<li><a [routerLink]="['/homeAdmin/listFormateur']">Formateurs</a></li>-->
-
-          <li><a href="#">Notifications</a></li>
-          <!--li ><a [routerLink]="['/homeAdmin/listFormateur']">Formateurs</a></li-->
-          <li><a [routerLink]="['/homeFormateur/feedback']">statistique </a></li>
-          <li><a href="#">Chat</a></li>
+         
+          
+          <li><a [routerLink]="['/homeFormateur/task']">Taches</a></li>
+          <li><a [routerLink]="['/homeFormateur/list_des_tasks']">Historique</a></li>
+          <li><a [routerLink]="['/homeFormateur/feedback']">Statistique </a></li>
         </ul>
         <div class="profile-actions">
-          <a href="#">Mon compte</a>
+         
           <a (click)="onLogout()">Déconnexion</a>
         </div>
       </div>
