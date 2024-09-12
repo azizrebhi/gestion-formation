@@ -5,7 +5,7 @@ body {
 }
 
 .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/AES.jpg'); /* Replace with the actual path to your image */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/4SUCCESS.jpg'); /* Replace with the actual path to your image */
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -13,6 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    padding-top: 12px;
 }
 
 /* Optional: If you want to ensure that no extra space appears in the container */

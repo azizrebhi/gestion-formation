@@ -45,7 +45,8 @@ const routes: Routes = [
   { path: 'homeFormateur', component: HomeFormateurComponent, canActivate: [AuthGuard], data: { role: 'ROLE_FORMATEUR' },children:[
     { path: 'task', component: TaskBoardComponent },
     { path: 'list_des_tasks', component: HistoricTaskComponent },
-    { path: '', redirectTo: 'task', pathMatch: 'full' },
+    { path: 'acceuil', component: AcceuilComponent }, // Add this route
+      { path: '', redirectTo: 'acceuil', pathMatch: 'full' },
     {path:'feedback' , component:WelcomeComponent},
       {path:'Poll' , component:AddPollComponent},
     ]
