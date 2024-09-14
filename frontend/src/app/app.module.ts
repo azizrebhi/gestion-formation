@@ -20,15 +20,12 @@ import { ListFormateursComponent } from "./components/Admin/list-formateurs/list
 import { NavComponent } from "./components/Admin/nav/nav.component";
 import { InvitationComponent } from "./components/Admin/invitation/invitation.component";
 import { ResponseComponent } from "./components/Admin/response/response.component";
-import { FormationComponent } from "./formation/formation.component";
-import { AddformComponent } from "./addform/addform.component";
 import { AddFormateurComponent } from "./components/Admin/add-formateur/add-formateur.component";
 import { HomeManagerComponent } from "./components/Manager/home-manager/home-manager.component";
 import { CoursesComponent } from "./components/Manager/courses/courses.component";
 import { NavManagerComponent } from "./components/Manager/nav-manager/nav-manager.component";
 import { MultiStepWizardComponent } from "./components/Manager/multi-step-wizard/multi-step-wizard.component";
 import { DemandeFormationComponent } from "./components/Manager/demande-formation/demande-formation.component";
-import { SujetComponent } from "./sujet/sujet.component";
 import {  MatDialogModule } from "@angular/material/dialog";
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { MatSelectModule } from "@angular/material/select";
@@ -45,7 +42,6 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AcceuilComponent } from './components/Admin/acceuil/acceuil.component';
 import { EditFormateurComponent } from './components/Admin/edit-formateur/edit-formateur.component';
 import { CommonModule } from "@angular/common";
-import { AddcarouselmodalComponent } from './addcarouselmodal/addcarouselmodal.component';
 import { ListDemandeFormationComponent } from './components/Manager/list-demande-formation/list-demande-formation.component';
 import { EditDemandModalComponent } from './components/Manager/edit-demand-modal/edit-demand-modal.component';
 
@@ -92,13 +88,9 @@ import { NgApexchartsModule } from "ng-apexcharts";
     NavManagerComponent,
     MultiStepWizardComponent,
     DemandeFormationComponent,
-    SujetComponent,
-    FormationComponent,
-    AddformComponent,
     AdminNotificationsComponent,
     AcceuilComponent,
     EditFormateurComponent,
-    AddcarouselmodalComponent,
     ListDemandeFormationComponent,
     EditDemandModalComponent,
     WelcomeComponent,

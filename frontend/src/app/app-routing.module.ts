@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormationComponent } from './formation/formation.component';
-import { SujetComponent } from './sujet/sujet.component';
 
 import { LoginComponent } from './components/Users/login/login.component';
 import { RegisterComponent } from './components/Users/register/register.component';
@@ -61,8 +59,6 @@ const routes: Routes = [
 
     { path: 'courses', component: CoursesComponent },
     { path: 'wizard', component: MultiStepWizardComponent },
-    {path:'sujet',component:SujetComponent ,},
-    {path:'formation' , component:FormationComponent},
       {path:'feedback' , component:WelcomeComponent},
       {path:'Poll' , component:AddPollComponent},
       {path:'crform' , component:CreateFormComponent},
